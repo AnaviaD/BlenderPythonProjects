@@ -1,0 +1,1505 @@
+2026-08-21 02:59:02 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 02:59:02 - pixel_automator - INFO - QApplication creada
+2026-08-21 02:59:02 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 02:59:02 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 02:59:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 02:59:02 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 02:59:02 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 02:59:03 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:15:49 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:15:53 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:15:53 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:15:53 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:15:53 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:15:53 - pixel_automator - CRITICAL - Error fatal: 'MainWindow' object has no attribute 'update_cooldown_label'
+Traceback (most recent call last):
+  File "C:\Users\Alberto\Desktop\projects\Random\WplaceProj\main.py", line 23, in main
+    window = MainWindow()
+  File "C:\Users\Alberto\Desktop\projects\Random\WplaceProj\src\gui\main_window.py", line 94, in __init__
+    self.setup_ui()
+    ~~~~~~~~~~~~~^^
+  File "C:\Users\Alberto\Desktop\projects\Random\WplaceProj\src\gui\main_window.py", line 369, in setup_ui
+    self.random_cooldown_checkbox.stateChanged.connect(self.update_cooldown_label)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MainWindow' object has no attribute 'update_cooldown_label'
+
+2026-08-21 03:17:14 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:17:14 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:17:14 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:17:14 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:17:15 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:17:15 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:17:15 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:17:15 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:17:47 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:17:47 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:17:47 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:17:52 - pixel_automator - INFO - Área seleccionada: {'left': 1296, 'top': 380, 'width': 16, 'height': 16}
+2026-08-21 03:17:52 - pixel_automator - DEBUG - Capturando área: {'left': 1296, 'top': 380, 'width': 16, 'height': 16}
+2026-08-21 03:17:52 - pixel_automator - INFO - ✅ Área capturada: (16, 16, 3) (BGR)
+2026-08-21 03:17:52 - pixel_automator - INFO - 📐 Área seleccionada: x=1296, y=380, w=16, h=16
+2026-08-21 03:17:52 - pixel_automator - INFO - 📊 Imagen recibida: shape=(16, 16, 3)
+2026-08-21 03:17:52 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (8, 8)
+2026-08-21 03:17:52 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:17:52 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:17:52 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:17:52 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:17:52 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:17:52 - pixel_automator - INFO -    RGB(248, 178, 119): 224 píxeles (87.5%)
+2026-08-21 03:17:52 - pixel_automator - INFO -    RGB(255, 255, 255): 32 píxeles (12.5%)
+2026-08-21 03:17:52 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 8 px
+2026-08-21 03:17:52 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:17:52 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 8 px
+2026-08-21 03:17:52 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:17:52 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:17:52 - pixel_automator - INFO - 📏 Tamaño de muestra: 16px (usado para clustering)
+2026-08-21 03:17:52 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:17:54 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:17:54 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:17:54 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:17:58 - pixel_automator - INFO - Área seleccionada: {'left': 893, 'top': 250, 'width': 474, 'height': 151}
+2026-08-21 03:17:58 - pixel_automator - INFO - ✅ Área seleccionada: 474x151 px
+2026-08-21 03:17:58 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:18:00 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:18:00 - pixel_automator - DEBUG - Capturando área: {'left': 893, 'top': 250, 'width': 474, 'height': 151}
+2026-08-21 03:18:00 - pixel_automator - INFO - ✅ Área capturada: (151, 474, 3) (BGR)
+2026-08-21 03:18:00 - pixel_automator - ERROR - Error iniciando análisis: 'MainWindow' object has no attribute 'on_analysis_finished'
+2026-08-21 03:23:28 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:23:28 - pixel_automator - DEBUG - Capturando área: {'left': 893, 'top': 250, 'width': 474, 'height': 151}
+2026-08-21 03:23:28 - pixel_automator - INFO - ✅ Área capturada: (151, 474, 3) (BGR)
+2026-08-21 03:23:28 - pixel_automator - ERROR - Error iniciando análisis: 'MainWindow' object has no attribute 'on_analysis_finished'
+2026-08-21 03:24:25 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:24:27 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:24:27 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:24:27 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:24:27 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:24:27 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:24:27 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:24:27 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:24:27 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:24:33 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:24:33 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:24:33 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:24:39 - pixel_automator - INFO - Área seleccionada: {'left': 1554, 'top': 266, 'width': 16, 'height': 15}
+2026-08-21 03:24:39 - pixel_automator - DEBUG - Capturando área: {'left': 1554, 'top': 266, 'width': 16, 'height': 15}
+2026-08-21 03:24:39 - pixel_automator - INFO - ✅ Área capturada: (15, 16, 3) (BGR)
+2026-08-21 03:24:39 - pixel_automator - INFO - 📐 Área seleccionada: x=1554, y=266, w=16, h=15
+2026-08-21 03:24:39 - pixel_automator - INFO - 📊 Imagen recibida: shape=(15, 16, 3)
+2026-08-21 03:24:39 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (8, 7)
+2026-08-21 03:24:39 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:24:39 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:24:39 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:24:39 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:24:39 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:24:39 - pixel_automator - INFO -    RGB(248, 178, 119): 240 píxeles (100.0%)
+2026-08-21 03:24:39 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:24:39 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:24:39 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:24:39 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:24:39 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:24:39 - pixel_automator - INFO - 📏 Tamaño de muestra: 15px (usado para clustering)
+2026-08-21 03:24:39 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:24:42 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:24:42 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:24:42 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:24:48 - pixel_automator - INFO - Área seleccionada: {'left': 834, 'top': 260, 'width': 621, 'height': 146}
+2026-08-21 03:24:48 - pixel_automator - INFO - ✅ Área seleccionada: 621x146 px
+2026-08-21 03:24:48 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:24:51 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:24:51 - pixel_automator - DEBUG - Capturando área: {'left': 834, 'top': 260, 'width': 621, 'height': 146}
+2026-08-21 03:24:51 - pixel_automator - INFO - ✅ Área capturada: (146, 621, 3) (BGR)
+2026-08-21 03:24:51 - pixel_automator - ERROR - Error iniciando análisis: 'MainWindow' object has no attribute 'on_analysis_progress'
+2026-08-21 03:26:40 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:26:42 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:26:42 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:26:42 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:26:42 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:26:43 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:26:43 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:26:43 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:26:43 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:26:47 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:26:47 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:26:47 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:26:55 - pixel_automator - INFO - Área seleccionada: {'left': 1555, 'top': 465, 'width': 14, 'height': 14}
+2026-08-21 03:26:55 - pixel_automator - DEBUG - Capturando área: {'left': 1555, 'top': 465, 'width': 14, 'height': 14}
+2026-08-21 03:26:55 - pixel_automator - INFO - ✅ Área capturada: (14, 14, 3) (BGR)
+2026-08-21 03:26:55 - pixel_automator - INFO - 📐 Área seleccionada: x=1555, y=465, w=14, h=14
+2026-08-21 03:26:55 - pixel_automator - INFO - 📊 Imagen recibida: shape=(14, 14, 3)
+2026-08-21 03:26:55 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (7, 7)
+2026-08-21 03:26:55 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:26:55 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:26:55 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:26:55 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:26:55 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:26:55 - pixel_automator - INFO -    RGB(248, 178, 119): 196 píxeles (100.0%)
+2026-08-21 03:26:55 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:26:55 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:26:55 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:26:55 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:26:55 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:26:55 - pixel_automator - INFO - 📏 Tamaño de muestra: 14px (usado para clustering)
+2026-08-21 03:26:55 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:26:57 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:26:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:26:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:27:02 - pixel_automator - INFO - Área seleccionada: {'left': 886, 'top': 253, 'width': 544, 'height': 147}
+2026-08-21 03:27:02 - pixel_automator - INFO - ✅ Área seleccionada: 544x147 px
+2026-08-21 03:27:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:27:04 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:27:04 - pixel_automator - DEBUG - Capturando área: {'left': 886, 'top': 253, 'width': 544, 'height': 147}
+2026-08-21 03:27:04 - pixel_automator - INFO - ✅ Área capturada: (147, 544, 3) (BGR)
+2026-08-21 03:27:04 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:27:04 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:27:04 - pixel_automator - INFO - 📐 Tamaño original: 544x147
+2026-08-21 03:27:04 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:27:04 - pixel_automator - INFO - 📏 Reduciendo imagen de 544x147 a 430x116 para rendimiento
+2026-08-21 03:27:04 - pixel_automator - INFO - 📐 Factor de escala: x=1.27, y=1.27
+2026-08-21 03:27:04 - pixel_automator - INFO - 📊 Coincidencias encontradas: 18236
+2026-08-21 03:27:04 - pixel_automator - INFO - 📏 Usando grid de 11px para filtrar por tamaño (muestra: 14px)
+2026-08-21 03:27:04 - pixel_automator - INFO - 📊 400 objetos conservados (de 400 grupos)
+2026-08-21 03:27:04 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:27:04 - pixel_automator - INFO - ✅ 400 objetivos en coordenadas originales
+2026-08-21 03:27:04 - pixel_automator - INFO - ✅ Encontrados 400 objetivos
+2026-08-21 03:27:04 - pixel_automator - INFO - ✅ 400 objetivos únicos encontrados
+2026-08-21 03:27:04 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:27:13 - pixel_automator - INFO - 🖱️ Ejecutando 400 clics...
+2026-08-21 03:27:13 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:27:13 - pixel_automator - ERROR - Error en clics: ClickExecutor.execute_clicks() takes 1 positional argument but 3 were given
+2026-08-21 03:28:15 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:31:31 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:31:38 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:31:38 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:31:38 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:31:38 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:31:38 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:31:38 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:31:38 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:31:38 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:31:42 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:31:42 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:31:42 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:31:47 - pixel_automator - INFO - Área seleccionada: {'left': 1525, 'top': 464, 'width': 15, 'height': 15}
+2026-08-21 03:31:47 - pixel_automator - DEBUG - Capturando área: {'left': 1525, 'top': 464, 'width': 15, 'height': 15}
+2026-08-21 03:31:47 - pixel_automator - INFO - ✅ Área capturada: (15, 15, 3) (BGR)
+2026-08-21 03:31:47 - pixel_automator - INFO - 📐 Área seleccionada: x=1525, y=464, w=15, h=15
+2026-08-21 03:31:47 - pixel_automator - INFO - 📊 Imagen recibida: shape=(15, 15, 3)
+2026-08-21 03:31:47 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (7, 7)
+2026-08-21 03:31:47 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:31:47 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:31:47 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:31:47 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:31:47 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:31:47 - pixel_automator - INFO -    RGB(248, 178, 119): 225 píxeles (100.0%)
+2026-08-21 03:31:47 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:31:47 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:31:47 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:31:47 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:31:47 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:31:47 - pixel_automator - INFO - 📏 Tamaño de muestra: 15px (usado para clustering)
+2026-08-21 03:31:47 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:31:49 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:31:49 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:31:49 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:31:53 - pixel_automator - INFO - Área seleccionada: {'left': 880, 'top': 260, 'width': 578, 'height': 144}
+2026-08-21 03:31:53 - pixel_automator - INFO - ✅ Área seleccionada: 578x144 px
+2026-08-21 03:31:53 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:31:55 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:31:55 - pixel_automator - DEBUG - Capturando área: {'left': 880, 'top': 260, 'width': 578, 'height': 144}
+2026-08-21 03:31:55 - pixel_automator - INFO - ✅ Área capturada: (144, 578, 3) (BGR)
+2026-08-21 03:31:55 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:31:55 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:31:55 - pixel_automator - INFO - 📐 Tamaño original: 578x144
+2026-08-21 03:31:55 - pixel_automator - INFO - 📏 Reduciendo imagen de 578x144 a 447x111 para rendimiento
+2026-08-21 03:31:55 - pixel_automator - INFO - 📐 Factor de escala: x=1.29, y=1.30
+2026-08-21 03:31:55 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:31:55 - pixel_automator - INFO - 📊 Coincidencias encontradas: 16992
+2026-08-21 03:31:55 - pixel_automator - INFO - 📏 Usando grid de 11px para filtrar por tamaño (muestra: 15px)
+2026-08-21 03:31:55 - pixel_automator - INFO - 📊 414 objetos conservados (de 414 grupos)
+2026-08-21 03:31:55 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:31:55 - pixel_automator - INFO - ✅ 414 objetivos en coordenadas originales
+2026-08-21 03:31:55 - pixel_automator - INFO - ✅ Encontrados 414 objetivos
+2026-08-21 03:31:55 - pixel_automator - INFO - ✅ 414 objetivos únicos encontrados
+2026-08-21 03:31:55 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:32:00 - pixel_automator - INFO - 🖱️ Ejecutando 414 clics...
+2026-08-21 03:32:00 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:32:00 - pixel_automator - INFO - 🖱️ Iniciando ejecución de 414 clics (cooldown: 15.5 ms)
+2026-08-21 03:32:02 - pixel_automator - INFO -    Progreso: 100/414 clics
+2026-08-21 03:32:04 - pixel_automator - INFO -    Progreso: 200/414 clics
+2026-08-21 03:32:06 - pixel_automator - INFO -    Progreso: 300/414 clics
+2026-08-21 03:32:08 - pixel_automator - INFO -    Progreso: 400/414 clics
+2026-08-21 03:32:08 - pixel_automator - INFO - ✅ Ejecución completada: 414 clics
+2026-08-21 03:32:08 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:32:18 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:32:19 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:32:19 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:32:19 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:32:24 - pixel_automator - INFO - Área seleccionada: {'left': 1432, 'top': 256, 'width': 152, 'height': 432}
+2026-08-21 03:32:24 - pixel_automator - INFO - ✅ Área seleccionada: 152x432 px
+2026-08-21 03:32:24 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:32:27 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:32:27 - pixel_automator - DEBUG - Capturando área: {'left': 1432, 'top': 256, 'width': 152, 'height': 432}
+2026-08-21 03:32:27 - pixel_automator - INFO - ✅ Área capturada: (432, 152, 3) (BGR)
+2026-08-21 03:32:27 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:32:27 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:32:27 - pixel_automator - INFO - 📐 Tamaño original: 152x432
+2026-08-21 03:32:27 - pixel_automator - INFO - 📏 Reduciendo imagen de 152x432 a 132x376 para rendimiento
+2026-08-21 03:32:27 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:32:27 - pixel_automator - INFO - 📐 Factor de escala: x=1.15, y=1.15
+2026-08-21 03:32:27 - pixel_automator - INFO - 📊 Coincidencias encontradas: 10327
+2026-08-21 03:32:27 - pixel_automator - INFO - 📏 Usando grid de 13px para filtrar por tamaño (muestra: 15px)
+2026-08-21 03:32:27 - pixel_automator - INFO - 📊 183 objetos conservados (de 183 grupos)
+2026-08-21 03:32:27 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:32:27 - pixel_automator - INFO - ✅ 183 objetivos en coordenadas originales
+2026-08-21 03:32:27 - pixel_automator - INFO - ✅ Encontrados 183 objetivos
+2026-08-21 03:32:27 - pixel_automator - INFO - ✅ 183 objetivos únicos encontrados
+2026-08-21 03:32:27 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:32:30 - pixel_automator - INFO - 🖱️ Ejecutando 183 clics...
+2026-08-21 03:32:30 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:32:30 - pixel_automator - INFO - 🖱️ Iniciando ejecución de 183 clics (cooldown: 15.5 ms)
+2026-08-21 03:32:32 - pixel_automator - INFO -    Progreso: 100/183 clics
+2026-08-21 03:32:33 - pixel_automator - INFO - ✅ Ejecución completada: 183 clics
+2026-08-21 03:32:33 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:32:52 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:32:53 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:32:53 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:32:53 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:33:00 - pixel_automator - INFO - Área seleccionada: {'left': 1261, 'top': 843, 'width': 24, 'height': 23}
+2026-08-21 03:33:00 - pixel_automator - DEBUG - Capturando área: {'left': 1261, 'top': 843, 'width': 24, 'height': 23}
+2026-08-21 03:33:00 - pixel_automator - INFO - ✅ Área capturada: (23, 24, 3) (BGR)
+2026-08-21 03:33:00 - pixel_automator - INFO - 📐 Área seleccionada: x=1261, y=843, w=24, h=23
+2026-08-21 03:33:00 - pixel_automator - INFO - 📊 Imagen recibida: shape=(23, 24, 3)
+2026-08-21 03:33:00 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (12, 11)
+2026-08-21 03:33:00 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(149, 104, 42)
+2026-08-21 03:33:00 - pixel_automator - INFO -    HEX: #95682a
+2026-08-21 03:33:00 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:33:00 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:33:00 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:33:00 - pixel_automator - INFO -    RGB(149, 104, 42): 462 píxeles (83.7%)
+2026-08-21 03:33:00 - pixel_automator - INFO -    RGB(0, 0, 0): 90 píxeles (16.3%)
+2026-08-21 03:33:00 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 11 px
+2026-08-21 03:33:00 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(149, 104, 42)
+2026-08-21 03:33:00 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 11 px
+2026-08-21 03:33:00 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(149, 104, 42)
+2026-08-21 03:33:00 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(149, 104, 42)
+2026-08-21 03:33:00 - pixel_automator - INFO - 📏 Tamaño de muestra: 23px (usado para clustering)
+2026-08-21 03:33:00 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(149, 104, 42)
+2026-08-21 03:33:03 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:33:03 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:33:03 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:33:07 - pixel_automator - INFO - Área seleccionada: {'left': 999, 'top': 382, 'width': 341, 'height': 495}
+2026-08-21 03:33:07 - pixel_automator - INFO - ✅ Área seleccionada: 341x495 px
+2026-08-21 03:33:07 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(149, 104, 42)
+2026-08-21 03:33:12 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:33:12 - pixel_automator - DEBUG - Capturando área: {'left': 999, 'top': 382, 'width': 341, 'height': 495}
+2026-08-21 03:33:12 - pixel_automator - INFO - ✅ Área capturada: (495, 341, 3) (BGR)
+2026-08-21 03:33:12 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:33:12 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(149, 104, 42)
+2026-08-21 03:33:12 - pixel_automator - INFO - 📐 Tamaño original: 341x495
+2026-08-21 03:33:12 - pixel_automator - INFO - 📏 Reduciendo imagen de 341x495 a 185x269 para rendimiento
+2026-08-21 03:33:12 - pixel_automator - INFO - 📐 Factor de escala: x=1.84, y=1.84
+2026-08-21 03:33:12 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:33:12 - pixel_automator - INFO - 📊 Coincidencias encontradas: 4610
+2026-08-21 03:33:12 - pixel_automator - INFO - 📏 Usando grid de 12px para filtrar por tamaño (muestra: 23px)
+2026-08-21 03:33:12 - pixel_automator - INFO - 📊 62 objetos conservados (de 62 grupos)
+2026-08-21 03:33:12 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:33:12 - pixel_automator - INFO - ✅ 62 objetivos en coordenadas originales
+2026-08-21 03:33:12 - pixel_automator - INFO - ✅ Encontrados 62 objetivos
+2026-08-21 03:33:12 - pixel_automator - INFO - ✅ 62 objetivos únicos encontrados
+2026-08-21 03:33:12 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(149, 104, 42)
+2026-08-21 03:33:30 - pixel_automator - INFO - 🖱️ Ejecutando 62 clics...
+2026-08-21 03:33:30 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:33:30 - pixel_automator - INFO - 🖱️ Iniciando ejecución de 62 clics (cooldown: 15.5 ms)
+2026-08-21 03:33:31 - pixel_automator - INFO - ✅ Ejecución completada: 62 clics
+2026-08-21 03:33:31 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:33:47 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(149, 104, 42)
+2026-08-21 03:36:34 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:36:38 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:36:38 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:36:38 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:36:38 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:36:39 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:36:39 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:36:39 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:36:39 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:37:42 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:37:42 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:37:42 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:37:46 - pixel_automator - INFO - Área seleccionada: {'left': 1637, 'top': 802, 'width': 14, 'height': 14}
+2026-08-21 03:37:46 - pixel_automator - DEBUG - Capturando área: {'left': 1637, 'top': 802, 'width': 14, 'height': 14}
+2026-08-21 03:37:46 - pixel_automator - INFO - ✅ Área capturada: (14, 14, 3) (BGR)
+2026-08-21 03:37:46 - pixel_automator - INFO - 📐 Área seleccionada: x=1637, y=802, w=14, h=14
+2026-08-21 03:37:46 - pixel_automator - INFO - 📊 Imagen recibida: shape=(14, 14, 3)
+2026-08-21 03:37:46 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (7, 7)
+2026-08-21 03:37:46 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(120, 120, 120)
+2026-08-21 03:37:46 - pixel_automator - INFO -    HEX: #787878
+2026-08-21 03:37:46 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:37:46 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:37:46 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:37:46 - pixel_automator - INFO -    RGB(120, 120, 120): 196 píxeles (100.0%)
+2026-08-21 03:37:46 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:37:46 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(120, 120, 120)
+2026-08-21 03:37:46 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 7 px
+2026-08-21 03:37:46 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(120, 120, 120)
+2026-08-21 03:37:46 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(120, 120, 120)
+2026-08-21 03:37:46 - pixel_automator - INFO - 📏 Tamaño de muestra: 14px (usado para clustering)
+2026-08-21 03:37:46 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(120, 120, 120)
+2026-08-21 03:37:53 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:37:53 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:37:53 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:38:00 - pixel_automator - INFO - Área seleccionada: {'left': 919, 'top': 279, 'width': 998, 'height': 602}
+2026-08-21 03:38:00 - pixel_automator - INFO - ✅ Área seleccionada: 998x602 px
+2026-08-21 03:38:00 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(120, 120, 120)
+2026-08-21 03:38:02 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:38:02 - pixel_automator - DEBUG - Capturando área: {'left': 919, 'top': 279, 'width': 998, 'height': 602}
+2026-08-21 03:38:02 - pixel_automator - INFO - ✅ Área capturada: (602, 998, 3) (BGR)
+2026-08-21 03:38:02 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:38:02 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(120, 120, 120)
+2026-08-21 03:38:02 - pixel_automator - INFO - 📐 Tamaño original: 998x602
+2026-08-21 03:38:02 - pixel_automator - INFO - 📏 Reduciendo imagen de 998x602 a 287x173 para rendimiento
+2026-08-21 03:38:02 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:38:02 - pixel_automator - INFO - 📐 Factor de escala: x=3.48, y=3.48
+2026-08-21 03:38:02 - pixel_automator - INFO - 📊 Coincidencias encontradas: 13301
+2026-08-21 03:38:02 - pixel_automator - INFO - 📏 Usando grid de 4px para filtrar por tamaño (muestra: 14px)
+2026-08-21 03:38:02 - pixel_automator - INFO - 📊 2384 objetos conservados (de 2384 grupos)
+2026-08-21 03:38:02 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:38:02 - pixel_automator - INFO - ✅ 2384 objetivos en coordenadas originales
+2026-08-21 03:38:02 - pixel_automator - INFO - ✅ Encontrados 2384 objetivos
+2026-08-21 03:38:02 - pixel_automator - INFO - ✅ 2384 objetivos únicos encontrados
+2026-08-21 03:38:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(120, 120, 120)
+2026-08-21 03:38:04 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:38:06 - pixel_automator - INFO - 🖱️ Ejecutando 2384 clics...
+2026-08-21 03:38:06 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:38:06 - pixel_automator - INFO - 🖱️ Iniciando 2384 clics
+2026-08-21 03:38:06 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:38:11 - pixel_automator - INFO -    Progreso: 100/2384 clics
+2026-08-21 03:38:16 - pixel_automator - INFO -    Progreso: 200/2384 clics
+2026-08-21 03:38:21 - pixel_automator - INFO -    Progreso: 300/2384 clics
+2026-08-21 03:38:26 - pixel_automator - INFO -    Progreso: 400/2384 clics
+2026-08-21 03:38:30 - pixel_automator - INFO -    Progreso: 500/2384 clics
+2026-08-21 03:38:35 - pixel_automator - INFO -    Progreso: 600/2384 clics
+2026-08-21 03:38:40 - pixel_automator - INFO -    Progreso: 700/2384 clics
+2026-08-21 03:38:45 - pixel_automator - INFO -    Progreso: 800/2384 clics
+2026-08-21 03:38:49 - pixel_automator - INFO -    Progreso: 900/2384 clics
+2026-08-21 03:38:54 - pixel_automator - INFO -    Progreso: 1000/2384 clics
+2026-08-21 03:38:59 - pixel_automator - INFO -    Progreso: 1100/2384 clics
+2026-08-21 03:39:04 - pixel_automator - INFO -    Progreso: 1200/2384 clics
+2026-08-21 03:39:09 - pixel_automator - INFO -    Progreso: 1300/2384 clics
+2026-08-21 03:39:14 - pixel_automator - INFO -    Progreso: 1400/2384 clics
+2026-08-21 03:39:18 - pixel_automator - INFO -    Progreso: 1500/2384 clics
+2026-08-21 03:39:23 - pixel_automator - INFO -    Progreso: 1600/2384 clics
+2026-08-21 03:39:28 - pixel_automator - INFO -    Progreso: 1700/2384 clics
+2026-08-21 03:39:33 - pixel_automator - INFO -    Progreso: 1800/2384 clics
+2026-08-21 03:39:38 - pixel_automator - INFO -    Progreso: 1900/2384 clics
+2026-08-21 03:39:42 - pixel_automator - INFO -    Progreso: 2000/2384 clics
+2026-08-21 03:39:47 - pixel_automator - INFO -    Progreso: 2100/2384 clics
+2026-08-21 03:39:52 - pixel_automator - INFO -    Progreso: 2200/2384 clics
+2026-08-21 03:39:57 - pixel_automator - INFO -    Progreso: 2300/2384 clics
+2026-08-21 03:40:01 - pixel_automator - INFO - ✅ Ejecución completada: 2384 clics
+2026-08-21 03:40:01 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:42:34 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(120, 120, 120)
+2026-08-21 03:42:35 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:42:35 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:42:35 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:42:44 - pixel_automator - INFO - Área seleccionada: {'left': 1482, 'top': 529, 'width': 13, 'height': 12}
+2026-08-21 03:42:44 - pixel_automator - DEBUG - Capturando área: {'left': 1482, 'top': 529, 'width': 13, 'height': 12}
+2026-08-21 03:42:44 - pixel_automator - INFO - ✅ Área capturada: (12, 13, 3) (BGR)
+2026-08-21 03:42:44 - pixel_automator - INFO - 📐 Área seleccionada: x=1482, y=529, w=13, h=12
+2026-08-21 03:42:44 - pixel_automator - INFO - 📊 Imagen recibida: shape=(12, 13, 3)
+2026-08-21 03:42:44 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 03:42:44 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(210, 210, 210)
+2026-08-21 03:42:44 - pixel_automator - INFO -    HEX: #d2d2d2
+2026-08-21 03:42:44 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:42:44 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:42:44 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:42:44 - pixel_automator - INFO -    RGB(210, 210, 210): 144 píxeles (92.3%)
+2026-08-21 03:42:44 - pixel_automator - INFO -    RGB(0, 0, 0): 12 píxeles (7.7%)
+2026-08-21 03:42:44 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:42:44 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 03:42:44 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:42:44 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 03:42:44 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(210, 210, 210)
+2026-08-21 03:42:44 - pixel_automator - INFO - 📏 Tamaño de muestra: 12px (usado para clustering)
+2026-08-21 03:42:44 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:42:46 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:42:46 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:42:46 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:42:51 - pixel_automator - INFO - Área seleccionada: {'left': 769, 'top': 408, 'width': 1218, 'height': 507}
+2026-08-21 03:42:51 - pixel_automator - INFO - ✅ Área seleccionada: 1218x507 px
+2026-08-21 03:42:51 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:42:53 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:42:53 - pixel_automator - DEBUG - Capturando área: {'left': 769, 'top': 408, 'width': 1218, 'height': 507}
+2026-08-21 03:42:53 - pixel_automator - INFO - ✅ Área capturada: (507, 1218, 3) (BGR)
+2026-08-21 03:42:53 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:42:53 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(210, 210, 210)
+2026-08-21 03:42:53 - pixel_automator - INFO - 📐 Tamaño original: 1218x507
+2026-08-21 03:42:53 - pixel_automator - INFO - 📏 Reduciendo imagen de 1218x507 a 346x144 para rendimiento
+2026-08-21 03:42:53 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:42:53 - pixel_automator - INFO - 📐 Factor de escala: x=3.52, y=3.52
+2026-08-21 03:42:53 - pixel_automator - INFO - 📊 Coincidencias encontradas: 6167
+2026-08-21 03:42:53 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 12px)
+2026-08-21 03:42:53 - pixel_automator - INFO - 📊 1311 objetos conservados (de 1311 grupos)
+2026-08-21 03:42:53 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:42:53 - pixel_automator - INFO - ✅ 1311 objetivos en coordenadas originales
+2026-08-21 03:42:53 - pixel_automator - INFO - ✅ Encontrados 1311 objetivos
+2026-08-21 03:42:53 - pixel_automator - INFO - ✅ 1311 objetivos únicos encontrados
+2026-08-21 03:42:53 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:42:57 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:42:58 - pixel_automator - INFO - 🖱️ Ejecutando 1311 clics...
+2026-08-21 03:42:58 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:42:58 - pixel_automator - INFO - 🖱️ Iniciando 1311 clics
+2026-08-21 03:42:58 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:43:02 - pixel_automator - INFO -    Progreso: 100/1311 clics
+2026-08-21 03:43:07 - pixel_automator - INFO -    Progreso: 200/1311 clics
+2026-08-21 03:43:12 - pixel_automator - INFO -    Progreso: 300/1311 clics
+2026-08-21 03:43:17 - pixel_automator - INFO -    Progreso: 400/1311 clics
+2026-08-21 03:43:22 - pixel_automator - INFO -    Progreso: 500/1311 clics
+2026-08-21 03:43:26 - pixel_automator - INFO -    Progreso: 600/1311 clics
+2026-08-21 03:43:31 - pixel_automator - INFO -    Progreso: 700/1311 clics
+2026-08-21 03:43:36 - pixel_automator - INFO -    Progreso: 800/1311 clics
+2026-08-21 03:43:41 - pixel_automator - INFO -    Progreso: 900/1311 clics
+2026-08-21 03:43:46 - pixel_automator - INFO -    Progreso: 1000/1311 clics
+2026-08-21 03:43:51 - pixel_automator - INFO -    Progreso: 1100/1311 clics
+2026-08-21 03:43:56 - pixel_automator - INFO -    Progreso: 1200/1311 clics
+2026-08-21 03:44:01 - pixel_automator - INFO -    Progreso: 1300/1311 clics
+2026-08-21 03:44:01 - pixel_automator - INFO - ✅ Ejecución completada: 1311 clics
+2026-08-21 03:44:01 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:44:03 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:44:29 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:44:29 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:44:29 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:44:39 - pixel_automator - INFO - Área seleccionada: {'left': 1749, 'top': 539, 'width': 13, 'height': 13}
+2026-08-21 03:44:39 - pixel_automator - DEBUG - Capturando área: {'left': 1749, 'top': 539, 'width': 13, 'height': 13}
+2026-08-21 03:44:39 - pixel_automator - INFO - ✅ Área capturada: (13, 13, 3) (BGR)
+2026-08-21 03:44:39 - pixel_automator - INFO - 📐 Área seleccionada: x=1749, y=539, w=13, h=13
+2026-08-21 03:44:39 - pixel_automator - INFO - 📊 Imagen recibida: shape=(13, 13, 3)
+2026-08-21 03:44:39 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 03:44:39 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(209, 128, 120)
+2026-08-21 03:44:39 - pixel_automator - INFO -    HEX: #d18078
+2026-08-21 03:44:39 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:44:39 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:44:39 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:44:39 - pixel_automator - INFO -    RGB(209, 128, 120): 169 píxeles (100.0%)
+2026-08-21 03:44:39 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:44:39 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(209, 128, 120)
+2026-08-21 03:44:39 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:44:39 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(209, 128, 120)
+2026-08-21 03:44:39 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(209, 128, 120)
+2026-08-21 03:44:39 - pixel_automator - INFO - 📏 Tamaño de muestra: 13px (usado para clustering)
+2026-08-21 03:44:39 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(209, 128, 120)
+2026-08-21 03:45:09 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:45:09 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:45:09 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:45:15 - pixel_automator - INFO - Área seleccionada: {'left': 730, 'top': 358, 'width': 1305, 'height': 671}
+2026-08-21 03:45:15 - pixel_automator - INFO - ✅ Área seleccionada: 1305x671 px
+2026-08-21 03:45:15 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(209, 128, 120)
+2026-08-21 03:45:17 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:45:17 - pixel_automator - DEBUG - Capturando área: {'left': 730, 'top': 358, 'width': 1305, 'height': 671}
+2026-08-21 03:45:17 - pixel_automator - INFO - ✅ Área capturada: (671, 1305, 3) (BGR)
+2026-08-21 03:45:17 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:45:17 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(209, 128, 120)
+2026-08-21 03:45:17 - pixel_automator - INFO - 📐 Tamaño original: 1305x671
+2026-08-21 03:45:17 - pixel_automator - INFO - 📏 Reduciendo imagen de 1305x671 a 311x160 para rendimiento
+2026-08-21 03:45:17 - pixel_automator - INFO - 📐 Factor de escala: x=4.20, y=4.19
+2026-08-21 03:45:17 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:45:17 - pixel_automator - INFO - 📊 Coincidencias encontradas: 1071
+2026-08-21 03:45:17 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 13px)
+2026-08-21 03:45:17 - pixel_automator - INFO - 📊 269 objetos conservados (de 269 grupos)
+2026-08-21 03:45:17 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:45:17 - pixel_automator - INFO - ✅ 269 objetivos en coordenadas originales
+2026-08-21 03:45:17 - pixel_automator - INFO - ✅ Encontrados 269 objetivos
+2026-08-21 03:45:17 - pixel_automator - INFO - ✅ 269 objetivos únicos encontrados
+2026-08-21 03:45:17 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(209, 128, 120)
+2026-08-21 03:45:21 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:45:23 - pixel_automator - INFO - 🖱️ Ejecutando 269 clics...
+2026-08-21 03:45:23 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:45:23 - pixel_automator - INFO - 🖱️ Iniciando 269 clics
+2026-08-21 03:45:23 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:45:28 - pixel_automator - INFO -    Progreso: 100/269 clics
+2026-08-21 03:45:32 - pixel_automator - INFO -    Progreso: 200/269 clics
+2026-08-21 03:45:36 - pixel_automator - INFO - ✅ Ejecución completada: 269 clics
+2026-08-21 03:45:36 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:45:55 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(209, 128, 120)
+2026-08-21 03:45:57 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:45:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:45:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:46:03 - pixel_automator - INFO - Área seleccionada: {'left': 1771, 'top': 661, 'width': 12, 'height': 12}
+2026-08-21 03:46:03 - pixel_automator - DEBUG - Capturando área: {'left': 1771, 'top': 661, 'width': 12, 'height': 12}
+2026-08-21 03:46:03 - pixel_automator - INFO - ✅ Área capturada: (12, 12, 3) (BGR)
+2026-08-21 03:46:03 - pixel_automator - INFO - 📐 Área seleccionada: x=1771, y=661, w=12, h=12
+2026-08-21 03:46:03 - pixel_automator - INFO - 📊 Imagen recibida: shape=(12, 12, 3)
+2026-08-21 03:46:03 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 03:46:03 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(210, 210, 210)
+2026-08-21 03:46:03 - pixel_automator - INFO -    HEX: #d2d2d2
+2026-08-21 03:46:03 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:46:03 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:46:03 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:46:03 - pixel_automator - INFO -    RGB(210, 210, 210): 144 píxeles (100.0%)
+2026-08-21 03:46:03 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:46:03 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 03:46:03 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 03:46:03 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 03:46:03 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(210, 210, 210)
+2026-08-21 03:46:03 - pixel_automator - INFO - 📏 Tamaño de muestra: 12px (usado para clustering)
+2026-08-21 03:46:03 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:46:05 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:46:05 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:46:05 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:46:10 - pixel_automator - INFO - Área seleccionada: {'left': 871, 'top': 205, 'width': 1314, 'height': 677}
+2026-08-21 03:46:10 - pixel_automator - INFO - ✅ Área seleccionada: 1314x677 px
+2026-08-21 03:46:10 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:46:11 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:46:11 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:46:11 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:46:15 - pixel_automator - INFO - Área seleccionada: {'left': 870, 'top': 236, 'width': 1204, 'height': 555}
+2026-08-21 03:46:15 - pixel_automator - INFO - ✅ Área seleccionada: 1204x555 px
+2026-08-21 03:46:15 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:46:17 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:46:17 - pixel_automator - DEBUG - Capturando área: {'left': 870, 'top': 236, 'width': 1204, 'height': 555}
+2026-08-21 03:46:17 - pixel_automator - INFO - ✅ Área capturada: (555, 1204, 3) (BGR)
+2026-08-21 03:46:17 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:46:17 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(210, 210, 210)
+2026-08-21 03:46:17 - pixel_automator - INFO - 📐 Tamaño original: 1204x555
+2026-08-21 03:46:17 - pixel_automator - INFO - 📏 Reduciendo imagen de 1204x555 a 329x151 para rendimiento
+2026-08-21 03:46:17 - pixel_automator - INFO - 📐 Factor de escala: x=3.66, y=3.68
+2026-08-21 03:46:17 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:46:17 - pixel_automator - INFO - 📊 Coincidencias encontradas: 4826
+2026-08-21 03:46:17 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 12px)
+2026-08-21 03:46:17 - pixel_automator - INFO - 📊 1169 objetos conservados (de 1169 grupos)
+2026-08-21 03:46:17 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:46:17 - pixel_automator - INFO - ✅ 1169 objetivos en coordenadas originales
+2026-08-21 03:46:17 - pixel_automator - INFO - ✅ Encontrados 1169 objetivos
+2026-08-21 03:46:17 - pixel_automator - INFO - ✅ 1169 objetivos únicos encontrados
+2026-08-21 03:46:17 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:46:18 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:46:19 - pixel_automator - INFO - 🖱️ Ejecutando 1169 clics...
+2026-08-21 03:46:19 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:46:19 - pixel_automator - INFO - 🖱️ Iniciando 1169 clics
+2026-08-21 03:46:19 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:46:24 - pixel_automator - INFO -    Progreso: 100/1169 clics
+2026-08-21 03:46:29 - pixel_automator - INFO -    Progreso: 200/1169 clics
+2026-08-21 03:46:34 - pixel_automator - INFO -    Progreso: 300/1169 clics
+2026-08-21 03:46:38 - pixel_automator - INFO -    Progreso: 400/1169 clics
+2026-08-21 03:46:43 - pixel_automator - INFO -    Progreso: 500/1169 clics
+2026-08-21 03:46:48 - pixel_automator - INFO -    Progreso: 600/1169 clics
+2026-08-21 03:46:53 - pixel_automator - INFO -    Progreso: 700/1169 clics
+2026-08-21 03:46:58 - pixel_automator - INFO -    Progreso: 800/1169 clics
+2026-08-21 03:47:03 - pixel_automator - INFO -    Progreso: 900/1169 clics
+2026-08-21 03:47:08 - pixel_automator - INFO -    Progreso: 1000/1169 clics
+2026-08-21 03:47:13 - pixel_automator - INFO -    Progreso: 1100/1169 clics
+2026-08-21 03:47:16 - pixel_automator - INFO - ✅ Ejecución completada: 1169 clics
+2026-08-21 03:47:16 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:47:18 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 03:47:49 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:47:49 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:47:49 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:47:54 - pixel_automator - INFO - Área seleccionada: {'left': 1897, 'top': 830, 'width': 29, 'height': 29}
+2026-08-21 03:47:54 - pixel_automator - DEBUG - Capturando área: {'left': 1897, 'top': 830, 'width': 29, 'height': 29}
+2026-08-21 03:47:54 - pixel_automator - INFO - ✅ Área capturada: (29, 29, 3) (BGR)
+2026-08-21 03:47:54 - pixel_automator - INFO - 📐 Área seleccionada: x=1897, y=830, w=29, h=29
+2026-08-21 03:47:54 - pixel_automator - INFO - 📊 Imagen recibida: shape=(29, 29, 3)
+2026-08-21 03:47:54 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (14, 14)
+2026-08-21 03:47:54 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(104, 70, 52)
+2026-08-21 03:47:54 - pixel_automator - INFO -    HEX: #684634
+2026-08-21 03:47:54 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:47:54 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:47:54 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:47:54 - pixel_automator - INFO -    RGB(104, 70, 52): 784 píxeles (93.2%)
+2026-08-21 03:47:54 - pixel_automator - INFO -    RGB(255, 255, 255): 57 píxeles (6.8%)
+2026-08-21 03:47:54 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 14 px
+2026-08-21 03:47:54 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(104, 70, 52)
+2026-08-21 03:47:54 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 14 px
+2026-08-21 03:47:54 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(104, 70, 52)
+2026-08-21 03:47:54 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(104, 70, 52)
+2026-08-21 03:47:54 - pixel_automator - INFO - 📏 Tamaño de muestra: 29px (usado para clustering)
+2026-08-21 03:47:54 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(104, 70, 52)
+2026-08-21 03:47:57 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:47:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:47:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:48:05 - pixel_automator - INFO - Área seleccionada: {'left': 615, 'top': 169, 'width': 1650, 'height': 978}
+2026-08-21 03:48:05 - pixel_automator - INFO - ✅ Área seleccionada: 1650x978 px
+2026-08-21 03:48:05 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(104, 70, 52)
+2026-08-21 03:48:07 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:48:07 - pixel_automator - DEBUG - Capturando área: {'left': 615, 'top': 169, 'width': 1650, 'height': 978}
+2026-08-21 03:48:07 - pixel_automator - INFO - ✅ Área capturada: (978, 1650, 3) (BGR)
+2026-08-21 03:48:07 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:48:07 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(104, 70, 52)
+2026-08-21 03:48:07 - pixel_automator - INFO - 📐 Tamaño original: 1650x978
+2026-08-21 03:48:07 - pixel_automator - INFO - 📏 Reduciendo imagen de 1650x978 a 290x172 para rendimiento
+2026-08-21 03:48:07 - pixel_automator - INFO - 📐 Factor de escala: x=5.69, y=5.69
+2026-08-21 03:48:07 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:48:07 - pixel_automator - INFO - 📊 Coincidencias encontradas: 1065
+2026-08-21 03:48:07 - pixel_automator - INFO - 📏 Usando grid de 5px para filtrar por tamaño (muestra: 29px)
+2026-08-21 03:48:07 - pixel_automator - INFO - 📊 123 objetos conservados (de 123 grupos)
+2026-08-21 03:48:07 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:48:07 - pixel_automator - INFO - ✅ 123 objetivos en coordenadas originales
+2026-08-21 03:48:07 - pixel_automator - INFO - ✅ Encontrados 123 objetivos
+2026-08-21 03:48:07 - pixel_automator - INFO - ✅ 123 objetivos únicos encontrados
+2026-08-21 03:48:07 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(104, 70, 52)
+2026-08-21 03:48:09 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:48:10 - pixel_automator - INFO - 🖱️ Ejecutando 123 clics...
+2026-08-21 03:48:10 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:48:10 - pixel_automator - INFO - 🖱️ Iniciando 123 clics
+2026-08-21 03:48:10 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:48:15 - pixel_automator - INFO -    Progreso: 100/123 clics
+2026-08-21 03:48:16 - pixel_automator - INFO - ✅ Ejecución completada: 123 clics
+2026-08-21 03:48:16 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:48:19 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(104, 70, 52)
+2026-08-21 03:48:31 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:48:31 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:48:31 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:48:36 - pixel_automator - INFO - Área seleccionada: {'left': 2022, 'top': 766, 'width': 22, 'height': 24}
+2026-08-21 03:48:36 - pixel_automator - DEBUG - Capturando área: {'left': 2022, 'top': 766, 'width': 22, 'height': 24}
+2026-08-21 03:48:36 - pixel_automator - INFO - ✅ Área capturada: (24, 22, 3) (BGR)
+2026-08-21 03:48:36 - pixel_automator - INFO - 📐 Área seleccionada: x=2022, y=766, w=22, h=24
+2026-08-21 03:48:36 - pixel_automator - INFO - 📊 Imagen recibida: shape=(24, 22, 3)
+2026-08-21 03:48:36 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (11, 12)
+2026-08-21 03:48:36 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(243, 141, 169)
+2026-08-21 03:48:36 - pixel_automator - INFO -    HEX: #f38da9
+2026-08-21 03:48:36 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:48:36 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 03:48:36 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:48:36 - pixel_automator - INFO -    RGB(243, 141, 169): 528 píxeles (100.0%)
+2026-08-21 03:48:36 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 11 px
+2026-08-21 03:48:36 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(243, 141, 169)
+2026-08-21 03:48:36 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 11 px
+2026-08-21 03:48:36 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(243, 141, 169)
+2026-08-21 03:48:36 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(243, 141, 169)
+2026-08-21 03:48:36 - pixel_automator - INFO - 📏 Tamaño de muestra: 22px (usado para clustering)
+2026-08-21 03:48:36 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(243, 141, 169)
+2026-08-21 03:48:39 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:48:39 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:48:39 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:48:45 - pixel_automator - INFO - Área seleccionada: {'left': 662, 'top': 157, 'width': 1616, 'height': 1002}
+2026-08-21 03:48:45 - pixel_automator - INFO - ✅ Área seleccionada: 1616x1002 px
+2026-08-21 03:48:45 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(243, 141, 169)
+2026-08-21 03:48:48 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:48:48 - pixel_automator - DEBUG - Capturando área: {'left': 662, 'top': 157, 'width': 1616, 'height': 1002}
+2026-08-21 03:48:48 - pixel_automator - INFO - ✅ Área capturada: (1002, 1616, 3) (BGR)
+2026-08-21 03:48:48 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:48:48 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(243, 141, 169)
+2026-08-21 03:48:48 - pixel_automator - INFO - 📐 Tamaño original: 1616x1002
+2026-08-21 03:48:48 - pixel_automator - INFO - 📏 Reduciendo imagen de 1616x1002 a 283x176 para rendimiento
+2026-08-21 03:48:48 - pixel_automator - INFO - 📐 Factor de escala: x=5.71, y=5.69
+2026-08-21 03:48:48 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:48:48 - pixel_automator - INFO - 📊 Coincidencias encontradas: 2688
+2026-08-21 03:48:48 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 22px)
+2026-08-21 03:48:48 - pixel_automator - INFO - 📊 572 objetos conservados (de 572 grupos)
+2026-08-21 03:48:48 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:48:48 - pixel_automator - INFO - ✅ 572 objetivos en coordenadas originales
+2026-08-21 03:48:48 - pixel_automator - INFO - ✅ Encontrados 572 objetivos
+2026-08-21 03:48:48 - pixel_automator - INFO - ✅ 572 objetivos únicos encontrados
+2026-08-21 03:48:48 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(243, 141, 169)
+2026-08-21 03:48:49 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 45.5ms)
+2026-08-21 03:48:50 - pixel_automator - INFO - 🖱️ Ejecutando 572 clics...
+2026-08-21 03:48:50 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:48:50 - pixel_automator - INFO - 🖱️ Iniciando 572 clics
+2026-08-21 03:48:50 - pixel_automator - INFO - ⚡ Cooldown: 22.8ms - 68.2ms (base: 45.5ms)
+2026-08-21 03:48:55 - pixel_automator - INFO -    Progreso: 100/572 clics
+2026-08-21 03:49:00 - pixel_automator - INFO -    Progreso: 200/572 clics
+2026-08-21 03:49:05 - pixel_automator - INFO -    Progreso: 300/572 clics
+2026-08-21 03:49:10 - pixel_automator - INFO -    Progreso: 400/572 clics
+2026-08-21 03:49:14 - pixel_automator - INFO -    Progreso: 500/572 clics
+2026-08-21 03:49:18 - pixel_automator - INFO - ✅ Ejecución completada: 572 clics
+2026-08-21 03:49:18 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:49:21 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(243, 141, 169)
+2026-08-21 03:50:47 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:50:49 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:50:49 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:50:49 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:50:49 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:50:50 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:50:50 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:50:50 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:50:50 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:51:05 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:51:05 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:51:05 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:51:16 - pixel_automator - INFO - Área seleccionada: {'left': 1852, 'top': 676, 'width': 10, 'height': 10}
+2026-08-21 03:51:16 - pixel_automator - DEBUG - Capturando área: {'left': 1852, 'top': 676, 'width': 10, 'height': 10}
+2026-08-21 03:51:16 - pixel_automator - INFO - ✅ Área capturada: (10, 10, 3) (BGR)
+2026-08-21 03:51:16 - pixel_automator - INFO - 📐 Área seleccionada: x=1852, y=676, w=10, h=10
+2026-08-21 03:51:16 - pixel_automator - INFO - 📊 Imagen recibida: shape=(10, 10, 3)
+2026-08-21 03:51:16 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (5, 5)
+2026-08-21 03:51:16 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:51:16 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:51:16 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:51:16 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:51:16 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:51:16 - pixel_automator - INFO -    RGB(248, 178, 119): 90 píxeles (90.0%)
+2026-08-21 03:51:16 - pixel_automator - INFO -    RGB(255, 255, 255): 10 píxeles (10.0%)
+2026-08-21 03:51:16 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 5 px
+2026-08-21 03:51:16 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:51:16 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 5 px
+2026-08-21 03:51:16 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:51:16 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:51:16 - pixel_automator - INFO - 📏 Tamaño de muestra: 10px (usado para clustering)
+2026-08-21 03:51:16 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:51:20 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:51:20 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:51:20 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:51:25 - pixel_automator - INFO - Área seleccionada: {'left': 1010, 'top': 141, 'width': 1035, 'height': 846}
+2026-08-21 03:51:25 - pixel_automator - INFO - ✅ Área seleccionada: 1035x846 px
+2026-08-21 03:51:25 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:51:26 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:51:26 - pixel_automator - DEBUG - Capturando área: {'left': 1010, 'top': 141, 'width': 1035, 'height': 846}
+2026-08-21 03:51:26 - pixel_automator - INFO - ✅ Área capturada: (846, 1035, 3) (BGR)
+2026-08-21 03:51:26 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:51:26 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:51:26 - pixel_automator - INFO - 📐 Tamaño original: 1035x846
+2026-08-21 03:51:26 - pixel_automator - INFO - 📏 Reduciendo imagen de 1035x846 a 247x202 para rendimiento
+2026-08-21 03:51:26 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:51:26 - pixel_automator - INFO - 📐 Factor de escala: x=4.19, y=4.19
+2026-08-21 03:51:26 - pixel_automator - INFO - 📊 Coincidencias encontradas: 7178
+2026-08-21 03:51:26 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 10px)
+2026-08-21 03:51:26 - pixel_automator - INFO - 📊 2291 objetos conservados (de 2291 grupos)
+2026-08-21 03:51:26 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:51:26 - pixel_automator - INFO - ✅ 2291 objetivos en coordenadas originales
+2026-08-21 03:51:26 - pixel_automator - INFO - ✅ Encontrados 2291 objetivos
+2026-08-21 03:51:26 - pixel_automator - INFO - ✅ 2291 objetivos únicos encontrados
+2026-08-21 03:51:26 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:51:31 - pixel_automator - INFO - 🖱️ Ejecutando 2291 clics...
+2026-08-21 03:51:31 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:51:31 - pixel_automator - INFO - 🖱️ Iniciando 2291 clics
+2026-08-21 03:51:31 - pixel_automator - INFO - ⚡ Cooldown: 15.5ms - 15.5ms (base: 15.5ms)
+2026-08-21 03:51:33 - pixel_automator - INFO -    Progreso: 100/2291 clics
+2026-08-21 03:51:35 - pixel_automator - INFO -    Progreso: 200/2291 clics
+2026-08-21 03:51:37 - pixel_automator - INFO -    Progreso: 300/2291 clics
+2026-08-21 03:51:38 - pixel_automator - INFO -    Progreso: 400/2291 clics
+2026-08-21 03:51:40 - pixel_automator - INFO -    Progreso: 500/2291 clics
+2026-08-21 03:51:42 - pixel_automator - INFO -    Progreso: 600/2291 clics
+2026-08-21 03:51:44 - pixel_automator - INFO -    Progreso: 700/2291 clics
+2026-08-21 03:51:45 - pixel_automator - INFO -    Progreso: 800/2291 clics
+2026-08-21 03:51:47 - pixel_automator - INFO -    Progreso: 900/2291 clics
+2026-08-21 03:51:49 - pixel_automator - INFO -    Progreso: 1000/2291 clics
+2026-08-21 03:51:51 - pixel_automator - INFO -    Progreso: 1100/2291 clics
+2026-08-21 03:51:53 - pixel_automator - INFO -    Progreso: 1200/2291 clics
+2026-08-21 03:51:54 - pixel_automator - INFO -    Progreso: 1300/2291 clics
+2026-08-21 03:51:56 - pixel_automator - INFO -    Progreso: 1400/2291 clics
+2026-08-21 03:51:58 - pixel_automator - INFO -    Progreso: 1500/2291 clics
+2026-08-21 03:52:00 - pixel_automator - INFO -    Progreso: 1600/2291 clics
+2026-08-21 03:52:01 - pixel_automator - INFO -    Progreso: 1700/2291 clics
+2026-08-21 03:52:03 - pixel_automator - INFO -    Progreso: 1800/2291 clics
+2026-08-21 03:52:05 - pixel_automator - INFO -    Progreso: 1900/2291 clics
+2026-08-21 03:52:07 - pixel_automator - INFO -    Progreso: 2000/2291 clics
+2026-08-21 03:52:09 - pixel_automator - INFO -    Progreso: 2100/2291 clics
+2026-08-21 03:52:10 - pixel_automator - INFO -    Progreso: 2200/2291 clics
+2026-08-21 03:52:12 - pixel_automator - INFO - ✅ Ejecución completada: 2291 clics
+2026-08-21 03:52:12 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:52:17 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:53:01 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:53:01 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:53:01 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:53:05 - pixel_automator - INFO - Área seleccionada: {'left': 904, 'top': 553, 'width': 937, 'height': 148}
+2026-08-21 03:53:05 - pixel_automator - INFO - ✅ Área seleccionada: 937x148 px
+2026-08-21 03:53:05 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:53:07 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:53:07 - pixel_automator - DEBUG - Capturando área: {'left': 904, 'top': 553, 'width': 937, 'height': 148}
+2026-08-21 03:53:07 - pixel_automator - INFO - ✅ Área capturada: (148, 937, 3) (BGR)
+2026-08-21 03:53:07 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:53:07 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:53:07 - pixel_automator - INFO - 📐 Tamaño original: 937x148
+2026-08-21 03:53:07 - pixel_automator - INFO - 📏 Reduciendo imagen de 937x148 a 562x88 para rendimiento
+2026-08-21 03:53:07 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:53:07 - pixel_automator - INFO - 📐 Factor de escala: x=1.67, y=1.68
+2026-08-21 03:53:07 - pixel_automator - INFO - 📊 Coincidencias encontradas: 14460
+2026-08-21 03:53:07 - pixel_automator - INFO - 📏 Usando grid de 5px para filtrar por tamaño (muestra: 10px)
+2026-08-21 03:53:07 - pixel_automator - INFO - 📊 1368 objetos conservados (de 1368 grupos)
+2026-08-21 03:53:07 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:53:07 - pixel_automator - INFO - ✅ 1368 objetivos en coordenadas originales
+2026-08-21 03:53:07 - pixel_automator - INFO - ✅ Encontrados 1368 objetivos
+2026-08-21 03:53:07 - pixel_automator - INFO - ✅ 1368 objetivos únicos encontrados
+2026-08-21 03:53:07 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:53:09 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 15.5ms)
+2026-08-21 03:53:10 - pixel_automator - INFO - 🖱️ Ejecutando 1368 clics...
+2026-08-21 03:53:10 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:53:10 - pixel_automator - INFO - 🖱️ Iniciando 1368 clics
+2026-08-21 03:53:10 - pixel_automator - INFO - ⚡ Cooldown: 7.8ms - 23.2ms (base: 15.5ms)
+2026-08-21 03:53:12 - pixel_automator - INFO -    Progreso: 100/1368 clics
+2026-08-21 03:53:13 - pixel_automator - INFO -    Progreso: 200/1368 clics
+2026-08-21 03:53:15 - pixel_automator - INFO -    Progreso: 300/1368 clics
+2026-08-21 03:53:17 - pixel_automator - INFO -    Progreso: 400/1368 clics
+2026-08-21 03:53:19 - pixel_automator - INFO -    Progreso: 500/1368 clics
+2026-08-21 03:53:20 - pixel_automator - INFO -    Progreso: 600/1368 clics
+2026-08-21 03:53:22 - pixel_automator - INFO -    Progreso: 700/1368 clics
+2026-08-21 03:53:24 - pixel_automator - INFO -    Progreso: 800/1368 clics
+2026-08-21 03:53:26 - pixel_automator - INFO -    Progreso: 900/1368 clics
+2026-08-21 03:53:27 - pixel_automator - INFO -    Progreso: 1000/1368 clics
+2026-08-21 03:53:29 - pixel_automator - INFO -    Progreso: 1100/1368 clics
+2026-08-21 03:53:31 - pixel_automator - INFO -    Progreso: 1200/1368 clics
+2026-08-21 03:53:33 - pixel_automator - INFO -    Progreso: 1300/1368 clics
+2026-08-21 03:53:34 - pixel_automator - INFO - ✅ Ejecución completada: 1368 clics
+2026-08-21 03:53:34 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 03:53:43 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:54:44 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 03:56:02 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 03:56:02 - pixel_automator - INFO - QApplication creada
+2026-08-21 03:56:02 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 03:56:02 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 03:56:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 03:56:02 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 03:56:02 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 03:56:03 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 03:56:08 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 03:56:08 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:56:08 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:56:13 - pixel_automator - INFO - Área seleccionada: {'left': 1663, 'top': 789, 'width': 9, 'height': 9}
+2026-08-21 03:56:13 - pixel_automator - DEBUG - Capturando área: {'left': 1663, 'top': 789, 'width': 9, 'height': 9}
+2026-08-21 03:56:13 - pixel_automator - INFO - ✅ Área capturada: (9, 9, 3) (BGR)
+2026-08-21 03:56:13 - pixel_automator - INFO - 📐 Área seleccionada: x=1663, y=789, w=9, h=9
+2026-08-21 03:56:13 - pixel_automator - INFO - 📊 Imagen recibida: shape=(9, 9, 3)
+2026-08-21 03:56:13 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (4, 4)
+2026-08-21 03:56:13 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 03:56:13 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 03:56:13 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 03:56:13 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 03:56:13 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 03:56:13 - pixel_automator - INFO -    RGB(248, 178, 119): 56 píxeles (69.1%)
+2026-08-21 03:56:13 - pixel_automator - INFO -    RGB(255, 255, 255): 25 píxeles (30.9%)
+2026-08-21 03:56:13 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 5 px
+2026-08-21 03:56:13 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:56:13 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 5 px
+2026-08-21 03:56:13 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 03:56:13 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 03:56:13 - pixel_automator - INFO - 📏 Tamaño de muestra: 9px (usado para clustering)
+2026-08-21 03:56:13 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:56:15 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 03:56:15 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 03:56:15 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 03:56:20 - pixel_automator - INFO - Área seleccionada: {'left': 892, 'top': 562, 'width': 756, 'height': 475}
+2026-08-21 03:56:20 - pixel_automator - INFO - ✅ Área seleccionada: 756x475 px
+2026-08-21 03:56:20 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:56:24 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 03:56:24 - pixel_automator - DEBUG - Capturando área: {'left': 892, 'top': 562, 'width': 756, 'height': 475}
+2026-08-21 03:56:24 - pixel_automator - INFO - ✅ Área capturada: (475, 756, 3) (BGR)
+2026-08-21 03:56:24 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 03:56:24 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 03:56:24 - pixel_automator - INFO - 📐 Tamaño original: 756x475
+2026-08-21 03:56:24 - pixel_automator - INFO - 📏 Reduciendo imagen de 756x475 a 282x177 para rendimiento
+2026-08-21 03:56:24 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 03:56:24 - pixel_automator - INFO - 📐 Factor de escala: x=2.68, y=2.68
+2026-08-21 03:56:24 - pixel_automator - INFO - 📊 Coincidencias encontradas: 8051
+2026-08-21 03:56:24 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 9px)
+2026-08-21 03:56:24 - pixel_automator - INFO - 📊 2266 objetos conservados (de 2266 grupos)
+2026-08-21 03:56:24 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 03:56:24 - pixel_automator - INFO - ✅ 2266 objetivos en coordenadas originales
+2026-08-21 03:56:24 - pixel_automator - INFO - ✅ Encontrados 2266 objetivos
+2026-08-21 03:56:24 - pixel_automator - INFO - ✅ 2266 objetivos únicos encontrados
+2026-08-21 03:56:24 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 03:56:28 - pixel_automator - INFO - 🖱️ Ejecutando 2266 clics...
+2026-08-21 03:56:28 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 03:56:28 - pixel_automator - INFO - 🖱️ Iniciando 2266 clics
+2026-08-21 03:56:28 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 03:56:44 - pixel_automator - INFO -    Progreso: 100/2266 clics
+2026-08-21 03:57:00 - pixel_automator - INFO -    Progreso: 200/2266 clics
+2026-08-21 03:57:02 - pixel_automator - WARNING - ⚠️ FailSafe activado - movimiento del mouse detectado
+2026-08-21 03:57:02 - pixel_automator - ERROR - Error en clics: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+2026-08-21 03:57:06 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:06:20 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 04:06:22 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 04:06:22 - pixel_automator - INFO - QApplication creada
+2026-08-21 04:06:22 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 04:06:22 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 04:06:22 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 04:06:22 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 04:06:22 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 04:06:22 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 04:06:30 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 04:06:30 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:06:30 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:06:34 - pixel_automator - INFO - Área seleccionada: {'left': 1648, 'top': 1048, 'width': 13, 'height': 13}
+2026-08-21 04:06:34 - pixel_automator - DEBUG - Capturando área: {'left': 1648, 'top': 1048, 'width': 13, 'height': 13}
+2026-08-21 04:06:34 - pixel_automator - INFO - ✅ Área capturada: (13, 13, 3) (BGR)
+2026-08-21 04:06:34 - pixel_automator - INFO - 📐 Área seleccionada: x=1648, y=1048, w=13, h=13
+2026-08-21 04:06:34 - pixel_automator - INFO - 📊 Imagen recibida: shape=(13, 13, 3)
+2026-08-21 04:06:34 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 04:06:34 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 04:06:34 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 04:06:34 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 04:06:34 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 04:06:34 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 04:06:34 - pixel_automator - INFO -    RGB(248, 178, 119): 156 píxeles (92.3%)
+2026-08-21 04:06:34 - pixel_automator - INFO -    RGB(0, 0, 0): 13 píxeles (7.7%)
+2026-08-21 04:06:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 04:06:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:06:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 04:06:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:06:34 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 04:06:34 - pixel_automator - INFO - 📏 Tamaño de muestra: 13px (usado para clustering)
+2026-08-21 04:06:34 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:06:36 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:06:36 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:06:36 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:06:40 - pixel_automator - INFO - Área seleccionada: {'left': 898, 'top': 586, 'width': 771, 'height': 435}
+2026-08-21 04:06:40 - pixel_automator - INFO - ✅ Área seleccionada: 771x435 px
+2026-08-21 04:06:40 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:06:42 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:06:42 - pixel_automator - DEBUG - Capturando área: {'left': 898, 'top': 586, 'width': 771, 'height': 435}
+2026-08-21 04:06:42 - pixel_automator - INFO - ✅ Área capturada: (435, 771, 3) (BGR)
+2026-08-21 04:06:42 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:06:42 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 04:06:42 - pixel_automator - INFO - 📐 Tamaño original: 771x435
+2026-08-21 04:06:42 - pixel_automator - INFO - 📏 Reduciendo imagen de 771x435 a 297x167 para rendimiento
+2026-08-21 04:06:42 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:06:42 - pixel_automator - INFO - 📐 Factor de escala: x=2.60, y=2.60
+2026-08-21 04:06:42 - pixel_automator - INFO - 📊 Coincidencias encontradas: 9164
+2026-08-21 04:06:42 - pixel_automator - INFO - 📏 Usando grid de 4px para filtrar por tamaño (muestra: 13px)
+2026-08-21 04:06:42 - pixel_automator - INFO - 📊 1492 objetos conservados (de 1492 grupos)
+2026-08-21 04:06:42 - pixel_automator - INFO - 🔗 Fusionando puntos cercanos (distancia: 10 px)
+2026-08-21 04:06:42 - pixel_automator - DEBUG - 🔗 Fusionados 1492 puntos en 119 (distancia mínima: 10)
+2026-08-21 04:06:42 - pixel_automator - INFO - 📊 119 puntos después de fusión
+2026-08-21 04:06:42 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 04:06:42 - pixel_automator - INFO - ✅ 119 objetivos en coordenadas originales
+2026-08-21 04:06:42 - pixel_automator - INFO - ✅ Encontrados 119 objetivos
+2026-08-21 04:06:42 - pixel_automator - INFO - ✅ 119 objetivos únicos encontrados
+2026-08-21 04:06:42 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:06:45 - pixel_automator - INFO - 🖱️ Ejecutando 119 clics...
+2026-08-21 04:06:45 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 04:06:45 - pixel_automator - INFO - 🖱️ Iniciando 119 clics
+2026-08-21 04:06:45 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 04:07:01 - pixel_automator - INFO -    Progreso: 100/119 clics
+2026-08-21 04:07:04 - pixel_automator - INFO - ✅ Ejecución completada: 119 clics
+2026-08-21 04:07:04 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 04:07:05 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:09:57 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:09:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:09:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:10:01 - pixel_automator - INFO - Área seleccionada: {'left': 632, 'top': 380, 'width': 1073, 'height': 544}
+2026-08-21 04:10:01 - pixel_automator - INFO - ✅ Área seleccionada: 1073x544 px
+2026-08-21 04:10:01 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:10:03 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:10:03 - pixel_automator - DEBUG - Capturando área: {'left': 632, 'top': 380, 'width': 1073, 'height': 544}
+2026-08-21 04:10:03 - pixel_automator - INFO - ✅ Área capturada: (544, 1073, 3) (BGR)
+2026-08-21 04:10:03 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:10:03 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 04:10:03 - pixel_automator - INFO - 📐 Tamaño original: 1073x544
+2026-08-21 04:10:03 - pixel_automator - INFO - 📏 Reduciendo imagen de 1073x544 a 314x159 para rendimiento
+2026-08-21 04:10:03 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:10:03 - pixel_automator - INFO - 📐 Factor de escala: x=3.42, y=3.42
+2026-08-21 04:10:03 - pixel_automator - INFO - 📊 Coincidencias encontradas: 11360
+2026-08-21 04:10:03 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 13px)
+2026-08-21 04:10:03 - pixel_automator - INFO - 📊 2395 objetos conservados (de 2395 grupos)
+2026-08-21 04:10:03 - pixel_automator - INFO - 🔗 Fusionando puntos cercanos (distancia: 10 px)
+2026-08-21 04:10:04 - pixel_automator - DEBUG - 🔗 Fusionados 2395 puntos en 132 (distancia mínima: 10)
+2026-08-21 04:10:04 - pixel_automator - INFO - 📊 132 puntos después de fusión
+2026-08-21 04:10:04 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 04:10:04 - pixel_automator - INFO - ✅ 132 objetivos en coordenadas originales
+2026-08-21 04:10:04 - pixel_automator - INFO - ✅ Encontrados 132 objetivos
+2026-08-21 04:10:04 - pixel_automator - INFO - ✅ 132 objetivos únicos encontrados
+2026-08-21 04:10:04 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:10:06 - pixel_automator - INFO - 🖱️ Ejecutando 132 clics...
+2026-08-21 04:10:06 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 04:10:06 - pixel_automator - INFO - 🖱️ Iniciando 132 clics
+2026-08-21 04:10:06 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 04:10:22 - pixel_automator - INFO -    Progreso: 100/132 clics
+2026-08-21 04:10:27 - pixel_automator - INFO - ✅ Ejecución completada: 132 clics
+2026-08-21 04:10:27 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 04:10:30 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:10:48 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 04:10:51 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 04:10:51 - pixel_automator - INFO - QApplication creada
+2026-08-21 04:10:51 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 04:10:51 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 04:10:51 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 04:10:51 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 04:10:51 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 04:10:51 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 04:10:57 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 04:10:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:10:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:11:02 - pixel_automator - INFO - Área seleccionada: {'left': 1647, 'top': 802, 'width': 20, 'height': 19}
+2026-08-21 04:11:02 - pixel_automator - DEBUG - Capturando área: {'left': 1647, 'top': 802, 'width': 20, 'height': 19}
+2026-08-21 04:11:02 - pixel_automator - INFO - ✅ Área capturada: (19, 20, 3) (BGR)
+2026-08-21 04:11:02 - pixel_automator - INFO - 📐 Área seleccionada: x=1647, y=802, w=20, h=19
+2026-08-21 04:11:02 - pixel_automator - INFO - 📊 Imagen recibida: shape=(19, 20, 3)
+2026-08-21 04:11:02 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (10, 9)
+2026-08-21 04:11:02 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 04:11:02 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 04:11:02 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 04:11:02 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 04:11:02 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 04:11:02 - pixel_automator - INFO -    RGB(248, 178, 119): 306 píxeles (80.5%)
+2026-08-21 04:11:02 - pixel_automator - INFO -    RGB(255, 255, 255): 74 píxeles (19.5%)
+2026-08-21 04:11:02 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 9 px
+2026-08-21 04:11:02 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:11:02 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 9 px
+2026-08-21 04:11:02 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:11:02 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 04:11:02 - pixel_automator - INFO - 📏 Tamaño de muestra: 19px (usado para clustering)
+2026-08-21 04:11:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:11:04 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:11:04 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:11:04 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:11:08 - pixel_automator - INFO - Área seleccionada: {'left': 1232, 'top': 793, 'width': 444, 'height': 262}
+2026-08-21 04:11:08 - pixel_automator - INFO - ✅ Área seleccionada: 444x262 px
+2026-08-21 04:11:08 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:11:09 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:11:09 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:11:09 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:11:14 - pixel_automator - INFO - Área seleccionada: {'left': 1230, 'top': 793, 'width': 439, 'height': 283}
+2026-08-21 04:11:14 - pixel_automator - INFO - ✅ Área seleccionada: 439x283 px
+2026-08-21 04:11:14 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:11:16 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:11:16 - pixel_automator - DEBUG - Capturando área: {'left': 1230, 'top': 793, 'width': 439, 'height': 283}
+2026-08-21 04:11:16 - pixel_automator - INFO - ✅ Área capturada: (283, 439, 3) (BGR)
+2026-08-21 04:11:16 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:11:16 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 04:11:16 - pixel_automator - INFO - 📐 Tamaño original: 439x283
+2026-08-21 04:11:16 - pixel_automator - INFO - 📏 Reduciendo imagen de 439x283 a 278x179 para rendimiento
+2026-08-21 04:11:16 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:11:16 - pixel_automator - INFO - 📐 Factor de escala: x=1.58, y=1.58
+2026-08-21 04:11:16 - pixel_automator - INFO - 📊 Coincidencias encontradas: 17394
+2026-08-21 04:11:16 - pixel_automator - INFO - 📏 Usando grid de 12px para filtrar por tamaño (muestra: 19px)
+2026-08-21 04:11:16 - pixel_automator - INFO - 📊 320 objetos conservados (de 320 grupos)
+2026-08-21 04:11:16 - pixel_automator - INFO - 🔗 Fusionando puntos cercanos (distancia: 13 px)
+2026-08-21 04:11:16 - pixel_automator - DEBUG - 🔗 Fusionados 320 puntos en 107 (distancia mínima: 13)
+2026-08-21 04:11:16 - pixel_automator - INFO - 📊 107 puntos después de fusión
+2026-08-21 04:11:16 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 04:11:16 - pixel_automator - INFO - ✅ 107 objetivos en coordenadas originales
+2026-08-21 04:11:16 - pixel_automator - INFO - ✅ Encontrados 107 objetivos
+2026-08-21 04:11:16 - pixel_automator - INFO - ✅ 107 objetivos únicos encontrados
+2026-08-21 04:11:16 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:11:19 - pixel_automator - INFO - 🖱️ Ejecutando 107 clics...
+2026-08-21 04:11:19 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 04:11:19 - pixel_automator - INFO - 🖱️ Iniciando 107 clics
+2026-08-21 04:11:19 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 04:11:35 - pixel_automator - INFO -    Progreso: 100/107 clics
+2026-08-21 04:11:36 - pixel_automator - INFO - ✅ Ejecución completada: 107 clics
+2026-08-21 04:11:36 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 04:11:39 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:12:07 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:12:07 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:12:07 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:12:14 - pixel_automator - INFO - Área seleccionada: {'left': 668, 'top': 617, 'width': 1112, 'height': 253}
+2026-08-21 04:12:14 - pixel_automator - INFO - ✅ Área seleccionada: 1112x253 px
+2026-08-21 04:12:14 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:12:16 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:12:16 - pixel_automator - DEBUG - Capturando área: {'left': 668, 'top': 617, 'width': 1112, 'height': 253}
+2026-08-21 04:12:16 - pixel_automator - INFO - ✅ Área capturada: (253, 1112, 3) (BGR)
+2026-08-21 04:12:16 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:12:16 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 04:12:16 - pixel_automator - INFO - 📐 Tamaño original: 1112x253
+2026-08-21 04:12:16 - pixel_automator - INFO - 📏 Reduciendo imagen de 1112x253 a 468x106 para rendimiento
+2026-08-21 04:12:16 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:12:16 - pixel_automator - INFO - 📐 Factor de escala: x=2.38, y=2.39
+2026-08-21 04:12:16 - pixel_automator - INFO - 📊 Coincidencias encontradas: 13529
+2026-08-21 04:12:16 - pixel_automator - INFO - 📏 Usando grid de 7px para filtrar por tamaño (muestra: 19px)
+2026-08-21 04:12:16 - pixel_automator - INFO - 📊 703 objetos conservados (de 703 grupos)
+2026-08-21 04:12:16 - pixel_automator - INFO - 🔗 Fusionando puntos cercanos (distancia: 13 px)
+2026-08-21 04:12:16 - pixel_automator - DEBUG - 🔗 Fusionados 703 puntos en 98 (distancia mínima: 13)
+2026-08-21 04:12:16 - pixel_automator - INFO - 📊 98 puntos después de fusión
+2026-08-21 04:12:16 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 04:12:16 - pixel_automator - INFO - ✅ 98 objetivos en coordenadas originales
+2026-08-21 04:12:16 - pixel_automator - INFO - ✅ Encontrados 98 objetivos
+2026-08-21 04:12:16 - pixel_automator - INFO - ✅ 98 objetivos únicos encontrados
+2026-08-21 04:12:16 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:12:18 - pixel_automator - INFO - 🖱️ Ejecutando 98 clics...
+2026-08-21 04:12:18 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 04:12:18 - pixel_automator - INFO - 🖱️ Iniciando 98 clics
+2026-08-21 04:12:18 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 04:12:33 - pixel_automator - INFO - ✅ Ejecución completada: 98 clics
+2026-08-21 04:12:33 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 04:12:36 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:14:20 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 04:14:27 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 04:14:27 - pixel_automator - INFO - QApplication creada
+2026-08-21 04:14:27 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 04:14:27 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 04:14:27 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 04:14:27 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 04:14:27 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 04:14:27 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 04:14:29 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 04:14:29 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:14:29 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:14:34 - pixel_automator - INFO - Área seleccionada: {'left': 1943, 'top': 851, 'width': 19, 'height': 19}
+2026-08-21 04:14:34 - pixel_automator - DEBUG - Capturando área: {'left': 1943, 'top': 851, 'width': 19, 'height': 19}
+2026-08-21 04:14:34 - pixel_automator - INFO - ✅ Área capturada: (19, 19, 3) (BGR)
+2026-08-21 04:14:34 - pixel_automator - INFO - 📐 Área seleccionada: x=1943, y=851, w=19, h=19
+2026-08-21 04:14:34 - pixel_automator - INFO - 📊 Imagen recibida: shape=(19, 19, 3)
+2026-08-21 04:14:34 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (9, 9)
+2026-08-21 04:14:34 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(246, 177, 118)
+2026-08-21 04:14:34 - pixel_automator - INFO -    HEX: #f6b176
+2026-08-21 04:14:34 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 04:14:34 - pixel_automator - INFO - 🎨 Colores únicos en el área: 20
+2026-08-21 04:14:34 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 04:14:34 - pixel_automator - INFO -    RGB(247, 177, 119): 62 píxeles (17.2%)
+2026-08-21 04:14:34 - pixel_automator - INFO -    RGB(248, 178, 119): 51 píxeles (14.1%)
+2026-08-21 04:14:34 - pixel_automator - INFO -    RGB(246, 177, 118): 51 píxeles (14.1%)
+2026-08-21 04:14:34 - pixel_automator - INFO -    RGB(244, 175, 117): 34 píxeles (9.4%)
+2026-08-21 04:14:34 - pixel_automator - INFO -    RGB(255, 255, 255): 25 píxeles (6.9%)
+2026-08-21 04:14:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 9 px
+2026-08-21 04:14:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(246, 177, 118)
+2026-08-21 04:14:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 9 px
+2026-08-21 04:14:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(246, 177, 118)
+2026-08-21 04:14:34 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(246, 177, 118)
+2026-08-21 04:14:34 - pixel_automator - INFO - 📏 Tamaño de muestra: 19px (usado para clustering)
+2026-08-21 04:14:34 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(246, 177, 118)
+2026-08-21 04:14:36 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:14:36 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:14:36 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:14:43 - pixel_automator - INFO - Área seleccionada: {'left': 1259, 'top': 618, 'width': 487, 'height': 292}
+2026-08-21 04:14:43 - pixel_automator - INFO - ✅ Área seleccionada: 487x292 px
+2026-08-21 04:14:43 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(246, 177, 118)
+2026-08-21 04:14:44 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:14:44 - pixel_automator - DEBUG - Capturando área: {'left': 1259, 'top': 618, 'width': 487, 'height': 292}
+2026-08-21 04:14:44 - pixel_automator - INFO - ✅ Área capturada: (292, 487, 3) (BGR)
+2026-08-21 04:14:44 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:14:44 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(246, 177, 118)
+2026-08-21 04:14:44 - pixel_automator - INFO - 📐 Tamaño original: 487x292
+2026-08-21 04:14:44 - pixel_automator - INFO - 📏 Reduciendo imagen de 487x292 a 288x173 para rendimiento
+2026-08-21 04:14:44 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:14:44 - pixel_automator - INFO - 📐 Factor de escala: x=1.69, y=1.69
+2026-08-21 04:14:44 - pixel_automator - INFO - 📊 Coincidencias encontradas: 0
+2026-08-21 04:14:44 - pixel_automator - WARNING - ⚠️ No se encontraron coincidencias exactas
+2026-08-21 04:14:44 - pixel_automator - INFO - ✅ Encontrados 0 objetivos
+2026-08-21 04:14:44 - pixel_automator - INFO - ✅ 0 objetivos únicos encontrados
+2026-08-21 04:14:44 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(246, 177, 118)
+2026-08-21 04:14:57 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:14:57 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:14:57 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:15:02 - pixel_automator - INFO - Área seleccionada: {'left': 807, 'top': 436, 'width': 1194, 'height': 440}
+2026-08-21 04:15:02 - pixel_automator - INFO - ✅ Área seleccionada: 1194x440 px
+2026-08-21 04:15:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(246, 177, 118)
+2026-08-21 04:15:03 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:15:03 - pixel_automator - DEBUG - Capturando área: {'left': 807, 'top': 436, 'width': 1194, 'height': 440}
+2026-08-21 04:15:03 - pixel_automator - INFO - ✅ Área capturada: (440, 1194, 3) (BGR)
+2026-08-21 04:15:03 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:15:03 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(246, 177, 118)
+2026-08-21 04:15:03 - pixel_automator - INFO - 📐 Tamaño original: 1194x440
+2026-08-21 04:15:03 - pixel_automator - INFO - 📏 Reduciendo imagen de 1194x440 a 368x135 para rendimiento
+2026-08-21 04:15:03 - pixel_automator - INFO - 📐 Factor de escala: x=3.24, y=3.26
+2026-08-21 04:15:03 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:15:03 - pixel_automator - INFO - 📊 Coincidencias encontradas: 0
+2026-08-21 04:15:03 - pixel_automator - WARNING - ⚠️ No se encontraron coincidencias exactas
+2026-08-21 04:15:03 - pixel_automator - INFO - ✅ Encontrados 0 objetivos
+2026-08-21 04:15:03 - pixel_automator - INFO - ✅ 0 objetivos únicos encontrados
+2026-08-21 04:15:03 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(246, 177, 118)
+2026-08-21 04:17:01 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 04:19:20 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 04:19:20 - pixel_automator - INFO - QApplication creada
+2026-08-21 04:19:20 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 04:19:20 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 04:19:20 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 04:19:20 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 04:19:20 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 04:19:21 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 04:19:25 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 04:19:25 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:19:25 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:19:34 - pixel_automator - INFO - Área seleccionada: {'left': 1979, 'top': 854, 'width': 18, 'height': 17}
+2026-08-21 04:19:34 - pixel_automator - DEBUG - Capturando área: {'left': 1979, 'top': 854, 'width': 18, 'height': 17}
+2026-08-21 04:19:34 - pixel_automator - INFO - ✅ Área capturada: (17, 18, 3) (BGR)
+2026-08-21 04:19:34 - pixel_automator - INFO - 📐 Área seleccionada: x=1979, y=854, w=18, h=17
+2026-08-21 04:19:34 - pixel_automator - INFO - 📊 Imagen recibida: shape=(17, 18, 3)
+2026-08-21 04:19:34 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (9, 8)
+2026-08-21 04:19:34 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(248, 178, 119)
+2026-08-21 04:19:34 - pixel_automator - INFO -    HEX: #f8b277
+2026-08-21 04:19:34 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 04:19:34 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 04:19:34 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 04:19:34 - pixel_automator - INFO -    RGB(248, 178, 119): 289 píxeles (94.4%)
+2026-08-21 04:19:34 - pixel_automator - INFO -    RGB(0, 0, 0): 17 píxeles (5.6%)
+2026-08-21 04:19:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 8 px
+2026-08-21 04:19:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:19:34 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 8 px
+2026-08-21 04:19:34 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(248, 178, 119)
+2026-08-21 04:19:34 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(248, 178, 119)
+2026-08-21 04:19:34 - pixel_automator - INFO - 📏 Tamaño de muestra: 17px (usado para clustering)
+2026-08-21 04:19:34 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:19:37 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 04:19:37 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 04:19:37 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 04:19:44 - pixel_automator - INFO - Área seleccionada: {'left': 955, 'top': 496, 'width': 980, 'height': 376}
+2026-08-21 04:19:44 - pixel_automator - INFO - ✅ Área seleccionada: 980x376 px
+2026-08-21 04:19:44 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:19:45 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 04:19:45 - pixel_automator - DEBUG - Capturando área: {'left': 955, 'top': 496, 'width': 980, 'height': 376}
+2026-08-21 04:19:45 - pixel_automator - INFO - ✅ Área capturada: (376, 980, 3) (BGR)
+2026-08-21 04:19:45 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 04:19:45 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(248, 178, 119)
+2026-08-21 04:19:45 - pixel_automator - INFO - 📐 Tamaño original: 980x376
+2026-08-21 04:19:45 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 04:19:45 - pixel_automator - INFO - 📏 Reduciendo imagen de 980x376 a 360x138 para rendimiento
+2026-08-21 04:19:45 - pixel_automator - INFO - 📐 Factor de escala: x=2.72, y=2.72
+2026-08-21 04:19:45 - pixel_automator - INFO - 📊 Coincidencias encontradas: 11896
+2026-08-21 04:19:45 - pixel_automator - INFO - 📏 Usando grid de 6px para filtrar por tamaño (muestra: 17px)
+2026-08-21 04:19:45 - pixel_automator - INFO - 📊 773 objetos conservados (de 773 grupos)
+2026-08-21 04:19:45 - pixel_automator - INFO - 🔗 Fusionando puntos muy cercanos (umbral: 5 px)
+2026-08-21 04:19:46 - pixel_automator - DEBUG - 🔗 Fusionados 773 puntos en 767 (umbral: 2px)
+2026-08-21 04:19:46 - pixel_automator - INFO - 📊 773 → 767 puntos después de fusión
+2026-08-21 04:19:46 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 04:19:46 - pixel_automator - INFO - ✅ 767 objetivos en coordenadas originales
+2026-08-21 04:19:46 - pixel_automator - INFO - ✅ Encontrados 767 objetivos
+2026-08-21 04:19:46 - pixel_automator - INFO - ✅ 767 objetivos únicos encontrados
+2026-08-21 04:19:46 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:19:50 - pixel_automator - INFO - 🖱️ Ejecutando 767 clics...
+2026-08-21 04:19:50 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 04:19:50 - pixel_automator - INFO - 🖱️ Iniciando 767 clics
+2026-08-21 04:19:50 - pixel_automator - INFO - ⚡ Cooldown: 150.5ms - 150.5ms (base: 150.5ms)
+2026-08-21 04:20:06 - pixel_automator - INFO -    Progreso: 100/767 clics
+2026-08-21 04:20:21 - pixel_automator - INFO -    Progreso: 200/767 clics
+2026-08-21 04:20:37 - pixel_automator - INFO -    Progreso: 300/767 clics
+2026-08-21 04:20:52 - pixel_automator - INFO -    Progreso: 400/767 clics
+2026-08-21 04:21:08 - pixel_automator - INFO -    Progreso: 500/767 clics
+2026-08-21 04:21:23 - pixel_automator - INFO -    Progreso: 600/767 clics
+2026-08-21 04:21:39 - pixel_automator - INFO -    Progreso: 700/767 clics
+2026-08-21 04:21:49 - pixel_automator - INFO - ✅ Ejecución completada: 767 clics
+2026-08-21 04:21:49 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 04:21:52 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(248, 178, 119)
+2026-08-21 04:32:03 - pixel_automator - INFO - Aplicación cerrada
+2026-08-21 15:44:12 - pixel_automator - INFO - === INICIANDO PIXEL AUTOMATOR ===
+2026-08-21 15:44:12 - pixel_automator - INFO - QApplication creada
+2026-08-21 15:44:12 - pixel_automator - INFO - ScreenCapture inicializado
+2026-08-21 15:44:12 - pixel_automator - INFO - ColorMatcher inicializado
+2026-08-21 15:44:12 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=False, target_color=None
+2026-08-21 15:44:12 - pixel_automator - INFO - MainWindow inicializada - Modo Color Exacto
+2026-08-21 15:44:12 - pixel_automator - INFO - Ventana principal creada
+2026-08-21 15:44:13 - pixel_automator - INFO - Ventana mostrada
+2026-08-21 15:44:14 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 15:44:14 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:44:14 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:44:20 - pixel_automator - INFO - Área seleccionada: {'left': 1395, 'top': 830, 'width': 13, 'height': 12}
+2026-08-21 15:44:20 - pixel_automator - DEBUG - Capturando área: {'left': 1395, 'top': 830, 'width': 13, 'height': 12}
+2026-08-21 15:44:20 - pixel_automator - INFO - ✅ Área capturada: (12, 13, 3) (BGR)
+2026-08-21 15:44:20 - pixel_automator - INFO - 📐 Área seleccionada: x=1395, y=830, w=13, h=12
+2026-08-21 15:44:20 - pixel_automator - INFO - 📊 Imagen recibida: shape=(12, 13, 3)
+2026-08-21 15:44:20 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 15:44:20 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(60, 60, 60)
+2026-08-21 15:44:20 - pixel_automator - INFO -    HEX: #3c3c3c
+2026-08-21 15:44:20 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 15:44:20 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 15:44:20 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 15:44:20 - pixel_automator - INFO -    RGB(60, 60, 60): 156 píxeles (100.0%)
+2026-08-21 15:44:20 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:44:20 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(60, 60, 60)
+2026-08-21 15:44:20 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:44:20 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(60, 60, 60)
+2026-08-21 15:44:20 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(60, 60, 60)
+2026-08-21 15:44:20 - pixel_automator - INFO - 📏 Tamaño de muestra: 12px (usado para clustering)
+2026-08-21 15:44:20 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(60, 60, 60)
+2026-08-21 15:44:21 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 15:44:21 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:44:21 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:44:29 - pixel_automator - INFO - Área seleccionada: {'left': 472, 'top': 381, 'width': 1310, 'height': 668}
+2026-08-21 15:44:29 - pixel_automator - INFO - ✅ Área seleccionada: 1310x668 px
+2026-08-21 15:44:29 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(60, 60, 60)
+2026-08-21 15:44:31 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 15:44:31 - pixel_automator - DEBUG - Capturando área: {'left': 472, 'top': 381, 'width': 1310, 'height': 668}
+2026-08-21 15:44:31 - pixel_automator - INFO - ✅ Área capturada: (668, 1310, 3) (BGR)
+2026-08-21 15:44:31 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 15:44:31 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(60, 60, 60)
+2026-08-21 15:44:31 - pixel_automator - INFO - 📐 Tamaño original: 1310x668
+2026-08-21 15:44:31 - pixel_automator - INFO - 📏 Reduciendo imagen de 1310x668 a 313x159 para rendimiento
+2026-08-21 15:44:31 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 15:44:31 - pixel_automator - INFO - 📐 Factor de escala: x=4.19, y=4.20
+2026-08-21 15:44:31 - pixel_automator - INFO - 📊 Coincidencias encontradas: 2140
+2026-08-21 15:44:31 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 12px)
+2026-08-21 15:44:31 - pixel_automator - INFO - 📊 432 objetos conservados (de 432 grupos)
+2026-08-21 15:44:31 - pixel_automator - INFO - 🔗 Fusionando puntos muy cercanos (umbral: 3 px)
+2026-08-21 15:44:31 - pixel_automator - DEBUG - 🔗 Fusionados 432 puntos en 432 (umbral: 1px)
+2026-08-21 15:44:31 - pixel_automator - INFO - 📊 432 → 432 puntos después de fusión
+2026-08-21 15:44:31 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 15:44:31 - pixel_automator - INFO - ✅ 432 objetivos en coordenadas originales
+2026-08-21 15:44:31 - pixel_automator - INFO - ✅ Encontrados 432 objetivos
+2026-08-21 15:44:31 - pixel_automator - INFO - ✅ 432 objetivos únicos encontrados
+2026-08-21 15:44:31 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(60, 60, 60)
+2026-08-21 15:44:37 - pixel_automator - INFO - 🔲 Filtro por tamaño: Desactivado
+2026-08-21 15:44:38 - pixel_automator - INFO - 🔲 Filtro por tamaño: Activado
+2026-08-21 15:44:41 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 150.5ms)
+2026-08-21 15:44:42 - pixel_automator - INFO - 🖱️ Ejecutando 432 clics...
+2026-08-21 15:44:42 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 15:44:42 - pixel_automator - INFO - 🖱️ Iniciando 432 clics
+2026-08-21 15:44:42 - pixel_automator - INFO - ⚡ Cooldown: 75.2ms - 225.8ms (base: 150.5ms)
+2026-08-21 15:44:57 - pixel_automator - INFO -    Progreso: 100/432 clics
+2026-08-21 15:45:12 - pixel_automator - INFO -    Progreso: 200/432 clics
+2026-08-21 15:45:27 - pixel_automator - INFO -    Progreso: 300/432 clics
+2026-08-21 15:45:43 - pixel_automator - INFO -    Progreso: 400/432 clics
+2026-08-21 15:45:48 - pixel_automator - INFO - ✅ Ejecución completada: 432 clics
+2026-08-21 15:45:48 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 15:45:51 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(60, 60, 60)
+2026-08-21 15:46:20 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 15:46:20 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:46:20 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:46:28 - pixel_automator - INFO - Área seleccionada: {'left': 975, 'top': 382, 'width': 13, 'height': 14}
+2026-08-21 15:46:28 - pixel_automator - DEBUG - Capturando área: {'left': 975, 'top': 382, 'width': 13, 'height': 14}
+2026-08-21 15:46:28 - pixel_automator - INFO - ✅ Área capturada: (14, 13, 3) (BGR)
+2026-08-21 15:46:28 - pixel_automator - INFO - 📐 Área seleccionada: x=975, y=382, w=13, h=14
+2026-08-21 15:46:28 - pixel_automator - INFO - 📊 Imagen recibida: shape=(14, 13, 3)
+2026-08-21 15:46:28 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 7)
+2026-08-21 15:46:28 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(205, 197, 158)
+2026-08-21 15:46:28 - pixel_automator - INFO -    HEX: #cdc59e
+2026-08-21 15:46:28 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 15:46:28 - pixel_automator - INFO - 🎨 Colores únicos en el área: 1
+2026-08-21 15:46:28 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 15:46:28 - pixel_automator - INFO -    RGB(205, 197, 158): 182 píxeles (100.0%)
+2026-08-21 15:46:28 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:46:28 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(205, 197, 158)
+2026-08-21 15:46:28 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:46:28 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(205, 197, 158)
+2026-08-21 15:46:28 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(205, 197, 158)
+2026-08-21 15:46:28 - pixel_automator - INFO - 📏 Tamaño de muestra: 13px (usado para clustering)
+2026-08-21 15:46:28 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(205, 197, 158)
+2026-08-21 15:46:29 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 15:46:29 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:46:29 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:46:35 - pixel_automator - INFO - Área seleccionada: {'left': 728, 'top': 220, 'width': 1128, 'height': 870}
+2026-08-21 15:46:35 - pixel_automator - INFO - ✅ Área seleccionada: 1128x870 px
+2026-08-21 15:46:35 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(205, 197, 158)
+2026-08-21 15:46:36 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 15:46:36 - pixel_automator - DEBUG - Capturando área: {'left': 728, 'top': 220, 'width': 1128, 'height': 870}
+2026-08-21 15:46:36 - pixel_automator - INFO - ✅ Área capturada: (870, 1128, 3) (BGR)
+2026-08-21 15:46:36 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 15:46:36 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(205, 197, 158)
+2026-08-21 15:46:36 - pixel_automator - INFO - 📐 Tamaño original: 1128x870
+2026-08-21 15:46:36 - pixel_automator - INFO - 📏 Reduciendo imagen de 1128x870 a 254x196 para rendimiento
+2026-08-21 15:46:36 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 15:46:36 - pixel_automator - INFO - 📐 Factor de escala: x=4.44, y=4.44
+2026-08-21 15:46:36 - pixel_automator - INFO - 📊 Coincidencias encontradas: 904
+2026-08-21 15:46:36 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 13px)
+2026-08-21 15:46:36 - pixel_automator - INFO - 📊 258 objetos conservados (de 258 grupos)
+2026-08-21 15:46:36 - pixel_automator - INFO - 🔗 Fusionando puntos muy cercanos (umbral: 3 px)
+2026-08-21 15:46:36 - pixel_automator - DEBUG - 🔗 Fusionados 258 puntos en 258 (umbral: 1px)
+2026-08-21 15:46:36 - pixel_automator - INFO - 📊 258 → 258 puntos después de fusión
+2026-08-21 15:46:36 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 15:46:36 - pixel_automator - INFO - ✅ 258 objetivos en coordenadas originales
+2026-08-21 15:46:36 - pixel_automator - INFO - ✅ Encontrados 258 objetivos
+2026-08-21 15:46:36 - pixel_automator - INFO - ✅ 258 objetivos únicos encontrados
+2026-08-21 15:46:36 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(205, 197, 158)
+2026-08-21 15:46:38 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 150.5ms)
+2026-08-21 15:46:38 - pixel_automator - INFO - 🖱️ Ejecutando 258 clics...
+2026-08-21 15:46:38 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 15:46:38 - pixel_automator - INFO - 🖱️ Iniciando 258 clics
+2026-08-21 15:46:38 - pixel_automator - INFO - ⚡ Cooldown: 75.2ms - 225.8ms (base: 150.5ms)
+2026-08-21 15:46:54 - pixel_automator - INFO -    Progreso: 100/258 clics
+2026-08-21 15:47:09 - pixel_automator - INFO -    Progreso: 200/258 clics
+2026-08-21 15:47:18 - pixel_automator - INFO - ✅ Ejecución completada: 258 clics
+2026-08-21 15:47:18 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 15:47:23 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(205, 197, 158)
+2026-08-21 15:48:51 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 15:48:51 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:48:51 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:48:59 - pixel_automator - INFO - Área seleccionada: {'left': 1656, 'top': 845, 'width': 12, 'height': 12}
+2026-08-21 15:48:59 - pixel_automator - DEBUG - Capturando área: {'left': 1656, 'top': 845, 'width': 12, 'height': 12}
+2026-08-21 15:48:59 - pixel_automator - INFO - ✅ Área capturada: (12, 12, 3) (BGR)
+2026-08-21 15:48:59 - pixel_automator - INFO - 📐 Área seleccionada: x=1656, y=845, w=12, h=12
+2026-08-21 15:48:59 - pixel_automator - INFO - 📊 Imagen recibida: shape=(12, 12, 3)
+2026-08-21 15:48:59 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 15:48:59 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(148, 140, 107)
+2026-08-21 15:48:59 - pixel_automator - INFO -    HEX: #948c6b
+2026-08-21 15:48:59 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 15:48:59 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 15:48:59 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 15:48:59 - pixel_automator - INFO -    RGB(148, 140, 107): 132 píxeles (91.7%)
+2026-08-21 15:48:59 - pixel_automator - INFO -    RGB(255, 255, 255): 12 píxeles (8.3%)
+2026-08-21 15:48:59 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:48:59 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(148, 140, 107)
+2026-08-21 15:48:59 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:48:59 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(148, 140, 107)
+2026-08-21 15:48:59 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(148, 140, 107)
+2026-08-21 15:48:59 - pixel_automator - INFO - 📏 Tamaño de muestra: 12px (usado para clustering)
+2026-08-21 15:48:59 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(148, 140, 107)
+2026-08-21 15:49:00 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 15:49:00 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:49:00 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:49:05 - pixel_automator - INFO - Área seleccionada: {'left': 688, 'top': 116, 'width': 1226, 'height': 964}
+2026-08-21 15:49:05 - pixel_automator - INFO - ✅ Área seleccionada: 1226x964 px
+2026-08-21 15:49:05 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(148, 140, 107)
+2026-08-21 15:49:07 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 15:49:07 - pixel_automator - DEBUG - Capturando área: {'left': 688, 'top': 116, 'width': 1226, 'height': 964}
+2026-08-21 15:49:07 - pixel_automator - INFO - ✅ Área capturada: (964, 1226, 3) (BGR)
+2026-08-21 15:49:07 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 15:49:07 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(148, 140, 107)
+2026-08-21 15:49:07 - pixel_automator - INFO - 📐 Tamaño original: 1226x964
+2026-08-21 15:49:07 - pixel_automator - INFO - 📏 Reduciendo imagen de 1226x964 a 252x198 para rendimiento
+2026-08-21 15:49:07 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 15:49:07 - pixel_automator - INFO - 📐 Factor de escala: x=4.87, y=4.87
+2026-08-21 15:49:07 - pixel_automator - INFO - 📊 Coincidencias encontradas: 484
+2026-08-21 15:49:07 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 12px)
+2026-08-21 15:49:07 - pixel_automator - INFO - 📊 182 objetos conservados (de 182 grupos)
+2026-08-21 15:49:07 - pixel_automator - INFO - 🔗 Fusionando puntos muy cercanos (umbral: 3 px)
+2026-08-21 15:49:07 - pixel_automator - DEBUG - 🔗 Fusionados 182 puntos en 182 (umbral: 1px)
+2026-08-21 15:49:07 - pixel_automator - INFO - 📊 182 → 182 puntos después de fusión
+2026-08-21 15:49:07 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 15:49:07 - pixel_automator - INFO - ✅ 182 objetivos en coordenadas originales
+2026-08-21 15:49:07 - pixel_automator - INFO - ✅ Encontrados 182 objetivos
+2026-08-21 15:49:07 - pixel_automator - INFO - ✅ 182 objetivos únicos encontrados
+2026-08-21 15:49:07 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(148, 140, 107)
+2026-08-21 15:49:09 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 150.5ms)
+2026-08-21 15:49:10 - pixel_automator - INFO - 🖱️ Ejecutando 182 clics...
+2026-08-21 15:49:10 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 15:49:10 - pixel_automator - INFO - 🖱️ Iniciando 182 clics
+2026-08-21 15:49:10 - pixel_automator - INFO - ⚡ Cooldown: 75.2ms - 225.8ms (base: 150.5ms)
+2026-08-21 15:49:26 - pixel_automator - INFO -    Progreso: 100/182 clics
+2026-08-21 15:49:39 - pixel_automator - INFO - ✅ Ejecución completada: 182 clics
+2026-08-21 15:49:39 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 15:49:41 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(148, 140, 107)
+2026-08-21 15:49:46 - pixel_automator - INFO - 🎨 Seleccionando color objetivo...
+2026-08-21 15:49:46 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:49:46 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:49:54 - pixel_automator - INFO - Área seleccionada: {'left': 1618, 'top': 882, 'width': 12, 'height': 12}
+2026-08-21 15:49:54 - pixel_automator - DEBUG - Capturando área: {'left': 1618, 'top': 882, 'width': 12, 'height': 12}
+2026-08-21 15:49:54 - pixel_automator - INFO - ✅ Área capturada: (12, 12, 3) (BGR)
+2026-08-21 15:49:54 - pixel_automator - INFO - 📐 Área seleccionada: x=1618, y=882, w=12, h=12
+2026-08-21 15:49:54 - pixel_automator - INFO - 📊 Imagen recibida: shape=(12, 12, 3)
+2026-08-21 15:49:54 - pixel_automator - INFO - 🎯 Centro de la imagen recortada: (6, 6)
+2026-08-21 15:49:54 - pixel_automator - INFO - 🎯 Píxel CENTRAL exacto: RGB(210, 210, 210)
+2026-08-21 15:49:54 - pixel_automator - INFO -    HEX: #d2d2d2
+2026-08-21 15:49:54 - pixel_automator - INFO - 📸 Imagen de prueba guardada como 'test_color.png'
+2026-08-21 15:49:54 - pixel_automator - INFO - 🎨 Colores únicos en el área: 2
+2026-08-21 15:49:54 - pixel_automator - INFO - 📊 Colores más comunes en el área:
+2026-08-21 15:49:54 - pixel_automator - INFO -    RGB(210, 210, 210): 110 píxeles (76.4%)
+2026-08-21 15:49:54 - pixel_automator - INFO -    RGB(255, 255, 255): 34 píxeles (23.6%)
+2026-08-21 15:49:54 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:49:54 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 15:49:54 - pixel_automator - INFO - 📏 Distancia de clustering calculada: 6 px
+2026-08-21 15:49:54 - pixel_automator - INFO - 🎯 Color objetivo establecido: RGB(210, 210, 210)
+2026-08-21 15:49:54 - pixel_automator - INFO - ✅ Color CAPTURADO: RGB(210, 210, 210)
+2026-08-21 15:49:54 - pixel_automator - INFO - 📏 Tamaño de muestra: 12px (usado para clustering)
+2026-08-21 15:49:54 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 15:49:56 - pixel_automator - INFO - 📌 Seleccionando área de búsqueda...
+2026-08-21 15:49:56 - pixel_automator - INFO - Iniciando selector de área interactivo
+2026-08-21 15:49:56 - pixel_automator - DEBUG - AreaSelector inicializado
+2026-08-21 15:50:02 - pixel_automator - INFO - Área seleccionada: {'left': 668, 'top': 169, 'width': 1292, 'height': 919}
+2026-08-21 15:50:02 - pixel_automator - INFO - ✅ Área seleccionada: 1292x919 px
+2026-08-21 15:50:02 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 15:50:04 - pixel_automator - INFO - 🔍 Iniciando análisis...
+2026-08-21 15:50:04 - pixel_automator - DEBUG - Capturando área: {'left': 668, 'top': 169, 'width': 1292, 'height': 919}
+2026-08-21 15:50:04 - pixel_automator - INFO - ✅ Área capturada: (919, 1292, 3) (BGR)
+2026-08-21 15:50:04 - pixel_automator - INFO - ⏳ Analizando en segundo plano...
+2026-08-21 15:50:04 - pixel_automator - INFO - 🔍 Buscando color exacto: RGB(210, 210, 210)
+2026-08-21 15:50:04 - pixel_automator - INFO - 📐 Tamaño original: 1292x919
+2026-08-21 15:50:04 - pixel_automator - INFO - 📏 Reduciendo imagen de 1292x919 a 265x188 para rendimiento
+2026-08-21 15:50:04 - pixel_automator - INFO - 🔍 Buscando color exacto...
+2026-08-21 15:50:04 - pixel_automator - INFO - 📐 Factor de escala: x=4.88, y=4.89
+2026-08-21 15:50:04 - pixel_automator - INFO - 📊 Coincidencias encontradas: 4066
+2026-08-21 15:50:04 - pixel_automator - INFO - 📏 Usando grid de 3px para filtrar por tamaño (muestra: 12px)
+2026-08-21 15:50:04 - pixel_automator - INFO - 📊 1118 objetos conservados (de 1118 grupos)
+2026-08-21 15:50:04 - pixel_automator - INFO - 🔗 Fusionando puntos muy cercanos (umbral: 3 px)
+2026-08-21 15:50:05 - pixel_automator - DEBUG - 🔗 Fusionados 1118 puntos en 1118 (umbral: 1px)
+2026-08-21 15:50:05 - pixel_automator - INFO - 📊 1118 → 1118 puntos después de fusión
+2026-08-21 15:50:05 - pixel_automator - INFO - 📏 Escalando coordenadas al tamaño original...
+2026-08-21 15:50:05 - pixel_automator - INFO - ✅ 1118 objetivos en coordenadas originales
+2026-08-21 15:50:05 - pixel_automator - INFO - ✅ Encontrados 1118 objetivos
+2026-08-21 15:50:05 - pixel_automator - INFO - ✅ 1118 objetivos únicos encontrados
+2026-08-21 15:50:05 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 15:50:07 - pixel_automator - INFO - 🎲 Cooldown aleatorio ±50% (base: 150.5ms)
+2026-08-21 15:50:07 - pixel_automator - INFO - 🖱️ Ejecutando 1118 clics...
+2026-08-21 15:50:07 - pixel_automator - INFO - ClickExecutor inicializado
+2026-08-21 15:50:07 - pixel_automator - INFO - 🖱️ Iniciando 1118 clics
+2026-08-21 15:50:07 - pixel_automator - INFO - ⚡ Cooldown: 75.2ms - 225.8ms (base: 150.5ms)
+2026-08-21 15:50:23 - pixel_automator - INFO -    Progreso: 100/1118 clics
+2026-08-21 15:50:39 - pixel_automator - INFO -    Progreso: 200/1118 clics
+2026-08-21 15:50:54 - pixel_automator - INFO -    Progreso: 300/1118 clics
+2026-08-21 15:51:10 - pixel_automator - INFO -    Progreso: 400/1118 clics
+2026-08-21 15:51:26 - pixel_automator - INFO -    Progreso: 500/1118 clics
+2026-08-21 15:51:42 - pixel_automator - INFO -    Progreso: 600/1118 clics
+2026-08-21 15:51:58 - pixel_automator - INFO -    Progreso: 700/1118 clics
+2026-08-21 15:52:14 - pixel_automator - INFO -    Progreso: 800/1118 clics
+2026-08-21 15:52:30 - pixel_automator - INFO -    Progreso: 900/1118 clics
+2026-08-21 15:52:46 - pixel_automator - INFO -    Progreso: 1000/1118 clics
+2026-08-21 15:53:01 - pixel_automator - INFO -    Progreso: 1100/1118 clics
+2026-08-21 15:53:03 - pixel_automator - INFO - ✅ Ejecución completada: 1118 clics
+2026-08-21 15:53:03 - pixel_automator - INFO - ✅ Todos los clics ejecutados correctamente
+2026-08-21 15:53:07 - pixel_automator - DEBUG - 🔄 update_ui_state: color_selected=True, target_color=(210, 210, 210)
+2026-08-21 15:58:59 - pixel_automator - INFO - Aplicación cerrada
