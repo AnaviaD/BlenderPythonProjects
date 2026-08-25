@@ -1,109 +1,165 @@
 import cv2
 import numpy as np
+from datetime import datetime
 
 class ImageProcessor:
     """
-    📍 PUNTO DE ENTRADA PARA EL ANÁLISIS DE IMÁGENES
-    
-    Esta clase es donde TODAS las operaciones de procesamiento
-    y análisis de imágenes deben ir. Aquí es donde empezarás
-    a experimentar con OpenCV.
-    
-    FLUJO DE TRABAJO:
-    1. La imagen llega desde ScreenshotCapture o se carga desde archivo
-    2. Pasa por los métodos de esta clase para su procesamiento
-    3. Los resultados se devuelven a la UI para mostrar
+    Procesador de imágenes con dos buffers independientes:
+    - test_image: para la imagen del botón 1 (Screenshot Test)
+    - canvas_image: para la imagen del botón 2 (Screenshot Canvas)
     """
     
     def __init__(self):
-        """Inicializa el procesador de imágenes."""
-        self.original_image = None
-        self.processed_image = None
-        self.image_history = []  # Para deshacer operaciones
+        """Inicializa los dos buffers de imagen."""
+        # Diccionario para la imagen Test
+        self.test_image = {
+            'pixels': None,
+            'titulo': "Test",
+            'fecha': None,
+            'descripcion': "",
+            'ruta': ""
+        }
+        
+        # Diccionario para la imagen Canvas
+        self.canvas_image = {
+            'pixels': None,
+            'titulo': "Canvas",
+            'fecha': None,
+            'descripcion': "",
+            'ruta': ""
+        }
     
-    def set_image(self, image):
+    # ================================================================
+    # MÉTODOS PARA IMAGEN TEST
+    # ================================================================
+    
+    def set_test_image(self, pixels, titulo="Test", descripcion="", ruta=""):
         """
-        Establece la imagen a procesar.
+        Asigna la imagen Test.
         
         Args:
-            image: Imagen en formato OpenCV (numpy array)
+            pixels: array numpy de OpenCV
+            titulo: str (opcional)
+            descripcion: str (opcional)
+            ruta: str (opcional)
         """
-        if image is not None:
-            self.original_image = image.copy()
-            self.processed_image = image.copy()
-            self.image_history = [image.copy()]
+        if pixels is not None:
+            self.test_image['pixels'] = pixels.copy()
+            self.test_image['titulo'] = titulo
+            self.test_image['fecha'] = datetime.now()
+            self.test_image['descripcion'] = descripcion
+            self.test_image['ruta'] = ruta
     
-    def get_current_image(self):
-        """Retorna la imagen actual (procesada o no)."""
-        return self.processed_image
+    def get_test_pixels(self):
+        """Retorna los píxeles de la imagen Test."""
+        return self.test_image['pixels']
     
-    def get_original_image(self):
-        """Retorna la imagen original sin procesar."""
-        return self.original_image
+    def get_test_metadata(self):
+        """Retorna el diccionario completo de la imagen Test."""
+        return self.test_image
     
-    def reset_to_original(self):
-        """Restablece la imagen procesada a la original."""
-        if self.original_image is not None:
-            self.processed_image = self.original_image.copy()
-            self.image_history = [self.original_image.copy()]
-            return self.processed_image
-        return None
+    def reset_test_image(self):
+        """Limpia la imagen Test."""
+        self.test_image = {
+            'pixels': None,
+            'titulo': "Test",
+            'fecha': None,
+            'descripcion': "",
+            'ruta': ""
+        }
     
     # ================================================================
-    # 📍 AQUÍ COMIENZAN LAS OPERACIONES DE PROCESAMIENTO
-    # ================================================================
-    # Desde aquí hacia abajo, TODAS las funciones son para analizar
-    # y procesar imágenes con OpenCV.
-    #
-    # Cuando quieras añadir una nueva funcionalidad:
-    # 1. Crea un nuevo método aquí
-    # 2. Modifica la imagen self.processed_image
-    # 3. Retorna el resultado
+    # MÉTODOS PARA IMAGEN CANVAS
     # ================================================================
     
-    def get_image_info(self):
+    def set_canvas_image(self, pixels, titulo="Canvas", descripcion="", ruta=""):
         """
-        📍 PRIMERA FUNCIÓN DE ANÁLISIS
-        Obtiene información básica de la imagen.
+        Asigna la imagen Canvas.
         
-        Returns:
-            dict: Información de la imagen
+        Args:
+            pixels: array numpy de OpenCV
+            titulo: str (opcional)
+            descripcion: str (opcional)
+            ruta: str (opcional)
         """
-        if self.processed_image is None:
+        if pixels is not None:
+            self.canvas_image['pixels'] = pixels.copy()
+            self.canvas_image['titulo'] = titulo
+            self.canvas_image['fecha'] = datetime.now()
+            self.canvas_image['descripcion'] = descripcion
+            self.canvas_image['ruta'] = ruta
+    
+    def get_canvas_pixels(self):
+        """Retorna los píxeles de la imagen Canvas."""
+        return self.canvas_image['pixels']
+    
+    def get_canvas_metadata(self):
+        """Retorna el diccionario completo de la imagen Canvas."""
+        return self.canvas_image
+    
+    def reset_canvas_image(self):
+        """Limpia la imagen Canvas."""
+        self.canvas_image = {
+            'pixels': None,
+            'titulo': "Canvas",
+            'fecha': None,
+            'descripcion': "",
+            'ruta': ""
+        }
+    
+    # ================================================================
+    # MÉTODOS DE UTILIDAD (para ambas imágenes)
+    # ================================================================
+    
+    def reset_all(self):
+        """Limpia ambas imágenes."""
+        self.reset_test_image()
+        self.reset_canvas_image()
+    
+    def get_image_info(self, pixels):
+        """
+        Obtiene información básica de una imagen (si se proporcionan píxeles).
+        
+        Args:
+            pixels: array numpy de OpenCV
+            
+        Returns:
+            dict: Información de la imagen o None si no hay imagen
+        """
+        if pixels is None:
             return None
             
-        img = self.processed_image
         info = {
-            'dimensions': f"{img.shape[1]} x {img.shape[0]}",  # width x height
-            'channels': img.shape[2] if len(img.shape) == 3 else 1,
-            'dtype': str(img.dtype),
-            'total_pixels': img.shape[0] * img.shape[1],
-            'memory_size': f"{img.nbytes / 1024:.2f} KB"
+            'dimensions': f"{pixels.shape[1]} x {pixels.shape[0]}",
+            'channels': pixels.shape[2] if len(pixels.shape) == 3 else 1,
+            'dtype': str(pixels.dtype),
+            'total_pixels': pixels.shape[0] * pixels.shape[1],
+            'memory_size': f"{pixels.nbytes / 1024:.2f} KB"
         }
         return info
     
-    def calculate_statistics(self):
+    def calculate_statistics(self, pixels):
         """
-        📍 SEGUNDA FUNCIÓN DE ANÁLISIS
-        Calcula estadísticas básicas de la imagen.
+        Calcula estadísticas de una imagen.
         
+        Args:
+            pixels: array numpy de OpenCV
+            
         Returns:
-            dict: Estadísticas de la imagen
+            dict: Estadísticas o None
         """
-        if self.processed_image is None:
+        if pixels is None:
             return None
             
-        img = self.processed_image
         stats = {
-            'mean': float(np.mean(img)),
-            'std': float(np.std(img)),
-            'min': float(np.min(img)),
-            'max': float(np.max(img))
+            'mean': float(np.mean(pixels)),
+            'std': float(np.std(pixels)),
+            'min': float(np.min(pixels)),
+            'max': float(np.max(pixels))
         }
         
-        # Si es a color, estadísticas por canal
-        if len(img.shape) == 3:
-            b, g, r = cv2.split(img)
+        if len(pixels.shape) == 3:
+            b, g, r = cv2.split(pixels)
             stats['channels'] = {
                 'B': {'mean': float(np.mean(b)), 'std': float(np.std(b))},
                 'G': {'mean': float(np.mean(g)), 'std': float(np.std(g))},
@@ -112,90 +168,34 @@ class ImageProcessor:
         
         return stats
     
-    def get_pixel_at(self, x, y):
-        """
-        📍 TERCERA FUNCIÓN DE ANÁLISIS
-        Obtiene el valor de un pixel específico.
-        
-        Args:
-            x: Coordenada X (columna)
-            y: Coordenada Y (fila)
-            
-        Returns:
-            tuple: Valor del pixel en BGR
-        """
-        if self.processed_image is None:
-            return None
-            
-        if 0 <= y < self.processed_image.shape[0] and 0 <= x < self.processed_image.shape[1]:
-            pixel = self.processed_image[y, x]
-            return tuple(pixel)
-        return None
+    # ================================================================
+    # EJEMPLOS DE PROCESAMIENTO (PARA CUANDO QUIERAS EXPERIMENTAR)
+    # ================================================================
+    # Puedes añadir métodos que tomen 'pixels' como argumento y devuelvan
+    # el resultado procesado. Luego desde la UI llamas a estos métodos
+    # con los píxeles de test o canvas según necesites.
+    # ================================================================
     
-    def convert_to_grayscale(self):
-        """
-        Ejemplo de procesamiento: Convertir a escala de grises.
-        ¡TÚ PUEDES AÑADIR MÁS FUNCIONES AQUÍ!
-        """
-        if self.processed_image is None:
+    def convert_to_grayscale(self, pixels):
+        """Convierte una imagen a escala de grises."""
+        if pixels is None:
             return None
-            
-        if len(self.processed_image.shape) == 3:
-            gray = cv2.cvtColor(self.processed_image, cv2.COLOR_BGR2GRAY)
-            self.processed_image = gray
-            return gray
-        return self.processed_image
+        if len(pixels.shape) == 3:
+            return cv2.cvtColor(pixels, cv2.COLOR_BGR2GRAY)
+        return pixels
     
-    def apply_gaussian_blur(self, kernel_size=(5, 5)):
-        """
-        Ejemplo de procesamiento: Aplicar desenfoque.
-        ¡TÚ PUEDES AÑADIR MÁS FUNCIONES AQUÍ!
-        """
-        if self.processed_image is None:
+    def apply_gaussian_blur(self, pixels, kernel_size=(5, 5)):
+        """Aplica desenfoque gaussiano."""
+        if pixels is None:
             return None
-            
-        blurred = cv2.GaussianBlur(self.processed_image, kernel_size, 0)
-        self.processed_image = blurred
-        return blurred
+        return cv2.GaussianBlur(pixels, kernel_size, 0)
     
-    def detect_edges(self, threshold1=50, threshold2=150):
-        """
-        Ejemplo de procesamiento: Detectar bordes con Canny.
-        ¡TÚ PUEDES AÑADIR MÁS FUNCIONES AQUÍ!
-        """
-        if self.processed_image is None:
+    def detect_edges(self, pixels, threshold1=50, threshold2=150):
+        """Detecta bordes con Canny."""
+        if pixels is None:
             return None
-            
-        # Si es a color, convertir a grises primero
-        if len(self.processed_image.shape) == 3:
-            gray = cv2.cvtColor(self.processed_image, cv2.COLOR_BGR2GRAY)
+        if len(pixels.shape) == 3:
+            gray = cv2.cvtColor(pixels, cv2.COLOR_BGR2GRAY)
         else:
-            gray = self.processed_image
-            
-        edges = cv2.Canny(gray, threshold1, threshold2)
-        self.processed_image = edges
-        return edges
-    
-    # ================================================================
-    # AÑADE TUS PROPIAS FUNCIONES DE PROCESAMIENTO AQUÍ
-    # ================================================================
-    # 
-    # Ejemplos de lo que puedes añadir:
-    # 
-    # def adjust_brightness(self, value):
-    #     """Ajusta el brillo de la imagen."""
-    #     ...
-    # 
-    # def rotate(self, angle):
-    #     """Rota la imagen."""
-    #     ...
-    # 
-    # def resize(self, width, height):
-    #     """Redimensiona la imagen."""
-    #     ...
-    # 
-    # def draw_rectangle(self, x1, y1, x2, y2, color=(0,255,0)):
-    #     """Dibuja un rectángulo en la imagen."""
-    #     ...
-    # 
-    # ================================================================
+            gray = pixels
+        return cv2.Canny(gray, threshold1, threshold2)

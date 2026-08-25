@@ -1,7 +1,7 @@
 import cv2
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, 
                             QHBoxLayout, QPushButton, QLabel, 
-                            QFileDialog, QMessageBox)
+                            QFileDialog, QMessageBox, QGroupBox)
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
@@ -11,20 +11,19 @@ from utils.image_converter import ImageConverter
 
 class MainWindow(QMainWindow):
     """
-    Ventana principal - SOLO SE ENCARGA DE LA UI.
-    No contiene lógica de procesamiento de imágenes.
+    Ventana principal con dos paneles para mostrar imágenes lado a lado.
     """
     
     def __init__(self):
         super().__init__()
         
-        # Inicializar componentes (capa de lógica)
+        # Inicializar componentes
         self.capture = ScreenshotCapture()
         self.processor = ImageProcessor()
         
-        # Configurar UI
-        self.setWindowTitle("Screenshot Processor")
-        self.setGeometry(100, 100, 800, 600)
+        # Configurar ventana
+        self.setWindowTitle("Screenshot Processor - Dual View")
+        self.setGeometry(100, 100, 1200, 700)
         self._setup_ui()
     
     def _setup_ui(self):
@@ -35,179 +34,316 @@ class MainWindow(QMainWindow):
         main_layout = QVBoxLayout()
         central_widget.setLayout(main_layout)
         
-        # --- Panel de botones ---
+        # --- Panel de botones superiores ---
         button_layout = QHBoxLayout()
         
-        self.btn_capture = QPushButton("📸 Tomar Screenshot")
-        self.btn_capture.clicked.connect(self.on_capture)
-        button_layout.addWidget(self.btn_capture)
+        # Botón para Screenshot 1 (Test)
+        self.btn_capture_test = QPushButton("📸 Screenshot 1 (Test)")
+        self.btn_capture_test.clicked.connect(self.on_capture_test)
+        button_layout.addWidget(self.btn_capture_test)
         
-        self.btn_load = QPushButton("📂 Cargar Imagen")
-        self.btn_load.clicked.connect(self.on_load)
-        button_layout.addWidget(self.btn_load)
+        # Botón para Screenshot 2 (Canvas)
+        self.btn_capture_canvas = QPushButton("📸 Screenshot 2 (Canvas)")
+        self.btn_capture_canvas.clicked.connect(self.on_capture_canvas)
+        button_layout.addWidget(self.btn_capture_canvas)
         
+        # Botón para cargar imagen en Test
+        self.btn_load_test = QPushButton("📂 Cargar en Test")
+        self.btn_load_test.clicked.connect(lambda: self.on_load_image("test"))
+        button_layout.addWidget(self.btn_load_test)
+        
+        # Botón para cargar imagen en Canvas
+        self.btn_load_canvas = QPushButton("📂 Cargar en Canvas")
+        self.btn_load_canvas.clicked.connect(lambda: self.on_load_image("canvas"))
+        button_layout.addWidget(self.btn_load_canvas)
+        
+        # Botón para guardar (pregunta cuál)
         self.btn_save = QPushButton("💾 Guardar Imagen")
         self.btn_save.clicked.connect(self.on_save)
         button_layout.addWidget(self.btn_save)
         
-        self.btn_reset = QPushButton("🔄 Restablecer")
-        self.btn_reset.clicked.connect(self.on_reset)
-        button_layout.addWidget(self.btn_reset)
+        # Botón para limpiar ambas
+        self.btn_clear_all = QPushButton("🗑️ Limpiar Todo")
+        self.btn_clear_all.clicked.connect(self.on_clear_all)
+        button_layout.addWidget(self.btn_clear_all)
         
-        # Botón para mostrar info de la imagen (ejemplo de uso del procesador)
-        self.btn_info = QPushButton("ℹ️ Info Imagen")
+        # Botón de info (muestra info de ambas)
+        self.btn_info = QPushButton("ℹ️ Info Imágenes")
         self.btn_info.clicked.connect(self.on_show_info)
         button_layout.addWidget(self.btn_info)
         
         main_layout.addLayout(button_layout)
         
-        # --- Área de visualización ---
-        self.image_label = QLabel()
-        self.image_label.setAlignment(Qt.AlignCenter)
-        self.image_label.setMinimumSize(400, 300)
-        self.image_label.setStyleSheet("""
+        # --- Panel de visualización dual ---
+        display_layout = QHBoxLayout()
+        
+        # Panel izquierdo: Test
+        test_group = QGroupBox("Imagen Test")
+        test_layout = QVBoxLayout()
+        self.image_label_test = QLabel()
+        self.image_label_test.setAlignment(Qt.AlignCenter)
+        self.image_label_test.setMinimumSize(40, 30)
+        self.image_label_test.setStyleSheet("""
             QLabel {
                 border: 2px solid #cccccc;
                 background-color: #f0f0f0;
                 padding: 10px;
             }
         """)
-        self.image_label.setText("No hay imagen cargada")
-        main_layout.addWidget(self.image_label)
+        self.image_label_test.setText("Imagen Test\n\nPresiona 'Screenshot 1' o 'Cargar en Test'")
+        test_layout.addWidget(self.image_label_test)
+        test_group.setLayout(test_layout)
+        display_layout.addWidget(test_group)
+        
+        # Panel derecho: Canvas
+        canvas_group = QGroupBox("Imagen Canvas")
+        canvas_layout = QVBoxLayout()
+        self.image_label_canvas = QLabel()
+        self.image_label_canvas.setAlignment(Qt.AlignCenter)
+        self.image_label_canvas.setMinimumSize(400, 300)
+        self.image_label_canvas.setStyleSheet("""
+            QLabel {
+                border: 2px solid #cccccc;
+                background-color: #f0f0f0;
+                padding: 10px;
+            }
+        """)
+        self.image_label_canvas.setText("Imagen Canvas\n\nPresiona 'Screenshot 2' o 'Cargar en Canvas'")
+        canvas_layout.addWidget(self.image_label_canvas)
+        canvas_group.setLayout(canvas_layout)
+        display_layout.addWidget(canvas_group)
+        
+        main_layout.addLayout(display_layout)
         
         # --- Barra de estado ---
         self.status_label = QLabel("Listo")
         self.statusBar().addWidget(self.status_label)
     
-    def update_display(self):
-        """Actualiza la visualización con la imagen actual del procesador."""
-        cv_image = self.processor.get_current_image()
-        
-        if cv_image is None:
-            self.image_label.setText("No hay imagen cargada")
-            self.image_label.setPixmap(QPixmap())
+    # ================================================================
+    # MÉTODOS DE ACTUALIZACIÓN DE UI
+    # ================================================================
+    
+    def update_display_test(self):
+        """Actualiza el label de la imagen Test."""
+        pixels = self.processor.get_test_pixels()
+        if pixels is None:
+            self.image_label_test.setText("Imagen Test\n\nPresiona 'Screenshot 1' o 'Cargar en Test'")
+            self.image_label_test.setPixmap(QPixmap())
             return
         
-        # Convertir a QPixmap y mostrar
-        pixmap = ImageConverter.cv_to_qpixmap(cv_image)
-        
+        pixmap = ImageConverter.cv_to_qpixmap(pixels)
         if pixmap:
-            # Escalar para ajustarse al label
-            scaled_pixmap = pixmap.scaled(
-                self.image_label.width() - 20,
-                self.image_label.height() - 20,
+            scaled = pixmap.scaled(
+                self.image_label_test.width() - 20,
+                self.image_label_test.height() - 20,
                 Qt.KeepAspectRatio,
                 Qt.SmoothTransformation
             )
-            self.image_label.setPixmap(scaled_pixmap)
-            self.image_label.setText("")
+            self.image_label_test.setPixmap(scaled)
+            self.image_label_test.setText("")
     
-    # ================================================================
-    # MANEJADORES DE EVENTOS DE UI
-    # Estos métodos conectan la UI con la lógica
-    # ================================================================
-    
-    def on_capture(self):
-        """Manejador del botón Capturar."""
-        self.status_label.setText("Capturando pantalla...")
+    def update_display_canvas(self):
+        """Actualiza el label de la imagen Canvas."""
+        pixels = self.processor.get_canvas_pixels()
+        if pixels is None:
+            self.image_label_canvas.setText("Imagen Canvas\n\nPresiona 'Screenshot 2' o 'Cargar en Canvas'")
+            self.image_label_canvas.setPixmap(QPixmap())
+            return
         
-        # 1. Capturar pantalla (capa de captura)
+        pixmap = ImageConverter.cv_to_qpixmap(pixels)
+        if pixmap:
+            scaled = pixmap.scaled(
+                self.image_label_canvas.width() - 20,
+                self.image_label_canvas.height() - 20,
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
+            )
+            self.image_label_canvas.setPixmap(scaled)
+            self.image_label_canvas.setText("")
+    
+    # ================================================================
+    # MANEJADORES DE EVENTOS
+    # ================================================================
+    
+    def on_capture_test(self):
+        """Captura screenshot y lo asigna a Test."""
+        self.status_label.setText("Capturando Test...")
+        
         image = self.capture.capture()
-        
         if image is not None:
-            # 2. Pasar la imagen al procesador (📍 ¡AQUÍ EMPIEZA EL ANÁLISIS!)
-            self.processor.set_image(image)
-            
-            # 3. Mostrar en UI
-            self.update_display()
-            self.status_label.setText("Screenshot capturado y listo para procesar")
-            
-            # 4. ✅ Mostrar información básica (ya usando el procesador)
-            self.show_image_info()
+            # Asignar al procesador con metadatos
+            self.processor.set_test_image(
+                pixels=image,
+                titulo="Test Screenshot",
+                descripcion="Captura del botón Test"
+            )
+            self.update_display_test()
+            self.status_label.setText("Screenshot Test capturado")
         else:
             QMessageBox.warning(self, "Error", "No se pudo capturar la pantalla")
-            self.status_label.setText("Error al capturar")
+            self.status_label.setText("Error al capturar Test")
     
-    def on_load(self):
-        """Manejador del botón Cargar."""
+    def on_capture_canvas(self):
+        """Captura screenshot y lo asigna a Canvas."""
+        self.status_label.setText("Capturando Canvas...")
+        
+        image = self.capture.capture()
+        if image is not None:
+            # Asignar al procesador con metadatos
+            self.processor.set_canvas_image(
+                pixels=image,
+                titulo="Canvas Screenshot",
+                descripcion="Captura del botón Canvas"
+            )
+            self.update_display_canvas()
+            self.status_label.setText("Screenshot Canvas capturado")
+        else:
+            QMessageBox.warning(self, "Error", "No se pudo capturar la pantalla")
+            self.status_label.setText("Error al capturar Canvas")
+    
+    def on_load_image(self, target):
+        """
+        Carga una imagen desde disco y la asigna a Test o Canvas.
+        
+        Args:
+            target: 'test' o 'canvas'
+        """
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Seleccionar Imagen", "",
             "Imágenes (*.png *.jpg *.jpeg *.bmp *.tiff)"
         )
         
-        if file_path:
-            self.status_label.setText(f"Cargando {file_path}...")
-            
-            # 1. Cargar imagen con OpenCV
-            image = cv2.imread(file_path)
-            
-            if image is not None:
-                # 2. Pasar al procesador (📍 ¡AQUÍ EMPIEZA EL ANÁLISIS!)
-                self.processor.set_image(image)
-                
-                # 3. Mostrar en UI
-                self.update_display()
-                self.status_label.setText(f"Imagen cargada: {file_path}")
-                
-                # 4. ✅ Mostrar información
-                self.show_image_info()
-            else:
-                QMessageBox.warning(self, "Error", "No se pudo cargar la imagen")
-                self.status_label.setText("Error al cargar")
-    
-    def on_save(self):
-        """Manejador del botón Guardar."""
-        cv_image = self.processor.get_current_image()
-        
-        if cv_image is None:
-            QMessageBox.warning(self, "Aviso", "No hay imagen para guardar")
+        if not file_path:
             return
         
+        self.status_label.setText(f"Cargando en {target}...")
+        
+        image = cv2.imread(file_path)
+        if image is None:
+            QMessageBox.warning(self, "Error", "No se pudo cargar la imagen")
+            self.status_label.setText("Error al cargar")
+            return
+        
+        if target == "test":
+            self.processor.set_test_image(
+                pixels=image,
+                titulo="Cargada",
+                descripcion=f"Archivo: {file_path}",
+                ruta=file_path
+            )
+            self.update_display_test()
+        else:  # canvas
+            self.processor.set_canvas_image(
+                pixels=image,
+                titulo="Cargada",
+                descripcion=f"Archivo: {file_path}",
+                ruta=file_path
+            )
+            self.update_display_canvas()
+        
+        self.status_label.setText(f"Imagen cargada en {target}")
+    
+    def on_save(self):
+        """Guarda la imagen seleccionada (Test o Canvas)."""
+        # Verificar si hay al menos una imagen
+        has_test = self.processor.get_test_pixels() is not None
+        has_canvas = self.processor.get_canvas_pixels() is not None
+        
+        if not has_test and not has_canvas:
+            QMessageBox.warning(self, "Aviso", "No hay imágenes para guardar")
+            return
+        
+        # Preguntar cuál guardar
+        if has_test and has_canvas:
+            reply = QMessageBox.question(
+                self, "Guardar Imagen",
+                "¿Qué imagen quieres guardar?",
+                QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
+                QMessageBox.Yes
+            )
+            if reply == QMessageBox.Yes:
+                target = "test"
+            elif reply == QMessageBox.No:
+                target = "canvas"
+            else:
+                return
+        elif has_test:
+            target = "test"
+        else:
+            target = "canvas"
+        
+        # Obtener los píxeles
+        if target == "test":
+            pixels = self.processor.get_test_pixels()
+            default_name = "test_screenshot.png"
+        else:
+            pixels = self.processor.get_canvas_pixels()
+            default_name = "canvas_screenshot.png"
+        
+        # Diálogo para guardar
         file_path, _ = QFileDialog.getSaveFileName(
-            self, "Guardar Imagen", "screenshot.png",
+            self, "Guardar Imagen", default_name,
             "PNG (*.png);;JPEG (*.jpg *.jpeg)"
         )
         
         if file_path:
-            cv2.imwrite(file_path, cv_image)
+            cv2.imwrite(file_path, pixels)
             QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")
             self.status_label.setText(f"Imagen guardada: {file_path}")
     
-    def on_reset(self):
-        """Manejador del botón Restablecer."""
-        self.processor.reset_to_original()
-        self.update_display()
-        self.status_label.setText("Imagen restablecida a la original")
+    def on_clear_all(self):
+        """Limpia ambas imágenes."""
+        self.processor.reset_all()
+        self.update_display_test()
+        self.update_display_canvas()
+        self.status_label.setText("Imágenes limpiadas")
     
     def on_show_info(self):
-        """Manejador del botón Info - DEMOSTRACIÓN DEL PROCESADOR."""
-        self.show_image_info()
-    
-    def show_image_info(self):
-        """
-        📍 DEMOSTRACIÓN DE USO DEL PROCESADOR
-        Muestra información de la imagen usando el ImageProcessor.
-        """
-        info = self.processor.get_image_info()
+        """Muestra información de ambas imágenes."""
+        test_meta = self.processor.get_test_metadata()
+        canvas_meta = self.processor.get_canvas_metadata()
         
-        if info:
-            message = (
-                f"📐 Dimensiones: {info['dimensions']}\n"
-                f"🎨 Canales: {info['channels']}\n"
-                f"📦 Tipo de dato: {info['dtype']}\n"
-                f"🔢 Píxeles totales: {info['total_pixels']:,}\n"
-                f"💾 Memoria: {info['memory_size']}"
-            )
-            
-            # También calcular estadísticas
-            stats = self.processor.calculate_statistics()
-            if stats:
-                message += f"\n\n📊 Estadísticas:\n"
-                message += f"  Media: {stats['mean']:.2f}\n"
-                message += f"  Desviación: {stats['std']:.2f}\n"
-                message += f"  Mínimo: {stats['min']:.0f}\n"
-                message += f"  Máximo: {stats['max']:.0f}"
-            
-            QMessageBox.information(self, "Información de la Imagen", message)
+        message = ""
+        
+        # Info de Test
+        if test_meta['pixels'] is not None:
+            info = self.processor.get_image_info(test_meta['pixels'])
+            if info:
+                message += "📸 IMAGEN TEST:\n"
+                message += f"  Título: {test_meta['titulo']}\n"
+                message += f"  Fecha: {test_meta['fecha']}\n"
+                message += f"  Dimensiones: {info['dimensions']}\n"
+                message += f"  Canales: {info['channels']}\n"
+                message += f"  Memoria: {info['memory_size']}\n"
         else:
-            QMessageBox.warning(self, "Aviso", "No hay imagen cargada")
+            message += "📸 IMAGEN TEST: (vacía)\n"
+        
+        message += "\n" + "-"*40 + "\n"
+        
+        # Info de Canvas
+        if canvas_meta['pixels'] is not None:
+            info = self.processor.get_image_info(canvas_meta['pixels'])
+            if info:
+                message += "🖼️ IMAGEN CANVAS:\n"
+                message += f"  Título: {canvas_meta['titulo']}\n"
+                message += f"  Fecha: {canvas_meta['fecha']}\n"
+                message += f"  Dimensiones: {info['dimensions']}\n"
+                message += f"  Canales: {info['channels']}\n"
+                message += f"  Memoria: {info['memory_size']}\n"
+        else:
+            message += "🖼️ IMAGEN CANVAS: (vacía)\n"
+        
+        QMessageBox.information(self, "Información de Imágenes", message)
+    
+    # ================================================================
+    # MÉTODOS PARA REDIMENSIONAR (opcional, mejora experiencia)
+    # ================================================================
+    
+    def resizeEvent(self, event):
+        """Cuando se redimensiona la ventana, actualizar las imágenes."""
+        super().resizeEvent(event)
+        # Actualizar ambas para que se ajusten al nuevo tamaño
+        if self.processor.get_test_pixels() is not None:
+            self.update_display_test()
+        if self.processor.get_canvas_pixels() is not None:
+            self.update_display_canvas()
