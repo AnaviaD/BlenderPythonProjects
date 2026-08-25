@@ -5,14 +5,14 @@ from datetime import datetime
 class ImageProcessor:
     """
     Procesador de imágenes con dos buffers independientes:
-    - test_image: para la imagen del botón 1 (Screenshot Test)
-    - canvas_image: para la imagen del botón 2 (Screenshot Canvas)
+    - image_test: Para imágenes pequeñas (5x5 px)
+    - image_canvas: Para imágenes grandes (capturas de pantalla)
     """
     
     def __init__(self):
-        """Inicializa los dos buffers de imagen."""
-        # Diccionario para la imagen Test
-        self.test_image = {
+        """Inicializa el procesador con dos buffers vacíos."""
+        # Buffer para imágenes de test (pequeñas)
+        self.image_test = {
             'pixels': None,
             'titulo': "Test",
             'fecha': None,
@@ -20,8 +20,8 @@ class ImageProcessor:
             'ruta': ""
         }
         
-        # Diccionario para la imagen Canvas
-        self.canvas_image = {
+        # Buffer para imágenes de canvas (grandes)
+        self.image_canvas = {
             'pixels': None,
             'titulo': "Canvas",
             'fecha': None,
@@ -35,38 +35,35 @@ class ImageProcessor:
     
     def set_test_image(self, pixels, titulo="Test", descripcion="", ruta=""):
         """
-        Asigna la imagen Test.
+        Asigna una imagen al buffer test.
         
         Args:
-            pixels: array numpy de OpenCV
-            titulo: str (opcional)
-            descripcion: str (opcional)
-            ruta: str (opcional)
+            pixels: Array de OpenCV (numpy)
+            titulo: Título de la imagen
+            descripcion: Descripción opcional
+            ruta: Ruta del archivo (si aplica)
         """
         if pixels is not None:
-            self.test_image['pixels'] = pixels.copy()
-            self.test_image['titulo'] = titulo
-            self.test_image['fecha'] = datetime.now()
-            self.test_image['descripcion'] = descripcion
-            self.test_image['ruta'] = ruta
+            self.image_test['pixels'] = pixels.copy()
+            self.image_test['titulo'] = titulo
+            self.image_test['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.image_test['descripcion'] = descripcion
+            self.image_test['ruta'] = ruta
     
     def get_test_pixels(self):
-        """Retorna los píxeles de la imagen Test."""
-        return self.test_image['pixels']
+        """Retorna los píxeles de la imagen test."""
+        return self.image_test['pixels']
     
     def get_test_metadata(self):
-        """Retorna el diccionario completo de la imagen Test."""
-        return self.test_image
+        """Retorna todos los metadatos de la imagen test."""
+        return self.image_test.copy()
     
     def reset_test_image(self):
-        """Limpia la imagen Test."""
-        self.test_image = {
-            'pixels': None,
-            'titulo': "Test",
-            'fecha': None,
-            'descripcion': "",
-            'ruta': ""
-        }
+        """Limpia la imagen test."""
+        self.image_test['pixels'] = None
+        self.image_test['fecha'] = None
+        self.image_test['descripcion'] = ""
+        self.image_test['ruta'] = ""
     
     # ================================================================
     # MÉTODOS PARA IMAGEN CANVAS
@@ -74,128 +71,153 @@ class ImageProcessor:
     
     def set_canvas_image(self, pixels, titulo="Canvas", descripcion="", ruta=""):
         """
-        Asigna la imagen Canvas.
+        Asigna una imagen al buffer canvas.
         
         Args:
-            pixels: array numpy de OpenCV
-            titulo: str (opcional)
-            descripcion: str (opcional)
-            ruta: str (opcional)
+            pixels: Array de OpenCV (numpy)
+            titulo: Título de la imagen
+            descripcion: Descripción opcional
+            ruta: Ruta del archivo (si aplica)
         """
         if pixels is not None:
-            self.canvas_image['pixels'] = pixels.copy()
-            self.canvas_image['titulo'] = titulo
-            self.canvas_image['fecha'] = datetime.now()
-            self.canvas_image['descripcion'] = descripcion
-            self.canvas_image['ruta'] = ruta
+            self.image_canvas['pixels'] = pixels.copy()
+            self.image_canvas['titulo'] = titulo
+            self.image_canvas['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.image_canvas['descripcion'] = descripcion
+            self.image_canvas['ruta'] = ruta
     
     def get_canvas_pixels(self):
-        """Retorna los píxeles de la imagen Canvas."""
-        return self.canvas_image['pixels']
+        """Retorna los píxeles de la imagen canvas."""
+        return self.image_canvas['pixels']
     
     def get_canvas_metadata(self):
-        """Retorna el diccionario completo de la imagen Canvas."""
-        return self.canvas_image
+        """Retorna todos los metadatos de la imagen canvas."""
+        return self.image_canvas.copy()
     
     def reset_canvas_image(self):
-        """Limpia la imagen Canvas."""
-        self.canvas_image = {
-            'pixels': None,
-            'titulo': "Canvas",
-            'fecha': None,
-            'descripcion': "",
-            'ruta': ""
-        }
+        """Limpia la imagen canvas."""
+        self.image_canvas['pixels'] = None
+        self.image_canvas['fecha'] = None
+        self.image_canvas['descripcion'] = ""
+        self.image_canvas['ruta'] = ""
     
     # ================================================================
-    # MÉTODOS DE UTILIDAD (para ambas imágenes)
+    # MÉTODOS DE UTILIDAD Y COMPARACIÓN
     # ================================================================
     
-    def reset_all(self):
-        """Limpia ambas imágenes."""
-        self.reset_test_image()
-        self.reset_canvas_image()
-    
-    def get_image_info(self, pixels):
+    def get_image_info(self, image_type="test"):
         """
-        Obtiene información básica de una imagen (si se proporcionan píxeles).
+        Obtiene información de una imagen específica.
         
         Args:
-            pixels: array numpy de OpenCV
+            image_type: "test" o "canvas"
             
         Returns:
-            dict: Información de la imagen o None si no hay imagen
+            dict: Información de la imagen
         """
-        if pixels is None:
+        if image_type == "test":
+            img = self.image_test['pixels']
+            nombre = "Test"
+        else:
+            img = self.image_canvas['pixels']
+            nombre = "Canvas"
+        
+        if img is None:
             return None
             
         info = {
-            'dimensions': f"{pixels.shape[1]} x {pixels.shape[0]}",
-            'channels': pixels.shape[2] if len(pixels.shape) == 3 else 1,
-            'dtype': str(pixels.dtype),
-            'total_pixels': pixels.shape[0] * pixels.shape[1],
-            'memory_size': f"{pixels.nbytes / 1024:.2f} KB"
+            'nombre': nombre,
+            'titulo': self.image_test['titulo'] if image_type == "test" else self.image_canvas['titulo'],
+            'fecha': self.image_test['fecha'] if image_type == "test" else self.image_canvas['fecha'],
+            'dimensiones': f"{img.shape[1]} x {img.shape[0]}",
+            'canales': img.shape[2] if len(img.shape) == 3 else 1,
+            'tipo_dato': str(img.dtype),
+            'pixeles_totales': img.shape[0] * img.shape[1],
+            'memoria': f"{img.nbytes / 1024:.2f} KB"
         }
         return info
     
-    def calculate_statistics(self, pixels):
+    def get_image_stats(self, image_type="test"):
         """
         Calcula estadísticas de una imagen.
         
         Args:
-            pixels: array numpy de OpenCV
+            image_type: "test" o "canvas"
             
         Returns:
-            dict: Estadísticas o None
+            dict: Estadísticas de la imagen
         """
-        if pixels is None:
+        if image_type == "test":
+            img = self.image_test['pixels']
+        else:
+            img = self.image_canvas['pixels']
+            
+        if img is None:
             return None
             
         stats = {
-            'mean': float(np.mean(pixels)),
-            'std': float(np.std(pixels)),
-            'min': float(np.min(pixels)),
-            'max': float(np.max(pixels))
+            'media': float(np.mean(img)),
+            'desviacion': float(np.std(img)),
+            'minimo': float(np.min(img)),
+            'maximo': float(np.max(img))
         }
         
-        if len(pixels.shape) == 3:
-            b, g, r = cv2.split(pixels)
-            stats['channels'] = {
-                'B': {'mean': float(np.mean(b)), 'std': float(np.std(b))},
-                'G': {'mean': float(np.mean(g)), 'std': float(np.std(g))},
-                'R': {'mean': float(np.mean(r)), 'std': float(np.std(r))}
+        # Si es a color, estadísticas por canal
+        if len(img.shape) == 3:
+            b, g, r = cv2.split(img)
+            stats['canales'] = {
+                'B': {'media': float(np.mean(b)), 'desviacion': float(np.std(b))},
+                'G': {'media': float(np.mean(g)), 'desviacion': float(np.std(g))},
+                'R': {'media': float(np.mean(r)), 'desviacion': float(np.std(r))}
             }
         
         return stats
     
-    # ================================================================
-    # EJEMPLOS DE PROCESAMIENTO (PARA CUANDO QUIERAS EXPERIMENTAR)
-    # ================================================================
-    # Puedes añadir métodos que tomen 'pixels' como argumento y devuelvan
-    # el resultado procesado. Luego desde la UI llamas a estos métodos
-    # con los píxeles de test o canvas según necesites.
-    # ================================================================
-    
-    def convert_to_grayscale(self, pixels):
-        """Convierte una imagen a escala de grises."""
-        if pixels is None:
-            return None
-        if len(pixels.shape) == 3:
-            return cv2.cvtColor(pixels, cv2.COLOR_BGR2GRAY)
-        return pixels
-    
-    def apply_gaussian_blur(self, pixels, kernel_size=(5, 5)):
-        """Aplica desenfoque gaussiano."""
-        if pixels is None:
-            return None
-        return cv2.GaussianBlur(pixels, kernel_size, 0)
-    
-    def detect_edges(self, pixels, threshold1=50, threshold2=150):
-        """Detecta bordes con Canny."""
-        if pixels is None:
-            return None
-        if len(pixels.shape) == 3:
-            gray = cv2.cvtColor(pixels, cv2.COLOR_BGR2GRAY)
+    def compare_images(self):
+        """
+        Compara las dos imágenes (test y canvas).
+        
+        Returns:
+            dict: Resultados de la comparación
+        """
+        img_test = self.image_test['pixels']
+        img_canvas = self.image_canvas['pixels']
+        
+        if img_test is None or img_canvas is None:
+            return {"error": "Una o ambas imágenes están vacías"}
+        
+        # Verificar que tengan el mismo tamaño
+        if img_test.shape != img_canvas.shape:
+            return {
+                "error": "Las imágenes tienen diferentes dimensiones",
+                "test_shape": img_test.shape,
+                "canvas_shape": img_canvas.shape
+            }
+        
+        # Calcular diferencia absoluta
+        diff = cv2.absdiff(img_test, img_canvas)
+        
+        # Calcular métricas
+        mse = np.mean((img_test.astype(float) - img_canvas.astype(float)) ** 2)
+        
+        # Calcular similitud estructural (SSIM) simple
+        # Nota: Para una SSIM más precisa, usar skimage.metrics.structural_similarity
+        mean_test = np.mean(img_test)
+        mean_canvas = np.mean(img_canvas)
+        std_test = np.std(img_test)
+        std_canvas = np.std(img_canvas)
+        covariance = np.cov(img_test.flatten(), img_canvas.flatten())[0, 1]
+        
+        # Similitud simplificada
+        if std_test * std_canvas > 0:
+            similarity = covariance / (std_test * std_canvas)
         else:
-            gray = pixels
-        return cv2.Canny(gray, threshold1, threshold2)
+            similarity = 0
+        
+        return {
+            "diferencias": diff,
+            "mse": float(mse),
+            "similitud": float(similarity),
+            "media_test": float(mean_test),
+            "media_canvas": float(mean_canvas)
+        }
