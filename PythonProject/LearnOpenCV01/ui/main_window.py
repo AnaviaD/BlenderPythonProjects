@@ -4,11 +4,12 @@ from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout,
                             QFileDialog, QMessageBox, QGroupBox,
                             QSizePolicy)  # ← Importado correctamente
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QCursor
 
 from core.screenshot_capture import ScreenshotCapture
 from core.image_processor import ImageProcessor
 from utils.image_converter import ImageConverter
+from ui.color_picker import ColorPicker
 
 class MainWindow(QMainWindow):
     """
@@ -21,7 +22,8 @@ class MainWindow(QMainWindow):
         # Inicializar componentes
         self.capture = ScreenshotCapture()
         self.processor = ImageProcessor()
-        
+        self.waiting_for_color_pick = False
+
         # Configurar UI
         self.setWindowTitle("Screenshot Processor - Dual Mode")
         self.setGeometry(100, 100, 900, 400)
@@ -46,7 +48,7 @@ class MainWindow(QMainWindow):
         test_layout.setAlignment(Qt.AlignCenter)
         test_layout.setSpacing(5)
         
-        self.btn_capture_test = QPushButton("📸 Screenshot 1 (Test)")
+        self.btn_capture_test = QPushButton("📸 ColorTest")
         self.btn_capture_test.clicked.connect(self.on_capture_test)
         test_layout.addWidget(self.btn_capture_test)
         
@@ -82,7 +84,7 @@ class MainWindow(QMainWindow):
         
         self.image_label_canvas = QLabel()
         self.image_label_canvas.setAlignment(Qt.AlignCenter)
-        self.image_label_canvas.setMinimumSize(300, 200)
+        self.image_label_canvas.setMinimumSize(600, 400)
         self.image_label_canvas.setStyleSheet("""
             QLabel {
                 border: 2px solid #cccccc;
@@ -137,26 +139,32 @@ class MainWindow(QMainWindow):
     # ================================================================
     # MÉTODOS DE ACTUALIZACIÓN DE UI
     # ================================================================
-    
+
     def update_display_test(self):
-        """Actualiza el label de test con la imagen actual."""
-        cv_image = self.processor.get_test_pixels()
+        color_bgr = self.processor.get_test_color()
         
-        if cv_image is None:
+        if color_bgr is None:
             self.image_label_test.setText("Test")
-            self.image_label_test.setPixmap(QPixmap())
+            self.image_label_test.setStyleSheet("""
+                QLabel {
+                    border: 1px solid #999999;
+                    background-color: #f0f0f0;
+                }
+            """)
             return
         
-        pixmap = ImageConverter.cv_to_qpixmap(cv_image)
-        if pixmap:
-            scaled_pixmap = pixmap.scaled(
-                self.image_label_test.width() - 4,
-                self.image_label_test.height() - 4,
-                Qt.KeepAspectRatio,
-                Qt.SmoothTransformation
-            )
-            self.image_label_test.setPixmap(scaled_pixmap)
-            self.image_label_test.setText("")
+        # Convertir BGR a RGB para Qt
+        b, g, r = color_bgr
+        color_hex = f"#{r:02x}{g:02x}{b:02x}"
+        
+        self.image_label_test.setStyleSheet(f"""
+            QLabel {{
+                border: 1px solid #999999;
+                background-color: {color_hex};
+            }}
+        """)
+        self.image_label_test.setText("")  # Limpiar texto    
+
     
     def update_display_canvas(self):
         """Actualiza el label de canvas con la imagen actual."""
@@ -181,25 +189,71 @@ class MainWindow(QMainWindow):
     # ================================================================
     # MANEJADORES DE EVENTOS
     # ================================================================
-    
+
     def on_capture_test(self):
-        """Captura pantalla y la asigna al buffer test."""
-        self.status_label.setText("Capturando pantalla para Test...")
+        """
+        Activa el modo de selección de color.
+        El usuario debe hacer clic en la pantalla para capturar el color.
+        """
+        self.status_label.setText("Haz clic en cualquier lugar para capturar el color...")
         
-        image = self.capture.capture()
+        # Crear y mostrar el selector de color
+        self.color_picker = ColorPicker()
+        self.color_picker.color_selected.connect(self.on_color_picked)
+        # Cuando se cierre (por clic o Escape), restaurar estado
+        self.color_picker.destroyed.connect(self.on_color_picker_closed) 
+
+
+    def on_color_picked(self, x, y):
+        """Manejador cuando el usuario selecciona un punto en la pantalla."""
+        self.status_label.setText(f"Capturando color en ({x}, {y})...")
         
-        if image is not None:
-            self.processor.set_test_image(
-                image, 
-                titulo="Screenshot Test",
-                descripcion="Captura del botón Test"
-            )
+        # Obtener el color en esas coordenadas
+        color_bgr = self.capture.get_color_at(x, y, radius=2)
+        
+        if color_bgr:
+            # Guardar en el procesador con coordenadas
+            self.processor.set_test_color(color_bgr, (x, y))
             self.update_display_test()
-            self.status_label.setText("Screenshot Test capturado")
-            self.show_image_info("test")
+            self.status_label.setText(f"Color capturado en ({x}, {y})")
         else:
-            QMessageBox.warning(self, "Error", "No se pudo capturar la pantalla")
-            self.status_label.setText("Error al capturar")
+            QMessageBox.warning(self, "Error", "No se pudo obtener el color")
+            self.status_label.setText("Error al capturar color")
+
+
+    def on_color_picker_closed(self):
+        """Se ejecuta cuando el picker se cierra (por clic o Escape)."""
+        # Si no se seleccionó un color (por ejemplo, se cerró con Escape)
+        if self.processor.get_test_color() is None:
+            self.status_label.setText("Selección cancelada")            
+
+
+    def eventFilter(self, obj, event):
+        if self.waiting_for_color_pick and event.type() == QEvent.MouseButtonPress:
+            # Obtener posición global del mouse
+            pos = QCursor.pos()
+            x, y = pos.x(), pos.y()
+            
+            # Capturar color
+            color_bgr = self.capture.get_color_at(x, y)
+            
+            if color_bgr:
+                self.processor.set_test_color(color_bgr, (x, y))
+                self.update_display_test()
+                self.status_label.setText(f"Color capturado en ({x}, {y})")
+            else:
+                self.status_label.setText("Error al capturar color")
+            
+            # Desactivar modo de espera
+            self.waiting_for_color_pick = False
+            QApplication.instance().removeEventFilter(self)
+            
+            # Cambiar cursor de nuevo a normal si lo cambiaste
+            QApplication.restoreOverrideCursor()
+            
+            return True  # Evento procesado
+        return super().eventFilter(obj, event)
+
     
     def on_capture_canvas(self):
         """Captura pantalla y la asigna al buffer canvas."""
@@ -219,31 +273,31 @@ class MainWindow(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", "No se pudo capturar la pantalla")
             self.status_label.setText("Error al capturar")
-    
+
     def on_save(self, image_type="test"):
-        """Guarda la imagen especificada."""
         if image_type == "test":
-            cv_image = self.processor.get_test_pixels()
-            default_name = "test_image.png"
+            color = self.processor.get_test_color()
+            coords = self.processor.get_test_coordenadas()
+            if color is None:
+                QMessageBox.warning(self, "Aviso", "No hay color para guardar")
+                return
+            # Guardar en archivo de texto
+            file_path, _ = QFileDialog.getSaveFileName(
+                self, "Guardar Color", "color.txt",
+                "Archivo de texto (*.txt)"
+            )
+            if file_path:
+                with open(file_path, 'w') as f:
+                    f.write(f"Coordenadas: {coords}\n")
+                    f.write(f"Color (BGR): {color}\n")
+                    f.write(f"Color (RGB): {color[2]}, {color[1]}, {color[0]}\n")
+                    f.write(f"Color HEX: #{color[2]:02x}{color[1]:02x}{color[0]:02x}\n")
+                QMessageBox.information(self, "Éxito", f"Color guardado en {file_path}")
         else:
-            cv_image = self.processor.get_canvas_pixels()
-            default_name = "canvas_image.png"
-        
-        if cv_image is None:
-            QMessageBox.warning(self, "Aviso", f"No hay imagen {image_type} para guardar")
-            return
-        
-        file_path, _ = QFileDialog.getSaveFileName(
-            self,
-            f"Guardar Imagen {image_type}",
-            default_name,
-            "PNG (*.png);;JPEG (*.jpg *.jpeg)"
-        )
-        
-        if file_path:
-            cv2.imwrite(file_path, cv_image)
-            QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")
-            self.status_label.setText(f"Imagen {image_type} guardada")
+            # Guardar imagen canvas (sin cambios)
+            ...    
+
+
     
     def on_show_info(self):
         """Muestra información de ambas imágenes."""

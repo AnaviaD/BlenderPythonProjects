@@ -13,11 +13,11 @@ class ImageProcessor:
         """Inicializa el procesador con dos buffers vacíos."""
         # Buffer para imágenes de test (pequeñas)
         self.image_test = {
-            'pixels': None,
+            'color': None,           # Tupla BGR (b, g, r)
             'titulo': "Test",
             'fecha': None,
             'descripcion': "",
-            'ruta': ""
+            'coordenadas': None      # (x, y) del centro
         }
         
         # Buffer para imágenes de canvas (grandes)
@@ -32,23 +32,16 @@ class ImageProcessor:
     # ================================================================
     # MÉTODOS PARA IMAGEN TEST
     # ================================================================
-    
-    def set_test_image(self, pixels, titulo="Test", descripcion="", ruta=""):
-        """
-        Asigna una imagen al buffer test.
-        
-        Args:
-            pixels: Array de OpenCV (numpy)
-            titulo: Título de la imagen
-            descripcion: Descripción opcional
-            ruta: Ruta del archivo (si aplica)
-        """
-        if pixels is not None:
-            self.image_test['pixels'] = pixels.copy()
-            self.image_test['titulo'] = titulo
+
+    def set_test_color(self, color, coordenadas=None):
+        if color is not None:
+            self.image_test['color'] = color
             self.image_test['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self.image_test['descripcion'] = descripcion
-            self.image_test['ruta'] = ruta
+            self.image_test['coordenadas'] = coordenadas    
+
+    def get_test_color(self):
+        """Retorna el color almacenado en la imagen test."""
+        return self.image_test['color']
     
     def get_test_pixels(self):
         """Retorna los píxeles de la imagen test."""
