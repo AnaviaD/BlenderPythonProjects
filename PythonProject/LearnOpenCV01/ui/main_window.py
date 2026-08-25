@@ -10,6 +10,7 @@ from core.screenshot_capture import ScreenshotCapture
 from core.image_processor import ImageProcessor
 from utils.image_converter import ImageConverter
 from ui.color_picker import ColorPicker
+from ui.region_selector import RegionSelector
 
 class MainWindow(QMainWindow):
     """
@@ -256,23 +257,46 @@ class MainWindow(QMainWindow):
 
     
     def on_capture_canvas(self):
-        """Captura pantalla y la asigna al buffer canvas."""
-        self.status_label.setText("Capturando pantalla para Canvas...")
+        """Activa el selector de área para capturar una región."""
+        self.status_label.setText("Selecciona un área arrastrando el mouse...")
         
-        image = self.capture.capture()
+        self.region_selector = RegionSelector()
+        self.region_selector.region_selected.connect(self.on_region_selected)
+        self.region_selector.destroyed.connect(self.on_region_selector_closed)
+
+    def on_region_selected(self, x, y, w, h):
+        """Manejador cuando el usuario selecciona un área."""
+        if w == 0 or h == 0:
+            self.status_label.setText("Selección cancelada (área muy pequeña)")
+            return
+        
+        self.status_label.setText(f"Capturando área ({w}x{h}) en ({x}, {y})...")
+        
+        # Capturar la región
+        image = self.capture.capture_region(x, y, w, h)
         
         if image is not None:
+            # Guardar en el procesador con coordenadas
             self.processor.set_canvas_image(
                 image,
                 titulo="Screenshot Canvas",
-                descripcion="Captura del botón Canvas"
+                descripcion=f"Área seleccionada ({w}x{h})",
+                coordenadas=(x, y, w, h)
             )
             self.update_display_canvas()
-            self.status_label.setText("Screenshot Canvas capturado")
+            self.status_label.setText(f"Canvas capturado: {w}x{h} píxeles")
             self.show_image_info("canvas")
         else:
-            QMessageBox.warning(self, "Error", "No se pudo capturar la pantalla")
+            QMessageBox.warning(self, "Error", "No se pudo capturar el área")
             self.status_label.setText("Error al capturar")
+
+    def on_region_selector_closed(self):
+        """Se ejecuta cuando el selector se cierra (por clic o Escape)."""
+        # Si no se seleccionó nada, solo actualizar estado
+        if self.processor.get_canvas_pixels() is None:
+            self.status_label.setText("Selección cancelada")
+
+
 
     def on_save(self, image_type="test"):
         if image_type == "test":
@@ -294,8 +318,26 @@ class MainWindow(QMainWindow):
                     f.write(f"Color HEX: #{color[2]:02x}{color[1]:02x}{color[0]:02x}\n")
                 QMessageBox.information(self, "Éxito", f"Color guardado en {file_path}")
         else:
-            # Guardar imagen canvas (sin cambios)
-            ...    
+            cv_image = self.processor.get_canvas_pixels()
+            coords = self.processor.get_canvas_coordenadas()
+            if cv_image is None:
+                QMessageBox.warning(self, "Aviso", "No hay imagen Canvas para guardar")
+                return
+            # Preguntar si guardar imagen + coordenadas
+            file_path, _ = QFileDialog.getSaveFileName(
+                self, "Guardar Imagen Canvas", "canvas.png",
+                "PNG (*.png);;JPEG (*.jpg *.jpeg)"
+            )
+            if file_path:
+                cv2.imwrite(file_path, cv_image)
+                # Opcional: guardar coordenadas en archivo .txt
+                if coords:
+                    txt_path = file_path.rsplit('.', 1)[0] + "_coords.txt"
+                    with open(txt_path, 'w') as f:
+                        x, y, w, h = coords
+                        f.write(f"Coordenadas: ({x}, {y}) - ({x+w}, {y+h})\n")
+                        f.write(f"Ancho: {w}, Alto: {h}\n")
+                QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")    
 
 
     

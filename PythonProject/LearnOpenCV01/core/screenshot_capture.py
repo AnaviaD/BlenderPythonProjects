@@ -1,5 +1,6 @@
 import numpy as np
 import mss
+import cv2
 import pyautogui
 from utils.image_converter import ImageConverter
 
@@ -33,6 +34,35 @@ class ScreenshotCapture:
     def get_last_screenshot(self):
         """Retorna la última captura realizada."""
         return self.last_screenshot
+
+    def capture_region(self, x, y, width, height):
+        """
+        Captura una región específica de la pantalla.
+        
+        Args:
+            x, y: Coordenadas de la esquina superior izquierda
+            width, height: Dimensiones del área
+        
+        Returns:
+            numpy.ndarray: Imagen en formato OpenCV (BGR) o None si falla
+        """
+        try:
+            with mss.mss() as sct:
+                monitor = {
+                    "top": y,
+                    "left": x,
+                    "width": width,
+                    "height": height
+                }
+                screenshot = sct.grab(monitor)
+                img_np = np.array(screenshot)
+                # MSS devuelve BGRA, convertir a BGR
+                img_bgr = cv2.cvtColor(img_np, cv2.COLOR_BGRA2BGR)
+                self.last_screenshot = img_bgr.copy()
+                return img_bgr
+        except Exception as e:
+            print(f"Error al capturar región: {e}")
+            return None       
     
     def get_color_at(self, x, y, radius=2):
         """

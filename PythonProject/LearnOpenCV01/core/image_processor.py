@@ -26,7 +26,8 @@ class ImageProcessor:
             'titulo': "Canvas",
             'fecha': None,
             'descripcion': "",
-            'ruta': ""
+            'ruta': "",
+            'coordenadas': None  # (x, y, w, h)
         }
     
     # ================================================================
@@ -62,22 +63,17 @@ class ImageProcessor:
     # MÉTODOS PARA IMAGEN CANVAS
     # ================================================================
     
-    def set_canvas_image(self, pixels, titulo="Canvas", descripcion="", ruta=""):
-        """
-        Asigna una imagen al buffer canvas.
-        
-        Args:
-            pixels: Array de OpenCV (numpy)
-            titulo: Título de la imagen
-            descripcion: Descripción opcional
-            ruta: Ruta del archivo (si aplica)
-        """
+    def set_canvas_image(self, pixels, titulo="Canvas", descripcion="", ruta="", coordenadas=None):
         if pixels is not None:
             self.image_canvas['pixels'] = pixels.copy()
             self.image_canvas['titulo'] = titulo
             self.image_canvas['fecha'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.image_canvas['descripcion'] = descripcion
             self.image_canvas['ruta'] = ruta
+            self.image_canvas['coordenadas'] = coordenadas
+
+    def get_canvas_coordenadas(self):
+        return self.image_canvas['coordenadas']            
     
     def get_canvas_pixels(self):
         """Retorna los píxeles de la imagen canvas."""
@@ -111,13 +107,15 @@ class ImageProcessor:
         if image_type == "test":
             img = self.image_test['pixels']
             nombre = "Test"
+            coords = self.image_test.get('coordenadas')
         else:
             img = self.image_canvas['pixels']
             nombre = "Canvas"
+            coords = self.image_canvas.get('coordenadas')
         
         if img is None:
             return None
-            
+        
         info = {
             'nombre': nombre,
             'titulo': self.image_test['titulo'] if image_type == "test" else self.image_canvas['titulo'],
@@ -126,9 +124,11 @@ class ImageProcessor:
             'canales': img.shape[2] if len(img.shape) == 3 else 1,
             'tipo_dato': str(img.dtype),
             'pixeles_totales': img.shape[0] * img.shape[1],
-            'memoria': f"{img.nbytes / 1024:.2f} KB"
+            'memoria': f"{img.nbytes / 1024:.2f} KB",
+            'coordenadas': coords  # ← Agregar coordenadas
         }
         return info
+        
     
     def get_image_stats(self, image_type="test"):
         """
