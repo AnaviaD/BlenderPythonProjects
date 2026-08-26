@@ -32,10 +32,20 @@ class ImageProcessor:
 
         self.canvas_processed = None
         self.canvas_original = None
+        self.last_squares = []
     
     # ================================================================
     # MÉTODOS PARA IMAGEN TEST
     # ================================================================
+
+    def set_last_squares(self, squares):
+        """Guarda la lista de cuadrados del último análisis."""
+        self.last_squares = squares
+
+    def get_last_squares(self):
+        """Recupera la lista de cuadrados del último análisis."""
+        return self.last_squares
+
 
     def set_test_color(self, color, coordenadas=None):
         if color is not None:

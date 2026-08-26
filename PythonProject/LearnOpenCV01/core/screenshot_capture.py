@@ -36,61 +36,42 @@ class ScreenshotCapture:
         return self.last_screenshot
 
     def capture_region(self, x, y, width, height):
-        """
-        Captura una región específica de la pantalla.
-        
-        Args:
-            x, y: Coordenadas de la esquina superior izquierda
-            width, height: Dimensiones del área
-        
-        Returns:
-            numpy.ndarray: Imagen en formato OpenCV (BGR) o None si falla
-        """
         try:
             with mss.mss() as sct:
-                monitor = {
-                    "top": y,
-                    "left": x,
+                # Usar el monitor principal explícitamente
+                monitor = sct.monitors[0]  # monitor 0 = todos combinados
+                # Ajustar las coordenadas relativas al monitor
+                region = {
+                    "top": y + monitor["top"],
+                    "left": x + monitor["left"],
                     "width": width,
                     "height": height
                 }
-                screenshot = sct.grab(monitor)
+                screenshot = sct.grab(region)
                 img_np = np.array(screenshot)
-                # MSS devuelve BGRA, convertir a BGR
                 img_bgr = cv2.cvtColor(img_np, cv2.COLOR_BGRA2BGR)
                 self.last_screenshot = img_bgr.copy()
                 return img_bgr
         except Exception as e:
             print(f"Error al capturar región: {e}")
-            return None       
+            return None
+     
     
     def get_color_at(self, x, y, radius=2):
-        """
-        Obtiene el color promedio de una región cuadrada alrededor de (x, y).
-        
-        Args:
-            x, y: Coordenadas del centro
-            radius: Radio en píxeles (la región será (2*radius+1) x (2*radius+1))
-        
-        Returns:
-            tuple: Color en formato BGR (blue, green, red) como enteros 0-255
-        """
-        # Calcular región con límites de pantalla
         left = max(0, x - radius)
         top = max(0, y - radius)
         right = min(self.screen_width, x + radius + 1)
         bottom = min(self.screen_height, y + radius + 1)
         
-        # Capturar la región con mss
         with mss.mss() as sct:
-            monitor = {
-                "top": top, 
-                "left": left, 
-                "width": right - left, 
+            monitor = sct.monitors[1]
+            region = {
+                "top": top + monitor["top"],
+                "left": left + monitor["left"],
+                "width": right - left,
                 "height": bottom - top
             }
-            img = sct.grab(monitor)
+            img = sct.grab(region)
             img_np = np.array(img)
-            # Calcular promedio por canal (BGR)
             avg_color = np.mean(img_np, axis=(0, 1))
-            return tuple(int(c) for c in avg_color[:3])  # BGR
+            return tuple(int(c) for c in avg_color[:3])

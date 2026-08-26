@@ -1,8 +1,10 @@
 import cv2
+import ctypes
+import sys
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, 
                             QHBoxLayout, QPushButton, QLabel, 
                             QFileDialog, QMessageBox, QGroupBox,
-                            QSizePolicy)  # ← Importado correctamente
+                            QSizePolicy, QLineEdit, QApplication)  # ← Importado correctamente
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QCursor
 
@@ -12,6 +14,7 @@ from utils.image_converter import ImageConverter
 from ui.color_picker import ColorPicker
 from ui.region_selector import RegionSelector
 from core.pattern_analyzer import PatternAnalyzer
+from core.click_executor import ClickExecutor
 
 class MainWindow(QMainWindow):
     """
@@ -25,6 +28,7 @@ class MainWindow(QMainWindow):
         self.capture = ScreenshotCapture()
         self.processor = ImageProcessor()
         self.waiting_for_color_pick = False
+        self.last_squares = []
 
         # Configurar UI
         self.setWindowTitle("Screenshot Processor - Dual Mode")
@@ -121,17 +125,35 @@ class MainWindow(QMainWindow):
         self.btn_analyze.clicked.connect(self.on_analyze)
         actions_layout.addWidget(self.btn_analyze)
         
-        self.btn_info = QPushButton("ℹ️ Info Imágenes")
-        self.btn_info.clicked.connect(self.on_show_info)
-        actions_layout.addWidget(self.btn_info)
+        # self.btn_info = QPushButton("ℹ️ Info Imágenes")
+        # self.btn_info.clicked.connect(self.on_show_info)
+        # actions_layout.addWidget(self.btn_info)
         
-        self.btn_compare = QPushButton("🔍 Comparar")
-        self.btn_compare.clicked.connect(self.on_compare)
-        actions_layout.addWidget(self.btn_compare)
+        # self.btn_compare = QPushButton("🔍 Comparar")
+        # self.btn_compare.clicked.connect(self.on_compare)
+        # actions_layout.addWidget(self.btn_compare)
         
-        self.btn_reset = QPushButton("🔄 Resetear Todo")
-        self.btn_reset.clicked.connect(self.on_reset_all)
-        actions_layout.addWidget(self.btn_reset)
+        # self.btn_reset = QPushButton("🔄 Resetear Todo")
+        # self.btn_reset.clicked.connect(self.on_reset_all)
+        # actions_layout.addWidget(self.btn_reset)
+        
+        delay_layout = QHBoxLayout()
+        delay_layout.setSpacing(5)
+
+        self.label_delay = QLabel("Retraso min (ms):")
+        delay_layout.addWidget(self.label_delay)
+
+        self.input_delay = QLineEdit()
+        self.input_delay.setText("150")
+        self.input_delay.setMaximumWidth(60)
+        delay_layout.addWidget(self.input_delay)
+
+        actions_layout.addLayout(delay_layout)
+
+        # --- Botón de ejecución de clics ---
+        self.btn_execute = QPushButton("🖱️ Ejecutar Clics")
+        self.btn_execute.clicked.connect(self.on_execute_clicks)
+        actions_layout.addWidget(self.btn_execute)
         
         actions_group.setLayout(actions_layout)
         row1_layout.addWidget(actions_group)
@@ -145,6 +167,22 @@ class MainWindow(QMainWindow):
     # ================================================================
     # MÉTODOS DE ACTUALIZACIÓN DE UI
     # ================================================================
+
+
+    def get_dpi_scale():
+        """Retorna el factor de escala DPI (ej. 1.25 para 125%)."""
+        try:
+            if sys.platform == "win32":
+                hdc = ctypes.windll.user32.GetDC(0)
+                dpi = ctypes.windll.gdi32.GetDeviceCaps(hdc, 88)  # LOGPIXELSX
+                ctypes.windll.user32.ReleaseDC(0, hdc)
+                return dpi / 96.0
+        except:
+            return 1.0
+        return 1.0
+
+    DPI_SCALE = get_dpi_scale()
+
 
     def update_display_test(self):
         color_bgr = self.processor.get_test_color()
@@ -270,30 +308,25 @@ class MainWindow(QMainWindow):
         self.region_selector.destroyed.connect(self.on_region_selector_closed)
 
     def on_region_selected(self, x, y, w, h):
-        """Manejador cuando el usuario selecciona un área."""
         if w == 0 or h == 0:
             self.status_label.setText("Selección cancelada (área muy pequeña)")
             return
         
         self.status_label.setText(f"Capturando área ({w}x{h}) en ({x}, {y})...")
-        
-        # Capturar la región
         image = self.capture.capture_region(x, y, w, h)
         
         if image is not None:
-            # Guardar en el procesador con coordenadas
+            # Guardar coordenadas TAL CUAL (son absolutas)
             self.processor.set_canvas_image(
                 image,
                 titulo="Screenshot Canvas",
                 descripcion=f"Área seleccionada ({w}x{h})",
-                coordenadas=(x, y, w, h)
+                coordenadas=(x, y, w, h)  # ✅ Absolutas sin escalar
             )
             self.update_display_canvas()
             self.status_label.setText(f"Canvas capturado: {w}x{h} píxeles")
-            self.show_image_info("canvas")
-        else:
-            QMessageBox.warning(self, "Error", "No se pudo capturar el área")
-            self.status_label.setText("Error al capturar")
+
+
 
     def on_region_selector_closed(self):
         """Se ejecuta cuando el selector se cierra (por clic o Escape)."""
@@ -325,6 +358,10 @@ class MainWindow(QMainWindow):
             sat_tolerance=50,
             val_tolerance=50
         )
+
+        self.last_squares = results
+
+        self.processor.set_last_squares(results)
         
         if processed_img is None:
             QMessageBox.warning(self, "Error", "No se pudo procesar la imagen")
@@ -423,6 +460,51 @@ class MainWindow(QMainWindow):
                         f.write(f"Ancho: {w}, Alto: {h}\n")
                 QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")    
 
+    def on_execute_clicks(self):
+        """Ejecuta clics en los cuadrados detectados."""
+        if not self.last_squares:
+            QMessageBox.warning(self, "Aviso", "Primero ejecuta el análisis")
+            return
+        
+        # Obtener offset de la región capturada
+        coords = self.processor.get_canvas_coordenadas()
+        if coords is None:
+            QMessageBox.warning(self, "Aviso", "No hay coordenadas de región guardadas")
+            return
+        
+        offset_x, offset_y, _, _ = coords  # (x, y, w, h)
+        
+        # Obtener retraso mínimo
+        try:
+            min_delay = int(self.input_delay.text())
+        except ValueError:
+            min_delay = 150
+        
+        # Convertir coordenadas relativas a absolutas
+        absolute_points = []
+        for sq in self.last_squares:
+            abs_x = sq['x'] + offset_x
+            abs_y = sq['y'] + offset_y
+            absolute_points.append({
+                'x': abs_x,
+                'y': abs_y,
+                'width': sq['width'],
+                'height': sq['height']
+            })
+        
+        # Ejecutar clics
+        try:
+            ClickExecutor.execute_from_squares(
+                absolute_points,  # ← Ahora con coordenadas absolutas
+                min_delay_ms=min_delay,
+                max_delay_ms=700,
+                click_centers=True,
+                randomize_order=False,
+                click_count=1
+            )
+            self.status_label.setText(f"✅ Ejecutados {len(absolute_points)} clics")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Error al ejecutar clics: {str(e)}")
 
     
     def on_show_info(self):
