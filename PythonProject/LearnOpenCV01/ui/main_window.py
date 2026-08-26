@@ -303,53 +303,51 @@ class MainWindow(QMainWindow):
 
 
     def on_analyze(self):
-        """Ejecuta el análisis de patrones en la imagen canvas."""
-        # Obtener la imagen canvas
+        """Ejecuta el análisis de patrones con detección avanzada."""
         canvas_img = self.processor.get_canvas_pixels()
         if canvas_img is None:
             QMessageBox.warning(self, "Aviso", "Primero captura una imagen canvas")
             return
         
-        # Obtener el color de test (opcional, para filtro adicional)
         test_color = self.processor.get_test_color()
+        if test_color is None:
+            QMessageBox.warning(self, "Aviso", "Primero captura un color de test")
+            return
         
-        # Si hay color de test, usarlo para filtrar
-        if test_color:
-            self.status_label.setText("Analizando canvas con referencia de color...")
-            processed_img, results = PatternAnalyzer.analyze_with_color_reference(
-                canvas_img, test_color, color_tolerance=30
-            )
-        else:
-            self.status_label.setText("Analizando canvas (solo formas cuadradas)...")
-            processed_img, results = PatternAnalyzer.detect_squares(canvas_img, min_area=100)
+        self.status_label.setText("Analizando canvas con detección avanzada...")
+        
+        # Llamar al nuevo método
+        processed_img, results = PatternAnalyzer.detect_target_squares(
+            canvas_img,
+            test_color,
+            area_tolerance=0.2,      # 20% de tolerancia en área
+            hue_tolerance=10,
+            sat_tolerance=50,
+            val_tolerance=50
+        )
         
         if processed_img is None:
             QMessageBox.warning(self, "Error", "No se pudo procesar la imagen")
             return
         
-        # Reemplazar la imagen canvas con la procesada (manteniendo coordenadas)
-        # Obtener coordenadas originales para preservarlas
+        # Guardar coordenadas originales
         coords = self.processor.get_canvas_coordenadas()
+        
+        # Reemplazar imagen canvas con la procesada
         self.processor.set_canvas_image(
             processed_img,
             titulo="Canvas Analizado",
-            descripcion=f"Cuadrados detectados: {len(results) if results else 0}",
+            descripcion=f"Cuadrados detectados: {len(results)}",
             coordenadas=coords
         )
         
-        # Actualizar la visualización
         self.update_display_canvas()
         
-        # Mostrar información en barra de estado
         if results:
-            count = len([r for r in results if r.get('coincidencia', False)]) if test_color else len(results)
-            self.status_label.setText(f"Análisis completado: {count} formas detectadas")
+            self.status_label.setText(f"Análisis completado: {len(results)} cuadrados encontrados")
+            self.show_analysis_results(results)
         else:
-            self.status_label.setText("Análisis completado: No se encontraron formas")
-        
-        # Opcional: mostrar detalles en un diálogo
-        if results:
-            self.show_analysis_results(results, test_color is not None)
+            self.status_label.setText("Análisis completado: No se encontraron cuadrados")
 
 
 
