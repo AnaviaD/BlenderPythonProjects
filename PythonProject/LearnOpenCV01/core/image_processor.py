@@ -29,6 +29,9 @@ class ImageProcessor:
             'ruta': "",
             'coordenadas': None  # (x, y, w, h)
         }
+
+        self.canvas_processed = None
+        self.canvas_original = None
     
     # ================================================================
     # MÉTODOS PARA IMAGEN TEST

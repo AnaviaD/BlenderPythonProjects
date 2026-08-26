@@ -11,6 +11,7 @@ from core.image_processor import ImageProcessor
 from utils.image_converter import ImageConverter
 from ui.color_picker import ColorPicker
 from ui.region_selector import RegionSelector
+from core.pattern_analyzer import PatternAnalyzer
 
 class MainWindow(QMainWindow):
     """
@@ -115,6 +116,10 @@ class MainWindow(QMainWindow):
         self.btn_save_canvas = QPushButton("💾 Guardar Canvas")
         self.btn_save_canvas.clicked.connect(lambda: self.on_save("canvas"))
         actions_layout.addWidget(self.btn_save_canvas)
+
+        self.btn_analyze = QPushButton("🔍 Analizar Canvas")
+        self.btn_analyze.clicked.connect(self.on_analyze)
+        actions_layout.addWidget(self.btn_analyze)
         
         self.btn_info = QPushButton("ℹ️ Info Imágenes")
         self.btn_info.clicked.connect(self.on_show_info)
@@ -297,6 +302,87 @@ class MainWindow(QMainWindow):
             self.status_label.setText("Selección cancelada")
 
 
+    def on_analyze(self):
+        """Ejecuta el análisis de patrones en la imagen canvas."""
+        # Obtener la imagen canvas
+        canvas_img = self.processor.get_canvas_pixels()
+        if canvas_img is None:
+            QMessageBox.warning(self, "Aviso", "Primero captura una imagen canvas")
+            return
+        
+        # Obtener el color de test (opcional, para filtro adicional)
+        test_color = self.processor.get_test_color()
+        
+        # Si hay color de test, usarlo para filtrar
+        if test_color:
+            self.status_label.setText("Analizando canvas con referencia de color...")
+            processed_img, results = PatternAnalyzer.analyze_with_color_reference(
+                canvas_img, test_color, color_tolerance=30
+            )
+        else:
+            self.status_label.setText("Analizando canvas (solo formas cuadradas)...")
+            processed_img, results = PatternAnalyzer.detect_squares(canvas_img, min_area=100)
+        
+        if processed_img is None:
+            QMessageBox.warning(self, "Error", "No se pudo procesar la imagen")
+            return
+        
+        # Reemplazar la imagen canvas con la procesada (manteniendo coordenadas)
+        # Obtener coordenadas originales para preservarlas
+        coords = self.processor.get_canvas_coordenadas()
+        self.processor.set_canvas_image(
+            processed_img,
+            titulo="Canvas Analizado",
+            descripcion=f"Cuadrados detectados: {len(results) if results else 0}",
+            coordenadas=coords
+        )
+        
+        # Actualizar la visualización
+        self.update_display_canvas()
+        
+        # Mostrar información en barra de estado
+        if results:
+            count = len([r for r in results if r.get('coincidencia', False)]) if test_color else len(results)
+            self.status_label.setText(f"Análisis completado: {count} formas detectadas")
+        else:
+            self.status_label.setText("Análisis completado: No se encontraron formas")
+        
+        # Opcional: mostrar detalles en un diálogo
+        if results:
+            self.show_analysis_results(results, test_color is not None)
+
+
+
+    def show_analysis_results(self, results, filtered_by_color=False):
+        """Muestra un diálogo con los resultados del análisis."""
+        if not results:
+            QMessageBox.information(self, "Resultados", "No se encontraron formas")
+            return
+        
+        message = f"=== RESULTADOS DEL ANÁLISIS ===\n"
+        message += f"Total de formas detectadas: {len(results)}\n"
+        if filtered_by_color:
+            matched = [r for r in results if r.get('coincidencia', False)]
+            message += f"Coinciden con color de test: {len(matched)}\n\n"
+        else:
+            message += "\n"
+        
+        for i, sq in enumerate(results[:10]):  # Mostrar hasta 10
+            message += f"Forma {i+1}:\n"
+            message += f"  Posición: ({sq['x']}, {sq['y']})\n"
+            message += f"  Tamaño: {sq['width']}x{sq['height']}\n"
+            message += f"  Área: {sq['area']:.0f}\n"
+            if 'aspect_ratio' in sq:
+                message += f"  Relación: {sq['aspect_ratio']:.2f}\n"
+            if 'color_promedio' in sq:
+                message += f"  Color (BGR): {sq['color_promedio']}\n"
+            if 'coincidencia' in sq:
+                message += f"  Coincide con test: {'Sí' if sq['coincidencia'] else 'No'}\n"
+            message += "\n"
+        
+        QMessageBox.information(self, "Detalles del Análisis", message)
+
+
 
     def on_save(self, image_type="test"):
         if image_type == "test":
@@ -350,9 +436,7 @@ class MainWindow(QMainWindow):
         if info_test:
             message += f"Título: {info_test['titulo']}\n"
             message += f"Fecha: {info_test['fecha']}\n"
-            message += f"Dimensiones: {info_test['dimensiones']}\n"
-            message += f"Canales: {info_test['canales']}\n"
-            message += f"Memoria: {info_test['memoria']}\n"
+
         else:
             message += "No hay imagen cargada\n"
         
