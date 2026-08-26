@@ -86,7 +86,7 @@ class MainWindow(QMainWindow):
         
         self.image_label_canvas = QLabel()
         self.image_label_canvas.setAlignment(Qt.AlignCenter)
-        self.image_label_canvas.setMinimumSize(600, 400)
+        self.image_label_canvas.setMinimumSize(1200, 1000)
         self.image_label_canvas.setStyleSheet("""
             QLabel {
                 border: 2px solid #cccccc;

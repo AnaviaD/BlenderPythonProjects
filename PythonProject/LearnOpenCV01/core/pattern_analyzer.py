@@ -8,7 +8,7 @@ class PatternAnalyzer:
     """
     
     @staticmethod
-    def detect_squares(image, min_area=100, max_area=None, aspect_ratio_tolerance=0.2):
+    def detect_squares(image, min_area=10, max_area=None, aspect_ratio_tolerance=0.2):
         """
         Detecta formas cuadradas/rectangulares en la imagen.
         
@@ -34,7 +34,7 @@ class PatternAnalyzer:
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
         
         # Detección de bordes con Canny
-        edges = cv2.Canny(blurred, 50, 150)
+        edges = cv2.Canny(blurred, 60, 150)
         
         # Encontrar contornos
         contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
