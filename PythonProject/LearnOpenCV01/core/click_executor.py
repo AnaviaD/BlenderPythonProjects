@@ -122,18 +122,18 @@ class ClickExecutor:
                     
                     # Clic para dar foco
                     pyautogui.click()
-                    time.sleep(0.05)
+                    time.sleep(0.005)
                     
                     # Presionar espacio
                     keyboard.press('space')
-                    time.sleep(0.1)
+                    time.sleep(0.001)
                     
                     # Mover secuencialmente
                     for x, y in group[1:]:
                         if keyboard.is_pressed('esc'):
                             break
-                        pyautogui.moveTo(x, y, duration=0.05)
-                        time.sleep(0.02)
+                        pyautogui.moveTo(x, y, duration=0.005)
+                        time.sleep(0.002)
                         print(f"  → Movido a ({x}, {y})")
                     
                     # Liberar espacio
