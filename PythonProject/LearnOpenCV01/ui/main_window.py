@@ -4,7 +4,8 @@ import sys
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, 
                             QHBoxLayout, QPushButton, QLabel, 
                             QFileDialog, QMessageBox, QGroupBox,
-                            QSizePolicy, QLineEdit, QApplication)  # ← Importado correctamente
+                            QSizePolicy, QLineEdit, QApplication,
+                            QCheckBox)  # ← Importado correctamente
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QCursor
 
@@ -149,6 +150,11 @@ class MainWindow(QMainWindow):
         delay_layout.addWidget(self.input_delay)
 
         actions_layout.addLayout(delay_layout)
+
+        # Checkbox para modo arrastre
+        self.checkbox_drag = QCheckBox("Modo arrastre (espacio)")
+        self.checkbox_drag.setChecked(True)
+        actions_layout.addWidget(self.checkbox_drag)
 
         # --- Botón de ejecución de clics ---
         self.btn_execute = QPushButton("🖱️ Ejecutar Clics")
@@ -461,7 +467,6 @@ class MainWindow(QMainWindow):
                 QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")    
 
     def on_execute_clicks(self):
-        """Ejecuta clics en los cuadrados detectados."""
         if not self.last_squares:
             QMessageBox.warning(self, "Aviso", "Primero ejecuta el análisis")
             return
@@ -472,15 +477,14 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Aviso", "No hay coordenadas de región guardadas")
             return
         
-        offset_x, offset_y, _, _ = coords  # (x, y, w, h)
+        offset_x, offset_y, _, _ = coords
         
-        # Obtener retraso mínimo
         try:
             min_delay = int(self.input_delay.text())
         except ValueError:
             min_delay = 150
         
-        # Convertir coordenadas relativas a absolutas
+        # Convertir a coordenadas absolutas
         absolute_points = []
         for sq in self.last_squares:
             abs_x = sq['x'] + offset_x
@@ -492,19 +496,23 @@ class MainWindow(QMainWindow):
                 'height': sq['height']
             })
         
-        # Ejecutar clics
+        # Leer modo
+        mode = 'drag' if self.checkbox_drag.isChecked() else 'click'
+        
         try:
             ClickExecutor.execute_from_squares(
-                absolute_points,  # ← Ahora con coordenadas absolutas
+                absolute_points,
                 min_delay_ms=min_delay,
                 max_delay_ms=700,
                 click_centers=True,
                 randomize_order=False,
-                click_count=1
+                click_count=1,
+                mode=mode  # ← Nuevo parámetro
             )
-            self.status_label.setText(f"✅ Ejecutados {len(absolute_points)} clics")
+            self.status_label.setText(f"✅ Ejecutados en modo {mode}")
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Error al ejecutar clics: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error: {str(e)}")
+
 
     
     def on_show_info(self):
