@@ -116,13 +116,19 @@ class ClickExecutor:
                     pyautogui.moveTo(x0, y0, duration=0.1)
                     print(f"📌 Grupo de {len(group)} puntos comenzando en ({x0}, {y0})")
                     
-                    # 🔹 Clic para dar foco
+                    # 🔹 NUEVO: Forzar liberación de espacio antes de iniciar el grupo
+                    keyboard.release('space')
+                    time.sleep(0.02)
+                    
+                    # Clic para dar foco
                     pyautogui.click()
                     time.sleep(0.05)
                     
+                    # Presionar espacio
                     keyboard.press('space')
                     time.sleep(0.1)
                     
+                    # Mover secuencialmente
                     for x, y in group[1:]:
                         if keyboard.is_pressed('esc'):
                             break
@@ -130,23 +136,25 @@ class ClickExecutor:
                         time.sleep(0.02)
                         print(f"  → Movido a ({x}, {y})")
                     
+                    # Liberar espacio
                     keyboard.release('space')
                     time.sleep(0.05)
                     print(f"✅ Grupo {group_idx+1} completado")
                 
                 if group_idx < len(groups) - 1 and not keyboard.is_pressed('esc'):
-                    delay = random.randint(min_delay_ms, max_delay_ms) / 10000.0
+                    delay = random.randint(min_delay_ms, max_delay_ms) / 1000.0
                     print(f"⏳ Esperando {delay:.2f}s")
                     time.sleep(delay)
             
             print(f"✅ Ejecutados {len(groups)} grupos")
         except KeyboardInterrupt:
             print("\n⏹️ Interrumpido")
-            pyautogui.keyUp('space')
+            keyboard.release('space')  # Liberar espacio en caso de interrupción
         except Exception as e:
             print(f"❌ Error: {e}")
-            pyautogui.keyUp('space')
+            keyboard.release('space')  # Liberar espacio en caso de error
             raise
+
 
     @staticmethod
     def execute_from_squares(squares, min_delay_ms=15, max_delay_ms=200, 
