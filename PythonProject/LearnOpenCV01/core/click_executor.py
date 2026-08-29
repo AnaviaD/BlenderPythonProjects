@@ -118,7 +118,7 @@ class ClickExecutor:
                     
                     # 🔹 NUEVO: Forzar liberación de espacio antes de iniciar el grupo
                     keyboard.release('space')
-                    time.sleep(0.02)
+                    time.sleep(0.0002)
                     
                     # Clic para dar foco
                     pyautogui.click()
@@ -126,23 +126,23 @@ class ClickExecutor:
                     
                     # Presionar espacio
                     keyboard.press('space')
-                    time.sleep(0.001)
+                    time.sleep(0.0001)
                     
                     # Mover secuencialmente
                     for x, y in group[1:]:
                         if keyboard.is_pressed('esc'):
                             break
-                        pyautogui.moveTo(x, y, duration=0.005)
-                        time.sleep(0.002)
+                        pyautogui.moveTo(x, y, duration=0.0005)
+                        time.sleep(0.0002)
                         print(f"  → Movido a ({x}, {y})")
                     
                     # Liberar espacio
                     keyboard.release('space')
-                    time.sleep(0.05)
+                    time.sleep(0.0005)
                     print(f"✅ Grupo {group_idx+1} completado")
                 
                 if group_idx < len(groups) - 1 and not keyboard.is_pressed('esc'):
-                    delay = random.randint(min_delay_ms, max_delay_ms) / 1000.0
+                    delay = random.randint(min_delay_ms, max_delay_ms) / 100000.0
                     print(f"⏳ Esperando {delay:.2f}s")
                     time.sleep(delay)
             
