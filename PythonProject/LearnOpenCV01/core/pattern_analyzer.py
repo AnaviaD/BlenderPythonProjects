@@ -106,5 +106,12 @@ class PatternAnalyzer:
                     'aspect_ratio': sq['aspect_ratio'],
                     'centro': (x + w//2, y + h//2)
                 })
+                
+        if len(detected_squares) > 1:
+            # Ordenar por Y y X
+            sorted_sq = sorted(detected_squares, key=lambda s: (s['y'], s['x']))
+            # Agrupar por fila y calcular gaps
+            # ... (similar a la lógica de agrupamiento)
+            # Dibujar líneas rojas en los gaps
         
         return img_copy, detected_squares

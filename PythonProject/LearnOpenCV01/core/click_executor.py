@@ -62,7 +62,7 @@ class ClickExecutor:
                     pyautogui.click()
                     time.sleep(0.05)
                 if idx < len(points) - 1 and not stop_execution:
-                    delay = random.randint(min_delay_ms, max_delay_ms) / 10000.0
+                    delay = random.randint(min_delay_ms, max_delay_ms) / 10000000.0
                     time.sleep(delay)
         except KeyboardInterrupt:
             print("\n⏹️ Interrumpido")
@@ -72,26 +72,47 @@ class ClickExecutor:
         if not points:
             return
         
-        avg_size = 30
-        
-        # Agrupación (sin cambios)
+        # Ordenar puntos por fila (Y) y columna (X)
         sorted_points = sorted(points, key=lambda p: (p[1], p[0]))
+        
+        # --- 1. Agrupar por filas ---
         rows = []
         current_row = [sorted_points[0]]
         for p in sorted_points[1:]:
-            if abs(p[1] - current_row[-1][1]) < avg_size * 0.5:
+            # Si la diferencia en Y es menor que 15 píxeles (ajustable), misma fila
+            if abs(p[1] - current_row[-1][1]) < 15:
                 current_row.append(p)
             else:
                 rows.append(current_row)
                 current_row = [p]
         rows.append(current_row)
         
+        # --- 2. Calcular umbral dinámico ---
+        distances = []
+        for row in rows:
+            row.sort(key=lambda p: p[0])  # ordenar por X
+            for i in range(len(row) - 1):
+                dist = row[i+1][0] - row[i][0]
+                if dist > 5:  # ignorar distancias muy pequeñas (ruido)
+                    distances.append(dist)
+        
+        if distances:
+            median_gap = sorted(distances)[len(distances) // 2]
+        else:
+            median_gap = 30  # valor por defecto
+        
+        gap_factor = 1.5  # Ajustable: 1.5 para gaps pequeños, 2.5 para gaps grandes
+        threshold = median_gap * gap_factor
+        print(f"📊 Distancias: {distances}")
+        print(f"📊 Mediana: {median_gap:.1f}px, Umbral: {threshold:.1f}px")
+        
+        # --- 3. Agrupar por proximidad horizontal ---
         groups = []
         for row in rows:
             row.sort(key=lambda p: p[0])
             current_group = [row[0]]
             for p in row[1:]:
-                if p[0] - current_group[-1][0] < avg_size * 1.2:
+                if p[0] - current_group[-1][0] < threshold:
                     current_group.append(p)
                 else:
                     groups.append(current_group)
@@ -99,7 +120,7 @@ class ClickExecutor:
             if current_group:
                 groups.append(current_group)
         
-        # Ejecución
+        # --- 4. Ejecutar arrastre ---
         try:
             for group_idx, group in enumerate(groups):
                 if keyboard.is_pressed('esc'):
@@ -116,29 +137,29 @@ class ClickExecutor:
                     pyautogui.moveTo(x0, y0, duration=0.1)
                     print(f"📌 Grupo de {len(group)} puntos comenzando en ({x0}, {y0})")
                     
-                    # 🔹 NUEVO: Forzar liberación de espacio antes de iniciar el grupo
+                    # Forzar liberación de espacio
                     keyboard.release('space')
-                    time.sleep(0.00002)
+                    time.sleep(0.02)
                     
                     # Clic para dar foco
                     pyautogui.click()
-                    time.sleep(0.00005)
+                    time.sleep(0.05)
                     
                     # Presionar espacio
                     keyboard.press('space')
-                    time.sleep(0.00001)
+                    time.sleep(0.1)
                     
                     # Mover secuencialmente
                     for x, y in group[1:]:
                         if keyboard.is_pressed('esc'):
                             break
-                        pyautogui.moveTo(x, y, duration=0.0005)
-                        time.sleep(0.00002)
+                        pyautogui.moveTo(x, y, duration=0.05)
+                        time.sleep(0.02)
                         print(f"  → Movido a ({x}, {y})")
                     
                     # Liberar espacio
                     keyboard.release('space')
-                    time.sleep(0.00005)
+                    time.sleep(0.05)
                     print(f"✅ Grupo {group_idx+1} completado")
                 
                 if group_idx < len(groups) - 1 and not keyboard.is_pressed('esc'):
@@ -149,10 +170,10 @@ class ClickExecutor:
             print(f"✅ Ejecutados {len(groups)} grupos")
         except KeyboardInterrupt:
             print("\n⏹️ Interrumpido")
-            keyboard.release('space')  # Liberar espacio en caso de interrupción
+            keyboard.release('space')
         except Exception as e:
             print(f"❌ Error: {e}")
-            keyboard.release('space')  # Liberar espacio en caso de error
+            keyboard.release('space')
             raise
 
 

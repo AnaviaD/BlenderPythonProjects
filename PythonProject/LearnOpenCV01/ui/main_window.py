@@ -365,6 +365,10 @@ class MainWindow(QMainWindow):
             val_tolerance=50
         )
 
+        if results:
+            # Extraer centros
+            points = [(sq['x'] + sq['width']//2, sq['y'] + sq['height']//2) for sq in results]
+
         self.last_squares = results
 
         self.processor.set_last_squares(results)
