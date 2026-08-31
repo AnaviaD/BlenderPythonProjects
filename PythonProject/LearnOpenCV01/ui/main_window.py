@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
         delay_layout.addWidget(self.label_delay)
 
         self.input_delay = QLineEdit()
-        self.input_delay.setText("150")
+        self.input_delay.setText("1")
         self.input_delay.setMaximumWidth(60)
         delay_layout.addWidget(self.input_delay)
 
@@ -505,6 +505,7 @@ class MainWindow(QMainWindow):
 
         if self.last_squares:
             avg_height = sum(sq['height'] for sq in self.last_squares) / len(self.last_squares)
+            avg_width = sum(sq['width'] for sq in self.last_squares) / len(self.last_squares)
         else:
             avg_height = 30  # valor por defecto
         
@@ -512,12 +513,13 @@ class MainWindow(QMainWindow):
             ClickExecutor.execute_from_squares(
                 absolute_points,
                 min_delay_ms=min_delay,
-                max_delay_ms=70,
+                max_delay_ms=7,
                 click_centers=True,
                 randomize_order=False,
                 click_count=1,
                 mode=mode,
-                avg_height=avg_height  # ← Nuevo parámetro
+                avg_height=avg_height,
+                avg_width=avg_width
             )
             self.status_label.setText(f"✅ Ejecutados en modo {mode}")
         except Exception as e:
