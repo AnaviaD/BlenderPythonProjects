@@ -6,7 +6,7 @@ class PatternAnalyzer:
     """Análisis de patrones con detección robusta de cuadrados por color y tamaño."""
     
     @staticmethod
-    def detect_target_squares(image, target_color_bgr, area_tolerance=0.2, hue_tolerance=10, sat_tolerance=50, val_tolerance=50):
+    def detect_target_squares(image, target_color_bgr, area_tolerance=0.15, hue_tolerance=30, sat_tolerance=80, val_tolerance=80):
         """
         Detecta cuadrados que coinciden con el color objetivo y tienen área predominante.
         

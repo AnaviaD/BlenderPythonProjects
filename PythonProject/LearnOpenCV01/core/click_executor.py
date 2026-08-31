@@ -6,6 +6,9 @@ import threading
 import numpy as np
 
 class ClickExecutor:
+
+    _paused = False  # Variable de clase
+
     @staticmethod
     def execute_clicks(coordinates, min_delay_ms=1, max_delay_ms=2,
                     click_centers=True, randomize_order=False,
@@ -39,6 +42,22 @@ class ClickExecutor:
         else:
             ClickExecutor._execute_click_mode(points, min_delay_ms, max_delay_ms, click_count)
     
+
+
+    @staticmethod
+    def toggle_pause():
+        """Alterna el estado de pausa (sin argumentos)."""
+        ClickExecutor._paused = not ClickExecutor._paused
+        print(f"{'⏸️ Pausado' if ClickExecutor._paused else '▶️ Reanudado'}")
+    
+    @classmethod
+    def _check_pause(cls):
+        """Espera mientras esté en pausa."""
+        while cls._paused:
+            time.sleep(0.1)
+
+
+
     @staticmethod
     def _execute_click_mode(points, min_delay_ms, max_delay_ms, click_count):
         """Modo clics individuales (funcionalidad existente)."""
@@ -70,6 +89,14 @@ class ClickExecutor:
 
     @staticmethod
     def _execute_drag_mode(points, min_delay_ms, max_delay_ms, avg_height=30, avg_width=30):
+        """Modo arrastre con pausa y failsafe."""
+        # Configurar failsafe
+        pyautogui.FAILSAFE = True
+        pyautogui.PAUSE = 0.01
+        
+        # Registrar hotkey para pausa
+        keyboard.add_hotkey('ctrl+shift+p', ClickExecutor.toggle_pause)
+        
         if not points:
             return
         
@@ -116,6 +143,7 @@ class ClickExecutor:
                 print(f"\n📐 Fila {row_idx+1} - {len(groups_in_row)} grupos")
                 
                 for group_idx, group in enumerate(groups_in_row):
+                    ClickExecutor._check_pause()
                     if keyboard.is_pressed('esc'):
                         print("\n⏹️ Interrumpido por Escape")
                         break
@@ -168,6 +196,8 @@ class ClickExecutor:
                     time.sleep(delay)
             
             print(f"\n✅ Ejecutados {sum(len(g) for g in row_groups)} grupos en {len(row_groups)} filas")
+        
+        
         except KeyboardInterrupt:
             print("\n⏹️ Interrumpido")
             keyboard.release('space')
