@@ -486,7 +486,7 @@ class MainWindow(QMainWindow):
         try:
             min_delay = int(self.input_delay.text())
         except ValueError:
-            min_delay = 150
+            min_delay = 1
         
         # Convertir a coordenadas absolutas
         absolute_points = []
@@ -502,16 +502,22 @@ class MainWindow(QMainWindow):
         
         # Leer modo
         mode = 'drag' if self.checkbox_drag.isChecked() else 'click'
+
+        if self.last_squares:
+            avg_height = sum(sq['height'] for sq in self.last_squares) / len(self.last_squares)
+        else:
+            avg_height = 30  # valor por defecto
         
         try:
             ClickExecutor.execute_from_squares(
                 absolute_points,
                 min_delay_ms=min_delay,
-                max_delay_ms=700,
+                max_delay_ms=70,
                 click_centers=True,
                 randomize_order=False,
                 click_count=1,
-                mode=mode  # ← Nuevo parámetro
+                mode=mode,
+                avg_height=avg_height  # ← Nuevo parámetro
             )
             self.status_label.setText(f"✅ Ejecutados en modo {mode}")
         except Exception as e:
