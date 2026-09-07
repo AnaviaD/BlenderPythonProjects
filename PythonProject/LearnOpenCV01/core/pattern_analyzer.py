@@ -6,7 +6,7 @@ class PatternAnalyzer:
     """Análisis de patrones con detección robusta de cuadrados por color y tamaño."""
     
     @staticmethod
-    def detect_target_squares(image, target_color_bgr, area_tolerance=0.15, hue_tolerance=30, sat_tolerance=80, val_tolerance=80):
+    def detect_target_squares(image, target_color_bgr, area_tolerance=0.15, hue_tolerance=30, sat_tolerance=80, val_tolerance=100):
         """
         Detecta cuadrados que coinciden con el color objetivo y tienen área predominante.
         
@@ -31,14 +31,24 @@ class PatternAnalyzer:
         s = int(target_hsv[1])
         v = int(target_hsv[2])
 
-        # Usar np.clip para acotar los rangos de forma segura
-        lower_h = np.clip(h - hue_tolerance, 0, 179)
-        lower_s = np.clip(s - sat_tolerance, 0, 255)
-        lower_v = np.clip(v - val_tolerance, 0, 255)
+        # 2. Crear máscara (con manejo especial para grises)
+        if s < 30:
+            # Target gris: rango completo de H, usar solo S y V
+            lower_h = 0
+            upper_h = 179
+            lower_s = np.clip(s - sat_tolerance, 0, 255)
+            upper_s = np.clip(s + sat_tolerance, 0, 255)
+            lower_v = np.clip(v - val_tolerance, 0, 255)
+            upper_v = np.clip(v + val_tolerance, 0, 255)
+        else:
+            # Target con color: usar tolerancias normales
+            lower_h = np.clip(h - hue_tolerance, 0, 179)
+            upper_h = np.clip(h + hue_tolerance, 0, 179)
+            lower_s = np.clip(s - sat_tolerance, 0, 255)
+            upper_s = np.clip(s + sat_tolerance, 0, 255)
+            lower_v = np.clip(v - val_tolerance, 0, 255)
+            upper_v = np.clip(v + val_tolerance, 0, 255)
 
-        upper_h = np.clip(h + hue_tolerance, 0, 179)
-        upper_s = np.clip(s + sat_tolerance, 0, 255)
-        upper_v = np.clip(v + val_tolerance, 0, 255)
 
         lower = np.array([lower_h, lower_s, lower_v])
         upper = np.array([upper_h, upper_s, upper_v])
