@@ -1,11 +1,13 @@
 import cv2
 import ctypes
 import sys
+import json
+import os  # Para manejar rutas de archivos
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, 
                             QHBoxLayout, QPushButton, QLabel, 
                             QFileDialog, QMessageBox, QGroupBox,
                             QSizePolicy, QLineEdit, QApplication,
-                            QCheckBox)  # ← Importado correctamente
+                            QCheckBox, QComboBox)  # ← Importado correctamente
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QCursor
 
@@ -21,21 +23,56 @@ class MainWindow(QMainWindow):
     """
     Ventana principal con dos buffers independientes para imágenes.
     """
-    
+    COLORS_FILE = "default_colors.json"
+
     def __init__(self):
         super().__init__()
-        
-        # Inicializar componentes
+
+        # ... (tus inicializaciones existentes) ...
         self.capture = ScreenshotCapture()
         self.processor = ImageProcessor()
         self.waiting_for_color_pick = False
         self.last_squares = []
+
+        # Cargar presets y colores por defecto
+        self.color_presets = {}
+        self.load_color_presets()
+        self.default_colors = self._load_default_colors()  # ← NUEVO
 
         # Configurar UI
         self.setWindowTitle("Screenshot Processor - Dual Mode")
         self.setGeometry(100, 100, 900, 400)
         self._setup_ui()
     
+
+    def load_color_presets(self):
+        try:
+            with open("default_colors.json", 'r') as f:  # ← Nombre directo
+                self.color_presets = json.load(f)
+            print(f"✅ Colores predefinidos cargados: {len(self.color_presets)}")
+        except FileNotFoundError:
+            print("⚠️ Archivo default_colors.json no encontrado. Usando lista vacía.")
+            self.color_presets = {}
+        except json.JSONDecodeError:
+            print("❌ Error al decodificar default_colors.json. Formato inválido.")
+            self.color_presets = {}
+
+    def _load_default_colors(self):
+        try:
+            with open("default_colors.json", 'r') as f:
+                data = json.load(f)
+            if "colores" in data:
+                return data
+            else:
+                print("⚠️ El archivo default_colors.json no tiene la estructura esperada.")
+                return {"colores": []}
+        except FileNotFoundError:
+            print("⚠️ Archivo default_colors.json no encontrado.")
+            return {"colores": []}
+        except json.JSONDecodeError:
+            print("❌ Error al decodificar default_colors.json.")
+            return {"colores": []}
+
     def _setup_ui(self):
         """Configura la interfaz de usuario."""
         central_widget = QWidget()
@@ -50,15 +87,17 @@ class MainWindow(QMainWindow):
         row1_layout = QHBoxLayout()
         
         # --- Grupo Test (Botón + Label pequeño) ---
+        # --- Grupo Test (Botón + Label pequeño + Info color) ---
         test_group = QWidget()
         test_layout = QVBoxLayout()
         test_layout.setAlignment(Qt.AlignCenter)
         test_layout.setSpacing(5)
-        
+
+
         self.btn_capture_test = QPushButton("📸 ColorTest")
         self.btn_capture_test.clicked.connect(self.on_capture_test)
         test_layout.addWidget(self.btn_capture_test)
-        
+
         self.image_label_test = QLabel()
         self.image_label_test.setAlignment(Qt.AlignCenter)
         self.image_label_test.setFixedSize(40, 40)
@@ -70,9 +109,21 @@ class MainWindow(QMainWindow):
         """)
         self.image_label_test.setText("Test")
         test_layout.addWidget(self.image_label_test)
-        
+
+        # --- NUEVO: Label para mostrar información del color ---
+        self.color_info_label = QLabel()
+        self.color_info_label.setAlignment(Qt.AlignCenter)
+        self.color_info_label.setStyleSheet("""
+            QLabel {
+                font-size: 9px;
+                color: #333333;
+                padding: 2px;
+            }
+        """)
+        self.color_info_label.setText("BGR: -\nRGB: -\nHEX: -")
+        test_layout.addWidget(self.color_info_label)
+
         test_group.setLayout(test_layout)
-        # ✅ CORREGIDO: Usar QSizePolicy directamente
         test_group.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         row1_layout.addWidget(test_group)
         
@@ -113,6 +164,26 @@ class MainWindow(QMainWindow):
         actions_layout = QVBoxLayout()
         actions_layout.setAlignment(Qt.AlignCenter)
         actions_layout.setSpacing(5)
+
+        self.combo_default_colors = QComboBox()
+        # Si self.color_presets tiene la estructura correcta (clave: nombre, valor: {bgr: [...]})
+        # pero tu JSON tiene la estructura {"nombre": "gris_claro", "bgr": [248,178,120]}
+        # puedes adaptarlo:
+        if self.color_presets:
+            self.combo_default_colors.addItems(list(self.color_presets.keys()))
+        else:
+            self.combo_default_colors.addItem("-- Sin presets --")
+        self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
+        actions_layout.addWidget(QLabel("Color predefinido:"))
+        actions_layout.addWidget(self.combo_default_colors)
+
+
+        # --- Selector de color predefinido ---
+        self.combo_default_colors = QComboBox()
+        self.combo_default_colors.addItems([c["nombre"] for c in self.default_colors["colores"]])
+        self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
+        actions_layout.addWidget(QLabel("Color predefinido:"))
+        actions_layout.addWidget(self.combo_default_colors)
         
         self.btn_save_test = QPushButton("💾 Guardar Test")
         self.btn_save_test.clicked.connect(lambda: self.on_save("test"))
@@ -332,6 +403,24 @@ class MainWindow(QMainWindow):
             self.update_display_canvas()
             self.status_label.setText(f"Canvas capturado: {w}x{h} píxeles")
 
+    def _load_default_colors(self):
+        """Carga los colores por defecto desde un archivo JSON (estructura específica)."""
+        try:
+            with open("default_colors.json", 'r') as f:
+                data = json.load(f)
+            # Asegurar que tiene la estructura esperada
+            if "colores" in data:
+                return data
+            else:
+                print("⚠️ El archivo default_colors.json no tiene la estructura esperada.")
+                return {"colores": []}
+        except FileNotFoundError:
+            print("⚠️ Archivo default_colors.json no encontrado.")
+            return {"colores": []}
+        except json.JSONDecodeError:
+            print("❌ Error al decodificar default_colors.json.")
+            return {"colores": []}
+
 
 
     def on_region_selector_closed(self):
@@ -350,7 +439,14 @@ class MainWindow(QMainWindow):
         
         test_color = self.processor.get_test_color()
         if test_color is None:
-            QMessageBox.warning(self, "Aviso", "Primero captura un color de test")
+            # Usar color predefinido del combobox
+            nombre_color = self.combo_presets.currentText()
+            if nombre_color and nombre_color != "-- Seleccionar preset --":
+                color_data = self.color_presets.get(nombre_color)
+                if color_data and "bgr" in color_data:
+                    test_color = tuple(color_data["bgr"])
+        if test_color is None:
+            QMessageBox.warning(self, "Aviso", "No hay color de test ni color predefinido")
             return
         
         self.status_label.setText("Analizando canvas con detección avanzada...")
@@ -470,6 +566,20 @@ class MainWindow(QMainWindow):
                         f.write(f"Ancho: {w}, Alto: {h}\n")
                 QMessageBox.information(self, "Éxito", f"Imagen guardada en:\n{file_path}")    
 
+    def on_default_color_selected(self):
+        # Opcional: actualizar el label de prueba con el color predefinido
+        # Pero solo si no hay color capturado manualmente
+        if self.processor.get_test_color() is None:
+            nombre = self.combo_default_colors.currentText()
+            for c in self.default_colors["colores"]:
+                if c["nombre"] == nombre:
+                    self.processor.set_test_color(tuple(c["bgr"]), None)
+                    self.update_display_test()
+                    break
+
+
+
+
     def on_execute_clicks(self):
         if not self.last_squares:
             QMessageBox.warning(self, "Aviso", "Primero ejecuta el análisis")
@@ -560,6 +670,57 @@ class MainWindow(QMainWindow):
                 f"{info['nombre']}: {info['dimensiones']} | "
                 f"{info['canales']} canales | {info['memoria']}"
             )
+
+
+    def update_display_test(self):
+        color_bgr = self.processor.get_test_color()
+        
+        if color_bgr is None:
+            # Limpiar cuadrado de color
+            self.image_label_test.setText("Test")
+            self.image_label_test.setStyleSheet("""
+                QLabel {
+                    border: 1px solid #999999;
+                    background-color: #f0f0f0;
+                }
+            """)
+            # Limpiar información de color
+            self.color_info_label.setText("BGR: -\nRGB: -\nHEX: -")
+            return
+        
+        # Actualizar cuadrado de color
+        b, g, r = color_bgr
+        color_hex = f"#{r:02x}{g:02x}{b:02x}"
+        
+        self.image_label_test.setStyleSheet(f"""
+            QLabel {{
+                border: 1px solid #999999;
+                background-color: {color_hex};
+            }}
+        """)
+        self.image_label_test.setText("")
+        
+        # Actualizar información del color
+        info_text = (
+            f"BGR: ({b}, {g}, {r})\n"
+            f"RGB: ({r}, {g}, {b})\n"
+            f"HEX: {color_hex.upper()}"
+        )
+        self.color_info_label.setText(info_text)
+
+
+    def on_preset_selected(self, index):
+        if index <= 0:  # Primer item es placeholder
+            return
+        name = self.combo_presets.currentText()
+        color_data = self.color_presets[name]
+        bgr = tuple(color_data["bgr"])
+        # Establecer el color en el procesador
+        self.processor.set_test_color(bgr, None)  # Sin coordenadas
+        self.update_display_test()
+        self.status_label.setText(f"Color preset '{name}' cargado")
+
+
     
     def on_compare(self):
         """Compara las dos imágenes."""

@@ -1,0 +1,32 @@
+{
+  "colores": [
+    {"nombre": "Negro", "bgr": [2, 2, 2]},
+    {"nombre": "Gris oscuro", "bgr": [61, 61, 61]},
+    {"nombre": "Gris", "bgr": [121, 121, 121]},
+    {"nombre": "Gris claro", "bgr": [248, 178, 120]},
+    {"nombre": "Gris medio", "bgr": [171, 171, 171]},
+    {"nombre": "Blanco", "bgr": [255, 255, 255]},
+    {"nombre": "Rojo Oscuro", "bgr": [26, 2, 97]},
+    {"nombre": "Rojo Oscuro 2", "bgr": [32, 16, 166]},
+    {"nombre": "Rojo", "bgr": [38, 30, 237]},
+    {"nombre": "Light Rojo", "bgr": [115, 129, 250]},
+    {"nombre": "Naranja Oscuro", "bgr": [28, 93, 228]},
+    {"nombre": "Naranja", "bgr": [41, 128, 255]},
+    {"nombre": "Oro", "bgr": [11, 171, 246]},
+    {"nombre": "Amarillo", "bgr": [60, 221, 249]},
+    {"nombre": "Amarillo claro", "bgr": [188, 250, 255]},
+    {"nombre": "Dark Golden", "bgr": [50, 133, 157]},
+    {"nombre": "Goldenrod", "bgr": [50, 174, 197]},
+    {"nombre": "Light Goldenrod", "bgr": [96, 212, 232]},
+    {"nombre": "Dark Olive", "bgr": [59, 108, 75]},
+    {"nombre": "Olive", "bgr": [75, 149, 91]},
+    {"nombre": "Light Olive", "bgr": [116, 197, 133]},
+    {"nombre": "Verde Oscuro", "bgr": [105, 185, 16]},
+    {"nombre": "Verde", "bgr": [124, 230, 21]},
+    {"nombre": "Verde Claro", "bgr": [95, 255, 136]},
+    {"nombre": "Verde azul Claro", "bgr": [111, 130, 14]},
+
+    {"nombre": "Azul", "bgr": [255, 0, 0]}
+  ],
+  "color_por_defecto": "Gris claro"
+}
