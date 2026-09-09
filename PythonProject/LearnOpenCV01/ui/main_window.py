@@ -47,15 +47,17 @@ class MainWindow(QMainWindow):
 
     def load_color_presets(self):
         try:
-            with open("default_colors.json", 'r') as f:  # ← Nombre directo
-                self.color_presets = json.load(f)
+            with open("default_colors.json", 'r') as f:
+                data = json.load(f)
+            # Suponemos que el JSON tiene la clave "colores"
+            self.color_presets = data.get("colores", [])
             print(f"✅ Colores predefinidos cargados: {len(self.color_presets)}")
         except FileNotFoundError:
             print("⚠️ Archivo default_colors.json no encontrado. Usando lista vacía.")
-            self.color_presets = {}
+            self.color_presets = []
         except json.JSONDecodeError:
             print("❌ Error al decodificar default_colors.json. Formato inválido.")
-            self.color_presets = {}
+            self.color_presets = []
 
     def _load_default_colors(self):
         try:
@@ -169,21 +171,21 @@ class MainWindow(QMainWindow):
         # Si self.color_presets tiene la estructura correcta (clave: nombre, valor: {bgr: [...]})
         # pero tu JSON tiene la estructura {"nombre": "gris_claro", "bgr": [248,178,120]}
         # puedes adaptarlo:
-        if self.color_presets:
-            self.combo_default_colors.addItems(list(self.color_presets.keys()))
-        else:
-            self.combo_default_colors.addItem("-- Sin presets --")
-        self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
-        actions_layout.addWidget(QLabel("Color predefinido:"))
-        actions_layout.addWidget(self.combo_default_colors)
+        # if self.color_presets:
+        #     self.combo_default_colors.addItems(list(self.color_presets.keys()))
+        # else:
+        #     self.combo_default_colors.addItem("-- Sin presets --")
+        # self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
+        # actions_layout.addWidget(QLabel("Color predefinido:"))
+        # actions_layout.addWidget(self.combo_default_colors)
 
 
         # --- Selector de color predefinido ---
-        self.combo_default_colors = QComboBox()
-        self.combo_default_colors.addItems([c["nombre"] for c in self.default_colors["colores"]])
-        self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
-        actions_layout.addWidget(QLabel("Color predefinido:"))
-        actions_layout.addWidget(self.combo_default_colors)
+        # self.combo_default_colors = QComboBox()
+        # self.combo_default_colors.addItems([c["nombre"] for c in self.default_colors["colores"]])
+        # self.combo_default_colors.currentIndexChanged.connect(self.on_default_color_selected)
+        # actions_layout.addWidget(QLabel("Color predefinido:"))
+        # actions_layout.addWidget(self.combo_default_colors)
         
         self.btn_save_test = QPushButton("💾 Guardar Test")
         self.btn_save_test.clicked.connect(lambda: self.on_save("test"))
@@ -431,61 +433,57 @@ class MainWindow(QMainWindow):
 
 
     def on_analyze(self):
-        """Ejecuta el análisis de patrones con detección avanzada."""
         canvas_img = self.processor.get_canvas_pixels()
         if canvas_img is None:
             QMessageBox.warning(self, "Aviso", "Primero captura una imagen canvas")
             return
-        
+
+        # Obtener color primario (test o primer preset)
         test_color = self.processor.get_test_color()
         if test_color is None:
-            # Usar color predefinido del combobox
-            nombre_color = self.combo_presets.currentText()
-            if nombre_color and nombre_color != "-- Seleccionar preset --":
-                color_data = self.color_presets.get(nombre_color)
-                if color_data and "bgr" in color_data:
-                    test_color = tuple(color_data["bgr"])
-        if test_color is None:
-            QMessageBox.warning(self, "Aviso", "No hay color de test ni color predefinido")
-            return
-        
-        self.status_label.setText("Analizando canvas con detección avanzada...")
-        
-        # Llamar al nuevo método
+            if self.color_presets:
+                first_color = self.color_presets[0]
+                test_color = tuple(first_color["bgr"])
+            else:
+                QMessageBox.warning(self, "Aviso", "No hay color de test ni colores predefinidos")
+                return
+
+        # Obtener lista de colores adicionales del JSON (todos los que no sean el primario)
+        color_list = []
+        for color_entry in self.color_presets:
+            bgr = tuple(color_entry["bgr"])
+            if bgr != test_color:
+                color_list.append(bgr)
+
+        self.status_label.setText("Analizando canvas con detección multi-color...")
+
         processed_img, results = PatternAnalyzer.detect_target_squares(
             canvas_img,
-            test_color,
-            area_tolerance=0.2,      # 20% de tolerancia en área
-            hue_tolerance=10,
-            sat_tolerance=50,
-            val_tolerance=50
+            primary_color=test_color,
+            color_list=color_list,
+            area_tolerance=0.15,
+            hue_tolerance=30,
+            sat_tolerance=80,
+            val_tolerance=80
         )
 
-        if results:
-            # Extraer centros
-            points = [(sq['x'] + sq['width']//2, sq['y'] + sq['height']//2) for sq in results]
-
+        # 4. Guardar resultados
         self.last_squares = results
 
-        self.processor.set_last_squares(results)
-        
+        # 5. Resto del código (actualizar UI, etc.)
         if processed_img is None:
             QMessageBox.warning(self, "Error", "No se pudo procesar la imagen")
             return
-        
-        # Guardar coordenadas originales
+
         coords = self.processor.get_canvas_coordenadas()
-        
-        # Reemplazar imagen canvas con la procesada
         self.processor.set_canvas_image(
             processed_img,
             titulo="Canvas Analizado",
             descripcion=f"Cuadrados detectados: {len(results)}",
             coordenadas=coords
         )
-        
         self.update_display_canvas()
-        
+
         if results:
             self.status_label.setText(f"Análisis completado: {len(results)} cuadrados encontrados")
             self.show_analysis_results(results)
@@ -495,31 +493,24 @@ class MainWindow(QMainWindow):
 
 
     def show_analysis_results(self, results, filtered_by_color=False):
-        """Muestra un diálogo con los resultados del análisis."""
         if not results:
             QMessageBox.information(self, "Resultados", "No se encontraron formas")
             return
-        
+
         message = f"=== RESULTADOS DEL ANÁLISIS ===\n"
         message += f"Total de formas detectadas: {len(results)}\n"
-        if filtered_by_color:
-            matched = [r for r in results if r.get('coincidencia', False)]
-            message += f"Coinciden con color de test: {len(matched)}\n\n"
-        else:
-            message += "\n"
+        # Contar primarios y secundarios
+        primary_count = sum(1 for r in results if r.get('color_type') == 'primary')
+        secondary_count = len(results) - primary_count
+        message += f"  - Primarios (color test): {primary_count}\n"
+        message += f"  - Secundarios (otros colores): {secondary_count}\n\n"
         
-        for i, sq in enumerate(results[:10]):  # Mostrar hasta 10
+        for i, sq in enumerate(results[:10]):
             message += f"Forma {i+1}:\n"
             message += f"  Posición: ({sq['x']}, {sq['y']})\n"
             message += f"  Tamaño: {sq['width']}x{sq['height']}\n"
-            message += f"  Área: {sq['area']:.0f}\n"
-            if 'aspect_ratio' in sq:
-                message += f"  Relación: {sq['aspect_ratio']:.2f}\n"
-            if 'color_promedio' in sq:
-                message += f"  Color (BGR): {sq['color_promedio']}\n"
-            if 'coincidencia' in sq:
-                message += f"  Coincide con test: {'Sí' if sq['coincidencia'] else 'No'}\n"
-            message += "\n"
+            message += f"  Color (BGR): {sq.get('color', 'N/A')}\n"
+            message += f"  Tipo: {sq.get('color_type', 'N/A')}\n\n"
         
         QMessageBox.information(self, "Detalles del Análisis", message)
 
@@ -582,7 +573,11 @@ class MainWindow(QMainWindow):
 
     def on_execute_clicks(self):
         if not self.last_squares:
-            QMessageBox.warning(self, "Aviso", "Primero ejecuta el análisis")
+            QMessageBox.warning(self, "Aviso", "No hay cuadrados para ejecutar clics. Ejecuta el análisis primero.")
+            return
+
+        if len(self.last_squares) == 0:
+            QMessageBox.warning(self, "Aviso", "La lista de cuadrados está vacía.")
             return
         
         # Obtener offset de la región capturada
@@ -614,10 +609,11 @@ class MainWindow(QMainWindow):
         mode = 'drag' if self.checkbox_drag.isChecked() else 'click'
 
         if self.last_squares:
-            avg_height = sum(sq['height'] for sq in self.last_squares) / len(self.last_squares)
-            avg_width = sum(sq['width'] for sq in self.last_squares) / len(self.last_squares)
+            avg_height = sum(sq['height'] for sq in self.last_squares) / max(1, len(self.last_squares))
+            avg_width = sum(sq['width'] for sq in self.last_squares) / max(1, len(self.last_squares))
         else:
-            avg_height = 30  # valor por defecto
+            avg_height = 30
+            avg_width = 30
         
         try:
             ClickExecutor.execute_from_squares(
@@ -707,18 +703,6 @@ class MainWindow(QMainWindow):
             f"HEX: {color_hex.upper()}"
         )
         self.color_info_label.setText(info_text)
-
-
-    def on_preset_selected(self, index):
-        if index <= 0:  # Primer item es placeholder
-            return
-        name = self.combo_presets.currentText()
-        color_data = self.color_presets[name]
-        bgr = tuple(color_data["bgr"])
-        # Establecer el color en el procesador
-        self.processor.set_test_color(bgr, None)  # Sin coordenadas
-        self.update_display_test()
-        self.status_label.setText(f"Color preset '{name}' cargado")
 
 
     
