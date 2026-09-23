@@ -468,12 +468,15 @@ class MainWindow(QMainWindow):
 
         processed_img, results = PatternAnalyzer.detect_target_squares(
             canvas_img,
-            primary_color=test_color,
+            test_color,
             color_list=color_list,
-            size_tolerance=0.15,
-            hue_tolerance=30,
-            sat_tolerance=80,
-            val_tolerance=80
+            hue_tolerance=10,
+            sat_tolerance=50,
+            val_tolerance=50,
+            area_tolerance_upper=0.20,   # ← permite +20% sobre la mediana
+            area_tolerance_lower=0.25,   # ← permite -25% (anti-aliasing)
+            dim_tolerance=0.12,          # ← W y H con ±12%
+            diagnostic=True
         )
 
         # 4. Guardar resultados
