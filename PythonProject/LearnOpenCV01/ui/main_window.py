@@ -405,6 +405,15 @@ class MainWindow(QMainWindow):
             self.update_display_canvas()
             self.status_label.setText(f"Canvas capturado: {w}x{h} píxeles")
 
+            # ← NUEVO: ejecutar análisis automáticamente si hay color disponible
+            has_color = (self.processor.get_test_color() is not None) or bool(self.color_presets)
+            if has_color:
+                self.on_analyze()
+            else:
+                self.status_label.setText(
+                    f"Canvas capturado: {w}x{h} píxeles. Captura un color y presiona 'Analizar Canvas'"
+                )
+
     def _load_default_colors(self):
         """Carga los colores por defecto desde un archivo JSON (estructura específica)."""
         try:
@@ -461,7 +470,7 @@ class MainWindow(QMainWindow):
             canvas_img,
             primary_color=test_color,
             color_list=color_list,
-            area_tolerance=0.15,
+            size_tolerance=0.15,
             hue_tolerance=30,
             sat_tolerance=80,
             val_tolerance=80
@@ -602,7 +611,8 @@ class MainWindow(QMainWindow):
                 'x': abs_x,
                 'y': abs_y,
                 'width': sq['width'],
-                'height': sq['height']
+                'height': sq['height'],
+                'color': tuple(sq.get('color')) if sq.get('color') is not None else None
             })
         
         # Leer modo
